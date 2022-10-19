@@ -8,6 +8,7 @@ export default function App() {
       <Text> hello jacob</Text>
       <Text> hello victor venegas</Text>
       <Text> hello Steven</Text>
+      <Text> hello Margarita</Text>
       <StatusBar style="auto" />
     </View>
   );
