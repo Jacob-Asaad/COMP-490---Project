@@ -15,6 +15,9 @@ const SignInScreen = () => {
         console.warn("Sign In)");
     }
 
+    const onForgotPasswordPress = () => {
+        console.warn("Forgot Password");
+    }
      return(
     <View style = {styles.root}>
       <Image 
@@ -37,6 +40,11 @@ const SignInScreen = () => {
 
         <CustomButton text = "Sign In" onPress={onSignInPress} />
 
+        <CustomButton 
+        text = "Forgot Password? " 
+        onPress={onForgotPasswordPress}
+        type = "TERTIARY" 
+        />
     </View>
   );
 };
