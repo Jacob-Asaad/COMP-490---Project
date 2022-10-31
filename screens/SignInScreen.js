@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, useWindowDimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
 import React, {useState} from 'react';
 import Logo from '../assets/images/logo.png';
 import CustomInput from '../components/CustomInput/CustomInput';
@@ -12,19 +12,38 @@ const SignInScreen = () => {
     const {height} = useWindowDimensions();
 
     const onSignInPress = () => {
-        console.warn("Sign In)");
+        console.warn("Sign In");
     }
 
     const onForgotPasswordPress = () => {
         console.warn("Forgot Password");
     }
+    const onSignInFacebook = () => {
+        console.warn("Signing in with Facebook...");
+    }
+
+    const onSignInGoogle = () => {
+        console.warn("Signing with Google...");
+    }
+    const onSignInPressApple = () => {
+        console.warn("Signing with Apple...");
+    }
+
+    const onSignUpPress = () => {
+        console.warn('Redirect to Sign Up Screen');
+    }
+
      return(
+        <ScrollView showsVerticalScrollIndicator = {false}>
     <View style = {styles.root}>
       <Image 
       source = {Logo} 
       style= {[styles.logo, {height: height * 0.3}] } 
       resizeMode= 'contain'
       />
+      <Text 
+      style = {styles.login}> Login 
+      </Text>
 
       <CustomInput 
       placeholder = "Email" 
@@ -38,20 +57,62 @@ const SignInScreen = () => {
       secureTextEntry = {true}
         />
 
-        <CustomButton text = "Sign In" onPress={onSignInPress} />
+        <CustomButton 
+        text = "Sign In" 
+        onPress={onSignInPress} 
+        />
 
         <CustomButton 
         text = "Forgot Password? " 
         onPress={onForgotPasswordPress}
         type = "TERTIARY" 
         />
+
+       <CustomButton 
+        text = "Sign In with Facebook" 
+        onPress={onSignInFacebook} 
+        bgColor ="#E7EAF4"
+        fgColor="#4765A9"
+        />
+
+        <CustomButton 
+        text = "Sign In with Google" 
+        onPress={onSignInGoogle}
+        bgColor = "#FAE9EA"
+        fgColor= "#DD4D44" 
+        />
+
+        <CustomButton 
+        text = "Sign In with Apple" 
+        onPress={onSignInPressApple} 
+        bgColor = "#E3E3E3"
+        fgColor= "#363636"
+        />
+
+<CustomButton 
+        text = "Don't have an account? Sign Up " 
+        onPress={onSignUpPress}
+        type = "TERTIARY" 
+        />
+
     </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
         padding: 30,
+        
+    },
+
+    login: {
+        fontSize: '20',
+        fontWeight: 'bold',
+        alignSelf: 'left',
+        paddingBottom: '2%',
+        marginHorizontal: '2.5%',
+        letterSpacing: '1.2',
         
     },
 
