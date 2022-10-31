@@ -21,12 +21,13 @@ const styles = StyleSheet.create({
 container: {
 
 backgroundColor: 'white',
-width: '95%',
-height: 40,
+width: '100%',
+height: 45,
 borderColor: "#e8e8e8",
-borderWidth: 1,
+borderWidth: 2,
 borderRadius: 5,
 
+alignItems: 'flex',
 paddingHorizontal: 10,
 marginVertical: 10,
 },

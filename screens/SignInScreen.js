@@ -48,7 +48,9 @@ const SignInScreen = () => {
       <CustomInput 
       placeholder = "Email" 
       value={email} 
-      setValue = {setEmail} />
+      setValue = {setEmail}
+      secureTextEntry = {false}
+       />
 
       <CustomInput 
       placeholder  = "Password" 
@@ -111,7 +113,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         alignSelf: 'left',
         paddingBottom: '2%',
-        marginHorizontal: '2.5%',
         letterSpacing: '1.2',
         
     },
