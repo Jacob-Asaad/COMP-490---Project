@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "62250257427",
+    "project_id": "plantlink-f66de",
+    "storage_bucket": "plantlink-f66de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62250257427:android:bcd182c414cb6740c383e6",
+        "android_client_info": {
+          "package_name": "com.plantlink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62250257427-u73cl9neprkf2m4l04vc2fa8hj5atjbg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.plantlink",
+            "certificate_hash": "58fd59c7fa3c677bf95e69786d29e09ec5f68ef6"
+          }
+        },
+        {
+          "client_id": "62250257427-633rrcaob0716r2nck3rn8tajidqcqqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRquXSnl1FC0iLbLEpqjBUKMtX_sujt8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62250257427-633rrcaob0716r2nck3rn8tajidqcqqu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "62250257427-ffmegu4j95rg32u2fpt5r72q9q32dl2t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": ".com.plantlink"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
