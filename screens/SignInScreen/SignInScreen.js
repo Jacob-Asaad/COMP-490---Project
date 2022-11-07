@@ -91,7 +91,7 @@ const SignInScreen = () => {
         fgColor= "#363636"
         />
 
-<CustomButton 
+        <CustomButton 
         text = "Don't have an account? Sign Up " 
         onPress={onSignUpPress}
         type = "TERTIARY" 

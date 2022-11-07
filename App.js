@@ -4,13 +4,14 @@ import React from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
+import Plant from './components/Plant/Plant';
 
 
 const App = () => {
   return (
     <View style={styles.root}>
-    <PlantHubScreen />
       <StatusBar style="auto" />
+      <PlantHubScreen/> 
     </View>
   );
 }
