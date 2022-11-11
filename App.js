@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ImageBackgroundComponent } from 'react-native';
 import React from 'react';
+import{Node} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Tabs from './Navigation/tabs';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
