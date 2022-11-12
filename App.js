@@ -13,9 +13,10 @@ import Plant from './components/Plant/Plant';
 const App = () => {
   return (
    
-    <NavigationContainer>
+    <NavigationContainer style={styles.root}>
       <Tabs />
-
+      <StatusBar style="auto" />
+      
     </NavigationContainer>
   );
 }
