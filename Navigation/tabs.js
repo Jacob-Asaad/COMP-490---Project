@@ -52,10 +52,10 @@ return(
         }
         }}
         > 
-        <Tab.Screen name="Home" component={SignInScreen} 
+        <Tab.Screen name="Dashboard" component={PlantHubScreen} 
         options={{
          tabBarIcon: ({focused}) => (
-            <View style = {{alignItems: 'center', justifyContent: 'center', top: 10}}>
+            <View style = {{alignItems: 'center', justifyContent: 'center', top: 3}}>
                 <Image
                 source={require('../assets/images/homeicon.png')}
                 resizeMode="contain"
@@ -73,10 +73,10 @@ return(
          )
         }}/>
         
-        <Tab.Screen name= "Profiles" component = {SignUpScreen}
+        <Tab.Screen name= "Plant Profiles" component = {SignUpScreen}
         options={{
             tabBarIcon: ({focused}) => (
-               <View style = {{alignItems: 'center', justifyContent: 'center', top: 10}}>
+               <View style = {{alignItems: 'center', justifyContent: 'center', top: 3}}>
                    <Image
                    source={require('../assets/images/profileicon.png')}
                    resizeMode="contain"
@@ -110,12 +110,12 @@ return(
                 <CustomTabBarButton {...props} />
             )
               }}/>
-           <Tab.Screen name= "History" component = {SignUpScreen}
+           <Tab.Screen name= "Watering History" component = {SignUpScreen}
         options={{
             tabBarIcon: ({focused}) => (
-               <View style = {{alignItems: 'center', justifyContent: 'center', top: 10}}>
+               <View style = {{alignItems: 'center', justifyContent: 'center', top: 3}}>
                    <Image
-                   source={require('../assets/images/calendar3icon.png')}
+                   source={require('../assets/images/clockicon.webp')}
                    resizeMode="contain"
                    style={{
                        width: 25,
@@ -133,7 +133,7 @@ return(
            <Tab.Screen name= "Settings" component = {SignUpScreen}
         options={{
             tabBarIcon: ({focused}) => (
-               <View style = {{alignItems: 'center', justifyContent: 'center', top: 10}}>
+               <View style = {{alignItems: 'center', justifyContent: 'center', top: 3}}>
                    <Image
                    source={require('../assets/images/settingsicon.webp')}
                    resizeMode="contain"
