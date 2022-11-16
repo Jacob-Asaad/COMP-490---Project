@@ -42,10 +42,11 @@ return(
     //need to change this to screenOptions( but it's some options need to be changed)
     tabBarOptions={{
         showLabel: false,
+        //styling for the navigation bar positioning
         style: {
           position: "absolute",
           bottom: 25,
-              left: 250,
+              left: 20,
               right: 20,
           elevation: 0,
           backgroundColor: '#ffffff',
@@ -55,7 +56,9 @@ return(
         }
         }}
         > 
+        
         <Tab.Screen name="Dashboard" component={PlantHubScreen} 
+        //styling and options for Home button on navigation bar
         options={{
          tabBarIcon: ({focused}) => (
             <View style = {{alignItems: 'center', justifyContent: 'center', top: 3}}>
@@ -67,8 +70,8 @@ return(
                     height: 25,
                     tintColor: focused ? '#e32f45' : '#748c94'
                 }}
-
-                />   
+                // Text under home button 
+                />    
                 <Text style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}> Home</Text>
 
             </View>
@@ -77,6 +80,7 @@ return(
         }}/>
         
         <Tab.Screen name= "Plant Profiles" component = {SignUpScreen}
+        //styling and options for Plant Profiles button on navigation bar
         options={{
             tabBarIcon: ({focused}) => (
                <View style = {{alignItems: 'center', justifyContent: 'center', top: 3}}>
@@ -88,7 +92,7 @@ return(
                        height: 25,
                        tintColor: focused ? '#e32f45' : '#748c94'
                    }}
-   
+                     // Text under Plant Profiles button
                    />   
                    <Text style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}> Profiles</Text>
    
@@ -97,6 +101,8 @@ return(
             )
            }}/>
            <Tab.Screen name= "Plus" component = {PlantHubScreen}
+              //styling and options for Plus button on navigation bar
+              // plus buutton functionality needs to be chnaged (currently goes to a screen)
         options={{
             tabBarIcon: ({focused}) => (
                 <Image
@@ -109,11 +115,13 @@ return(
                 }}
                 />
             ),
+            //uses tabBarButton function from the top of the page 
             tabBarButton: (props) => (
                 <CustomTabBarButton {...props} />
             )
               }}/>
            <Tab.Screen name= "Watering History" component = {SignUpScreen}
+           //styling and options for Watering History button on navigation bar
         options={{
             tabBarIcon: ({focused}) => (
                <View style = {{alignItems: 'center', justifyContent: 'center', top: 3}}>
@@ -125,7 +133,7 @@ return(
                        height: 25,
                        tintColor: focused ? '#e32f45' : '#748c94'
                    }}
-   
+                        // Text under Watering History button
                    />   
                    <Text style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}> History</Text>
    
@@ -134,6 +142,7 @@ return(
             )
            }}/>
            <Tab.Screen name= "Settings" component = {SignUpScreen}
+              //styling and options for Settings button on navigation bar
         options={{
             tabBarIcon: ({focused}) => (
                <View style = {{alignItems: 'center', justifyContent: 'center', top: 3}}>
@@ -145,7 +154,7 @@ return(
                        height: 25,
                        tintColor: focused ? '#e32f45' : '#748c94'
                    }}
-   
+                        // Text under Settings button
                    />   
                    <Text style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}> Settings</Text>
    
@@ -157,7 +166,7 @@ return(
     </Tab.Navigator>
 );
 }
-
+// Stylesheet for shadow under plus button
 const styles = StyleSheet.create({
     shadow: {
         shadowColor: '#7F5DF0',

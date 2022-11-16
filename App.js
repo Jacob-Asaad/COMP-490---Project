@@ -12,7 +12,7 @@ import Plant from './components/Plant/Plant';
 
 const App = () => {
   return (
-   
+    // Calls NavBar and navigation for the buttons 
     <NavigationContainer style={styles.root}>
       <Tabs />
       <StatusBar style="auto" />
