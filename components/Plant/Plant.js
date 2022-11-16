@@ -1,16 +1,59 @@
 import React from "react";
 import {StyleSheet,View,TextInput} from "react-native" ;
 
-function Plant(props){ //Plant functional component holding plant data
+function Plant(props){ //Plant component referencing plant data
     return( 
-        <View>
-            <TextInput>
-                {props.name}
-                {props.soilLevel}
-                {props.temp}
-                {props.humidity}
-            </TextInput>
+        <View style = {plantStyles.container}>
+            <TextInput style = {circleDisplayStyles.headerText}> {props.name}</TextInput>
+                <View style = {circleDisplayStyles.container}>
+                    <TextInput style = {circleDisplayStyles.headerText}>
+                        {props.soilLevel}
+                    </TextInput> 
+                </View>
+                <View style = {circleDisplayStyles.container}>
+                    <TextInput style = {circleDisplayStyles.headerText}>
+                        {props.humidity}
+                    </TextInput> 
+                </View>
+                <View  style = {circleDisplayStyles.container}>
+                    <TextInput style = {circleDisplayStyles.headerText}>
+                        {props.temp}
+                    </TextInput> 
+                </View>
         </View>
     );
   };
+
+  const plantStyles = StyleSheet.create({
+    container:{
+        backgroundColor: '#80A66C',
+        width: '100%',
+        height: 150,
+        borderColor: "#e8e8e8",
+        paddingVertical:35,
+        borderWidth: 2,
+        borderRadius: 5,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
+  }
+    });
+    const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
+        container: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "stretch",
+          width: 86,
+          height: 86,
+          borderRadius: 150 / 2,
+          backgroundColor: '#EE892F'
+        },
+        headerText: {
+          fontSize: 12,
+          textAlign: "center",
+          margin: 8,
+          fontWeight: "bold"
+        }, 
+      });
+
   export default Plant 
