@@ -1,14 +1,20 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import FloatingActionBar from 'react-native-floating-action-bar';
 import PlantHubScreen from '../screens/PlantHubScreen/PlantHubScreen';
 import SignInScreen from '../screens/SignInScreen/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen/SignUpScreen';
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
+
+// create bottom tab 
 const Tab = createBottomTabNavigator();
 
+
+// custom tab bar button (big red plus button)
 const CustomTabBarButton = ({children, onPress}) => (
     <TouchableOpacity
+    //styling for red plus button positioning
     style={{
         top: -30,
         justifyContent: 'center',
@@ -18,6 +24,7 @@ const CustomTabBarButton = ({children, onPress}) => (
     onPress={onPress}
     >
         <View style={{
+            //styling for button size and color
             width: 70,
             height: 70,
             borderRadius: 35,
@@ -28,23 +35,19 @@ const CustomTabBarButton = ({children, onPress}) => (
 
     </TouchableOpacity>
 );
-
+// Options for the navigation bar
 const Tabs = () => {
 return(
     <Tab.Navigator 
-    //need to change this to screenOptions
+    //need to change this to screenOptions( but it's some options need to be changed)
     tabBarOptions={{
         showLabel: false,
         style: {
-          position: 'absolute',
-          marginLeft: 50,
-              marginRight: 50,
-              marginBottom: 30,
-              borderRadius: 35,
-              paddingBottom: 10,
-              borderTopWidth: 0,
-              paddingHorizontal: 20,
-          elevation: 10,
+          position: "absolute",
+          bottom: 25,
+              left: 250,
+              right: 20,
+          elevation: 0,
           backgroundColor: '#ffffff',
           borderRadius: 35,
           height: 100,
