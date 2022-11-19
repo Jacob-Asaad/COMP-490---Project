@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, ImageBackgroundComponent } from 'react-n
 import React from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
+import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
 import Plant from './components/Plant/Plant';
 
@@ -11,7 +12,7 @@ const App = () => {
   return (
     <View style={styles.root}>
       <StatusBar style="auto" />
-      <PlantHubScreen/> 
+      <SettingsScreen/> 
     </View>
   );
 }
