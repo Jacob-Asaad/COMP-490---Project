@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Tabs from './Navigation/tabs';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
+import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
 import Plant from './components/Plant/Plant';
 import { firebase } from './config';
