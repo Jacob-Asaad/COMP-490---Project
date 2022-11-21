@@ -1,17 +1,26 @@
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
+import { firebase } from '../../config';
 
 const SignInScreen = () => {
-    const[email, setEmail] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const[password, setPassword] = useState('');
-        
-    const {height} = useWindowDimensions();
+    const loginUser = async (email, password) => {
+        try {
+            await firebase.auth().signInWithEmailAndPassword(email, password)
+        } catch (error) {
+            alert(error.message)
+        }
+    }
+
+    const { height } = useWindowDimensions();
 
     const onSignInPress = () => {
+        loginUser(email, password);
         console.warn("Sign In");
     }
 
@@ -33,79 +42,79 @@ const SignInScreen = () => {
         console.warn('Redirect to Sign Up Screen');
     }
 
-     return(
-        <ScrollView showsVerticalScrollIndicator = {false}>
-    <View style = {styles.root}>
-      <Image 
-      source = {Logo} 
-      style= {[styles.logo, {height: height * 0.3}] } 
-      resizeMode= 'contain'
-      />
-      <Text 
-      style = {styles.login}> Login 
-      </Text>
+    return (
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.root}>
+                <Image
+                    source={Logo}
+                    style={[styles.logo, { height: height * 0.3 }]}
+                    resizeMode='contain'
+                />
+                <Text
+                    style={styles.login}> Login
+                </Text>
 
-      <CustomInput 
-      placeholder = "Email" 
-      value={email} 
-      setValue = {setEmail}
-      secureTextEntry = {false}
-       />
+                <CustomInput
+                    placeholder="Email"
+                    value={email}
+                    setValue={setEmail}
+                    secureTextEntry={false}
+                />
 
-      <CustomInput 
-      placeholder  = "Password" 
-      value= {password} 
-      setValue = {setPassword}
-      secureTextEntry = {true}
-        />
+                <CustomInput
+                    placeholder="Password"
+                    value={password}
+                    setValue={setPassword}
+                    secureTextEntry={true}
+                />
 
-        <CustomButton 
-        text = "Sign In" 
-        onPress={onSignInPress} 
-        />
+                <CustomButton
+                    text="Sign In"
+                    onPress={onSignInPress}
+                />
 
-        <CustomButton 
-        text = "Forgot Password? " 
-        onPress={onForgotPasswordPress}
-        type = "TERTIARY" 
-        />
+                <CustomButton
+                    text="Forgot Password? "
+                    onPress={onForgotPasswordPress}
+                    type="TERTIARY"
+                />
 
-       <CustomButton 
-        text = "Sign In with Facebook" 
-        onPress={onSignInFacebook} 
-        bgColor ="#E7EAF4"
-        fgColor="#4765A9"
-        />
+                <CustomButton
+                    text="Sign In with Facebook"
+                    onPress={onSignInFacebook}
+                    bgColor="#E7EAF4"
+                    fgColor="#4765A9"
+                />
 
-        <CustomButton 
-        text = "Sign In with Google" 
-        onPress={onSignInGoogle}
-        bgColor = "#FAE9EA"
-        fgColor= "#DD4D44" 
-        />
+                <CustomButton
+                    text="Sign In with Google"
+                    onPress={onSignInGoogle}
+                    bgColor="#FAE9EA"
+                    fgColor="#DD4D44"
+                />
 
-        <CustomButton 
-        text = "Sign In with Apple" 
-        onPress={onSignInPressApple} 
-        bgColor = "#E3E3E3"
-        fgColor= "#363636"
-        />
+                <CustomButton
+                    text="Sign In with Apple"
+                    onPress={onSignInPressApple}
+                    bgColor="#E3E3E3"
+                    fgColor="#363636"
+                />
 
-        <CustomButton 
-        text = "Don't have an account? Sign Up " 
-        onPress={onSignUpPress}
-        type = "TERTIARY" 
-        />
+                <CustomButton
+                    text="Don't have an account? Sign Up "
+                    onPress={onSignUpPress}
+                    type="TERTIARY"
+                />
 
-    </View>
-    </ScrollView>
-  );
+            </View>
+        </ScrollView>
+    );
 };
 const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
         padding: 30,
-        
+
     },
 
     login: {
@@ -114,15 +123,15 @@ const styles = StyleSheet.create({
         alignSelf: 'left',
         paddingBottom: '2%',
         letterSpacing: '1.2',
-        
+
     },
 
-logo: {
-    width: '70%',
-    maxWidth: 300,
-    maxHeight: 200,
+    logo: {
+        width: '70%',
+        maxWidth: 300,
+        maxHeight: 200,
 
-},
+    },
 });
 
 
