@@ -47,11 +47,11 @@ const SettingsScreen = () => {
          Notifications 
          </Text>
 
-        <CustomSwitch style = {styles.switch} >
+        <CustomSwitch style = {styles.switch} 
          isEnabled = {notifications} 
          toggleSwitch = {SetNotifications}
+        />
         
-        </CustomSwitch>
         </View>
 
         <View style = {styles.rows}>
@@ -59,10 +59,10 @@ const SettingsScreen = () => {
          Bluetooth          
          </Text>
         
-        <CustomSwitch style = {styles.switch}>
+        <CustomSwitch style = {styles.switch}
          isEnabled = {bluetooth} 
          toggleSwitch = {SetBluetooth}
-         </CustomSwitch>
+         />
         </View>
 
         <View style = {styles.rows}>
@@ -156,7 +156,6 @@ const styles = StyleSheet.create({
   switch: {
     flex: 1,
     alignSelf: "right",
-    
     
   },
   buttons: {
