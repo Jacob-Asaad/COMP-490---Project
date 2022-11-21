@@ -4,11 +4,9 @@ import { View, Text,TextInput, Image, StyleSheet, useWindowDimensions, ScrollVie
 import Plant from '../../components/Plant/Plant';
 import React, {useState} from 'react';
 
-
-
 const PlantHubScreen = () => {
 
-    const createPlant = function(plantName) {
+    const createPlant = function(plantName) { //Work in Progress -> ignore for now
           const name = plantName;
           const [soilLevel, setSoilLevel] = useState("soilReading");
           const [temp, setTemp] = useState("tempReading");
@@ -17,31 +15,29 @@ const PlantHubScreen = () => {
             <Text style={circleDisplayStyles.headerText}>Plant </Text>
             <View style={circleDisplayStyles.CircleShape}/>
           </View>
-        */
-      
+        */ 
     }
-    return(
+    return( //returning a plant component to the PlantHubScreen
         <ScrollView showsVerticalScrollIndicator = {false}>
           <View>
             <Text>
               <Plant             
                 name ='plantOne'
-                soilLevel ='soil'
-                temp='temp'
-                humidity='humidity'
+                soilLevel ='Soil Level'
+                temp='Temp'
+                humidity='Humidity'
               />
            </Text>
          </View>
        </ScrollView>
-      );
+    );
 };
-
-  const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
+    /*const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
       container: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "white",
+        backgroundColor: "red",
       },
       headerText: {
         fontSize: 20,
@@ -50,10 +46,13 @@ const PlantHubScreen = () => {
         fontWeight: "bold"
       }, 
       CircleShape: {
-        width: 150,
-        height: 150,
+        width: 100,
+        height: 100,
         borderRadius: 150 / 2,
         backgroundColor: '#FF9800',
       },
     });
+*/
+
+
 export default PlantHubScreen
