@@ -33,45 +33,51 @@ const SettingsScreen = () => {
             <Image source={require('/Users/jose/Documents/GitHub/COMP-490---Project/COMP-490---Project/assets/images/profilepic.jpeg')} style={styles.image}></Image>
 
         </View>
-
+         
         <Text style = {styles.emailName}> 
          Sample@email.com 
          </Text>
-
+          
          <Text style = {styles.settings}> 
          Settings
          </Text>
-  
+
+         <View style = {styles.rows}>
         <Text style = {styles.text}> 
          Notifications 
          </Text>
 
-        <CustomSwitch style = {styles.switch}>
+        <CustomSwitch style = {styles.switch} >
          isEnabled = {notifications} 
          toggleSwitch = {SetNotifications}
         
         </CustomSwitch>
+        </View>
 
+        <View style = {styles.rows}>
         <Text style = {styles.text}> 
-         Bluetooth 
+         Bluetooth          
          </Text>
         
-        <CustomSwitch 
+        <CustomSwitch style = {styles.switch}>
          isEnabled = {bluetooth} 
          toggleSwitch = {SetBluetooth}
-         />
+         </CustomSwitch>
+        </View>
 
+        <View style = {styles.rows}>
 
         <Text style = {styles.text}> 
          Automatic Watering
          </Text>
     
-        <CustomSwitch 
+        <CustomSwitch style = {styles.switch}
          isEnabled = {autowater} 
          toggleSwitch = {SetAutowater}
          />
 
-        <CustomButton 
+       </View>
+        <CustomButton style = {styles.button}
         text = "Clear History" 
         onPress={clearHistory}
         bgColor = "#5A5A5A"
@@ -99,9 +105,16 @@ const styles = StyleSheet.create({
     },
     contain: {
         flex: 1,
-        alignSelf: 'center',
-        padding: 30,
+        alignContent: 'center',
+        margin: 25,
+        padding: 20,
         
+    },
+    rows : {
+      flexDirection: 'row',
+      paddingTop: 10,
+      paddingBottom: 2,
+      justifyContent: 'space-between',
     },
 
     image:{
@@ -111,6 +124,7 @@ const styles = StyleSheet.create({
        paddingTop: 10,
     },
     profileImage:{
+      alignSelf: 'center',
         width: 200,
         height: 200,
         borderRadius: 100,
@@ -118,26 +132,36 @@ const styles = StyleSheet.create({
         marginTop: 50,
 },
     text: {
-      alignItems: "center",
-      justifyContent: "center",
+        fontSize: 15,
+        fontWeight: 'bold',
       paddingTop: 20,
+      marginRight: 145,
+      marginBottom: 5,
     },
 
     emailName: {
       alignItems: "center",
       alignSelf: "center",
       marginTop: 20,
+      fontSize: 15,
   },
   settings: {
     alignItems: "center",
       alignSelf: "center",
       marginTop: 20,
+      marginBottom: 10,
       fontSize: 25,
       fontWeight: "bold",
   },
   switch: {
-    alignItems: "right",
+    flex: 1,
+    alignSelf: "right",
+    
+    
   },
+  buttons: {
+    align: "center",
+  }
 
 
 });
