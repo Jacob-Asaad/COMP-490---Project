@@ -1,4 +1,4 @@
-import { View,SafeAreaView, Text, Image, Switch, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, SafeAreaView, Text, Image, Switch, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
 import React, {useState} from 'react';
 import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
@@ -27,15 +27,30 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      
+        <View style={styles.contain}>
+        <View style={styles.profileImage}>
+            <Image source={require('/Users/jose/Documents/GitHub/COMP-490---Project/COMP-490---Project/assets/images/profilepic.jpeg')} style={styles.image}></Image>
 
+        </View>
+
+        <Text style = {styles.emailName}> 
+         Sample@email.com 
+         </Text>
+
+         <Text style = {styles.settings}> 
+         Settings
+         </Text>
+  
         <Text style = {styles.text}> 
          Notifications 
          </Text>
 
-        <CustomSwitch 
+        <CustomSwitch style = {styles.switch}>
          isEnabled = {notifications} 
          toggleSwitch = {SetNotifications}
-         />
+        
+        </CustomSwitch>
 
         <Text style = {styles.text}> 
          Bluetooth 
@@ -71,7 +86,7 @@ const SettingsScreen = () => {
         />
 
 
-        
+        </View>
     </SafeAreaView>
   );
 }
@@ -79,9 +94,53 @@ const SettingsScreen = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor: '#F9FBFC',
+
+    },
+    contain: {
+        flex: 1,
+        alignSelf: 'center',
+        padding: 30,
+        
+    },
+
+    image:{
+       flex: 1,
+       width: undefined,
+       height: undefined,
+       paddingTop: 10,
+    },
+    profileImage:{
+        width: 200,
+        height: 200,
+        borderRadius: 100,
+        overflow: "hidden",
+        marginTop: 50,
+},
+    text: {
       alignItems: "center",
-      justifyContent: "center"
-    }
-  });
+      justifyContent: "center",
+      paddingTop: 20,
+    },
+
+    emailName: {
+      alignItems: "center",
+      alignSelf: "center",
+      marginTop: 20,
+  },
+  settings: {
+    alignItems: "center",
+      alignSelf: "center",
+      marginTop: 20,
+      fontSize: 25,
+      fontWeight: "bold",
+  },
+  switch: {
+    alignItems: "right",
+  },
+
+
+});
+      
 
 export default SettingsScreen
