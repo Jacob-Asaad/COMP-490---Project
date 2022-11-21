@@ -5,6 +5,7 @@ import SignInScreen from '../screens/SignInScreen/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen/SignUpScreen';
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
 
 
 // create bottom tab 
@@ -141,7 +142,7 @@ return(
    
             )
            }}/>
-           <Tab.Screen name= "Settings" component = {SignUpScreen}
+           <Tab.Screen name= "Settings" component = {SettingsScreen}
               //styling and options for Settings button on navigation bar
         options={{
             tabBarIcon: ({focused}) => (

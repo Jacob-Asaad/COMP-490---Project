@@ -13,12 +13,12 @@ import { firebase } from './config';
 
 const App = () => {
   return (
-    // Calls NavBar and navigation for the buttons 
-    //<NavigationContainer style={styles.root}>
-    //  <Tabs />
-    // <StatusBar style="auto" />
-    // </NavigationContainer>
-    < SignInScreen ></SignInScreen >
+    //Calls NavBar and navigation for the buttons 
+    <NavigationContainer style={styles.root}>
+     <Tabs />
+     <StatusBar style="auto" />
+     </NavigationContainer>
+   
   );
 }
 
