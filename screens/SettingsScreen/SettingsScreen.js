@@ -74,15 +74,15 @@ const SettingsScreen = () => {
         <CustomButton 
         text = "Clear History" 
         onPress={clearHistory}
-        bgColor = "#FAE9EA"
-        fgColor= "#DD4D44" 
+        bgColor = "#5A5A5A"
+        fgColor= "#000000" 
         />
 
         <CustomButton 
         text = "Edit Profile " 
         onPress={editProfile}
-        bgColor = "#E9F9FA"
-        fgColor= "blue" 
+        bgColor = "#5A5A5A"
+        fgColor= "#000000" 
         />
 
 
@@ -94,7 +94,7 @@ const SettingsScreen = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#F9FBFC',
+      backgroundColor: '#808080',
 
     },
     contain: {
