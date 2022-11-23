@@ -6,14 +6,20 @@ import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
 import Plant from './components/Plant/Plant';
+import { NavigationContainer } from '@react-navigation/native';
+import Tabs from './Navigation/tabs';
+import { firebase } from './config';
+
 
 
 const App = () => {
   return (
-    <View style={styles.root}>
-      <StatusBar style="auto" />
-      <SettingsScreen/> 
-    </View>
+   // < SignInScreen >
+    <NavigationContainer style={styles.root}>
+    <Tabs />
+  <StatusBar style="auto" />
+     </NavigationContainer>
+   // </SignInScreen >
   );
 }
 
