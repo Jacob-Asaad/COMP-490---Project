@@ -27,14 +27,14 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      
         <View style={styles.contain}>
         <View style={styles.profileImage}>
-            <Image source={require('/Users/jose/Documents/GitHub/COMP-490---Project/COMP-490---Project/assets/images/profilepic.jpeg')} style={styles.image}></Image>
+            <Image source={require('../../assets/images/profilepic.jpeg')} style={styles.image}>
 
+            </Image>
         </View>
-         
-        <Text style = {styles.emailName}> 
+
+        <Text style = {styles.emailName}>
          Sample@email.com 
          </Text>
           
