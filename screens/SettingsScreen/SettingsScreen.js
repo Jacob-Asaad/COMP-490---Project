@@ -100,7 +100,7 @@ const SettingsScreen = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#808080',
+      backgroundColor: '#FFFFFF',
 
     },
     contain: {
