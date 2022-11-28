@@ -27,16 +27,17 @@ function Plant(props){ //Plant component referencing plant data
   const plantStyles = StyleSheet.create({
     container:{
         backgroundColor: '#80A66C',
-        width: '100%',
+        width: '110%',
         height: 150,
         borderColor: "#e8e8e8",
         paddingVertical:35,
-        borderWidth: 2,
-        borderRadius: 5,
+        borderWidth: 3,
+        borderRadius: 10,
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-start'
-  }
+        justifyContent: 'flex-start',
+        padding: 15,
+  } 
     });
     const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
         container: {
@@ -46,12 +47,13 @@ function Plant(props){ //Plant component referencing plant data
           width: 86,
           height: 86,
           borderRadius: 150 / 2,
-          backgroundColor: '#EE892F'
+          backgroundColor: '#EE892F',
+          margin: 3,
         },
         headerText: {
           fontSize: 12,
           textAlign: "center",
-          margin: 8,
+          margin: 10,
           fontWeight: "bold"
         }, 
       });

@@ -19,9 +19,10 @@ const PlantHubScreen = () => {
     }
     return( //returning a plant component to the PlantHubScreen
         <ScrollView showsVerticalScrollIndicator = {false}>
-          <View>
+          <View >
+            <Text style = {circleDisplayStyles.plantText}> Plant 1 </Text>
             <Text>
-              <Plant             
+              <Plant
                 name ='plantOne'
                 soilLevel ='Soil Level'
                 temp='Temp'
@@ -32,12 +33,18 @@ const PlantHubScreen = () => {
        </ScrollView>
     );
 };
-    /*const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
+    const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
       container: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "red",
+        
+      },
+      plantText:{
+      padding: 20,
+      fontWeight: "bold",
+      fontSize: 20,
       },
       headerText: {
         fontSize: 20,
@@ -52,7 +59,7 @@ const PlantHubScreen = () => {
         backgroundColor: '#FF9800',
       },
     });
-*/
+
 
 
 export default PlantHubScreen
