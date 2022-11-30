@@ -100,27 +100,8 @@ return(
                </View>
    
             )
-           }}/>
-           <Tab.Screen name= "Plus" component = {PlantHubScreen}
-              //styling and options for Plus button on navigation bar
-              // plus buutton functionality needs to be chnaged (currently goes to a screen)
-        options={{
-            tabBarIcon: ({focused}) => (
-                <Image
-                source={require('../assets/images/plusicon.webp')}
-                resizeMode="contain"
-                style={{
-                    width: 30,
-                    height: 30,
-                    tintColor: '#ffffff'
-                }}
-                />
-            ),
-            //uses tabBarButton function from the top of the page 
-            tabBarButton: (props) => (
-                <CustomTabBarButton {...props} />
-            )
-              }}/>
+           }}/>  
+           
            <Tab.Screen name= "Watering History" component = {SignUpScreen}
            //styling and options for Watering History button on navigation bar
         options={{

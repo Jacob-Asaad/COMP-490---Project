@@ -26,10 +26,10 @@ function Plant(props){ //Plant component referencing plant data
 
   const plantStyles = StyleSheet.create({
     container:{
-        backgroundColor: '#80A66C',
+        backgroundColor: '#895737',
         width: '110%',
         height: 150,
-        borderColor: "#e8e8e8",
+        borderColor: "#895737",
         paddingVertical:35,
         borderWidth: 3,
         borderRadius: 10,
@@ -47,7 +47,7 @@ function Plant(props){ //Plant component referencing plant data
           width: 86,
           height: 86,
           borderRadius: 150 / 2,
-          backgroundColor: '#EE892F',
+          backgroundColor: '#dab49d',
           margin: 3,
         },
         headerText: {
