@@ -1,6 +1,6 @@
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
-import { View, Text,TextInput, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, Text,TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity } from 'react-native';
 import Plant from '../../components/Plant/Plant';
 import React, {useState} from 'react';
 
@@ -23,12 +23,26 @@ const PlantHubScreen = () => {
             <Text style = {circleDisplayStyles.plantText}> Plant 1 </Text>
             <Text>
               <Plant
-                name ='plantOne'
+                name ='Plant 1'
                 soilLevel ='Soil Level'
                 temp='Temp'
                 humidity='Humidity'
               />
            </Text>
+           <TouchableOpacity style={circleDisplayStyles.buttons} onPress={()=>{console.warn("Add New Plant")}}>
+          <Image
+            style={{
+              resizeMode: "contain",
+              margin: 25,
+              right: 10,
+              bottom: 8,
+              alignItems: 'center',
+              height: 30,
+              width: 30
+            }}
+           source={require("../../assets/images/plusicon.webp")}/>
+        </TouchableOpacity>
+
          </View>
        </ScrollView>
     );
@@ -41,7 +55,7 @@ const PlantHubScreen = () => {
         backgroundColor: "red",
         
       },
-      plantText:{
+      plantText: {
       padding: 20,
       fontWeight: "bold",
       fontSize: 20,
@@ -56,8 +70,16 @@ const PlantHubScreen = () => {
         width: 100,
         height: 100,
         borderRadius: 150 / 2,
-        backgroundColor: '#FF9800',
+        backgroundColor: '#588157',
       },
+      buttons: {
+        margin: 20,
+       alignSelf: 'center',
+        backgroundColor: "#577157",
+        borderRadius: 100,
+        height: 60,
+        width: 60,
+      }
     });
 
 
