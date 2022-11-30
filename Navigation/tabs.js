@@ -3,6 +3,8 @@ import FloatingActionBar from 'react-native-floating-action-bar';
 import PlantHubScreen from '../screens/PlantHubScreen/PlantHubScreen';
 import SignInScreen from '../screens/SignInScreen/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen/SignUpScreen';
+import HistoryLogScreen from '../screens/HistoryLogScreen/HistoryLogScreen';
+import PlantProfileScreen from '../screens/PlantProfileScreen/PlantProfileScreen';
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
@@ -80,7 +82,7 @@ return(
          )
         }}/>
         
-        <Tab.Screen name= "Plant Profiles" component = {SignUpScreen}
+        <Tab.Screen name= "Plant Profiles" component = {PlantProfileScreen}
         //styling and options for Plant Profiles button on navigation bar
         options={{
             tabBarIcon: ({focused}) => (
@@ -100,28 +102,9 @@ return(
                </View>
    
             )
-           }}/>
-           <Tab.Screen name= "Plus" component = {PlantHubScreen}
-              //styling and options for Plus button on navigation bar
-              // plus buutton functionality needs to be chnaged (currently goes to a screen)
-        options={{
-            tabBarIcon: ({focused}) => (
-                <Image
-                source={require('../assets/images/plusicon.webp')}
-                resizeMode="contain"
-                style={{
-                    width: 30,
-                    height: 30,
-                    tintColor: '#ffffff'
-                }}
-                />
-            ),
-            //uses tabBarButton function from the top of the page 
-            tabBarButton: (props) => (
-                <CustomTabBarButton {...props} />
-            )
-              }}/>
-           <Tab.Screen name= "Watering History" component = {SignUpScreen}
+           }}/>  
+           
+           <Tab.Screen name= "Watering History" component = {HistoryLogScreen}
            //styling and options for Watering History button on navigation bar
         options={{
             tabBarIcon: ({focused}) => (
