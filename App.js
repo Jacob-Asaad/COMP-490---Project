@@ -16,20 +16,21 @@ const App = () => {
 
 
   return (
-   // < SignInScreen >
-    <NavigationContainer style = {styles.root}>
-    <Tabs />
-  <StatusBar style="auto" />
-     </NavigationContainer>
-   // </SignInScreen >
+     < SignUpScreen >
+     </SignUpScreen >
+    //<NavigationContainer //style = {styles.root}>
+     //<Tabs />
+    //<StatusBar style="auto" />
+     // </NavigationContainer>
+
   );
 }
 
-const  styles = StyleSheet.create({
-root: {
-  flex: 1,
-  backgroundColor: '#F9FBFC'
-} 
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: '#F9FBFC'
+  }
 });
 
 export default App;

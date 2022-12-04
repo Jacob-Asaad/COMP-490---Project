@@ -2,8 +2,8 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import { View, Text,TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity } from 'react-native';
 import Plant from '../../components/Plant/Plant';
-import React, {useState} from 'react';
-
+import React, {useEffect, useState} from 'react';
+import { firebase } from '../../config';
 const PlantHubScreen = () => {
 
     const createPlant = function(plantName) { //Work in Progress -> ignore for now
