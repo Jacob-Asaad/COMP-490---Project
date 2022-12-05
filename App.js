@@ -9,6 +9,7 @@ import Plant from './components/Plant/Plant';
 import { NavigationContainer } from '@react-navigation/native';
 import Tabs from './Navigation/tabs';
 import { firebase } from './config';
+import EditProfileScreen from './screens/EditProfileScreen/EditProfileScreen';
 
 
 
@@ -16,8 +17,11 @@ const App = () => {
 
 
   return (
-     < SignUpScreen >
-     </SignUpScreen >
+
+    //<EditProfileScreen ></EditProfileScreen>
+    <SettingsScreen></SettingsScreen>
+    // < SignUpScreen >
+     //</SignUpScreen >
     //<NavigationContainer //style = {styles.root}>
      //<Tabs />
     //<StatusBar style="auto" />

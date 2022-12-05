@@ -24,6 +24,9 @@ const SettingsScreen = () => {
     const editProfile = () => {
         console.warn("Editing Profile...");
     }
+    const logout = () => {
+      console.warn("Logging Out...");
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -88,6 +91,12 @@ const SettingsScreen = () => {
         text = "Edit Profile " 
         onPress={editProfile}
         bgColor = "#5A5A5A"
+        fgColor= "#000000" 
+        />
+        <CustomButton 
+        text = "Log Out " 
+        onPress={logout}
+        bgColor = "white"
         fgColor= "#000000" 
         />
 
