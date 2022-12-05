@@ -16,12 +16,10 @@ const App = () => {
 
 
   return (
-     < SignUpScreen >
-     </SignUpScreen >
-    //<NavigationContainer //style = {styles.root}>
-     //<Tabs />
-    //<StatusBar style="auto" />
-     // </NavigationContainer>
+    <NavigationContainer style = {styles.root}>
+     <Tabs/>
+    <StatusBar style="auto" />
+     </NavigationContainer>
 
   );
 }
