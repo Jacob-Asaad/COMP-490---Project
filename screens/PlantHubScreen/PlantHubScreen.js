@@ -4,7 +4,6 @@ import { View, Text,TextInput, Image, StyleSheet, useWindowDimensions, ScrollVie
 import Plant from '../../components/Plant/Plant';
 import React, {useEffect, useState} from 'react';
 import { firebase } from '../../config';
-import { PlantActions } from '../../actions/PlantActions';
 const PlantHubScreen = () => {
 
     const createPlant = function(plantName) { //Work in Progress -> ignore for now
@@ -30,10 +29,6 @@ const PlantHubScreen = () => {
                 humidity='Humidity'
               />
            </Text>
-         <PlantActions
-         
-         tableData
-         />  
            <TouchableOpacity style={circleDisplayStyles.buttons} onPress={()=>{console.warn("Add New Plant")}}>
           <Image
             style={{
@@ -49,7 +44,6 @@ const PlantHubScreen = () => {
         </TouchableOpacity>
 
          </View>
-
        </ScrollView>
     );
 };

@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ImageBackgroundComponent } from 'react-native';
 import React from 'react';
+import { PlantActions } from './actions/PlantActions';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
@@ -12,6 +13,7 @@ import { firebase } from './config';
 
 
 
+
 const App = () => {
 
 
@@ -20,7 +22,6 @@ const App = () => {
      <Tabs/>
     <StatusBar style="auto" />
      </NavigationContainer>
-
   );
 }
 
