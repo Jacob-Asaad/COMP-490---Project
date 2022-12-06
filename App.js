@@ -18,8 +18,8 @@ const App = () => {
 
   return (
 
-    //<EditProfileScreen ></EditProfileScreen>
-    <SettingsScreen></SettingsScreen>
+    <EditProfileScreen ></EditProfileScreen>
+    //<SettingsScreen></SettingsScreen>
     // < SignUpScreen >
      //</SignUpScreen >
     //<NavigationContainer //style = {styles.root}>

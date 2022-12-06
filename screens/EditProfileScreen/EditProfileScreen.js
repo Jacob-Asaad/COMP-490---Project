@@ -29,7 +29,7 @@ const EditProfileScreen = () => {
                 </View>
 
                 <Text style = {styles.editPic}>
-                 edit picture
+                 edit photo
                 </Text>
         
                 <View style= {{padding: 10}}>
@@ -82,6 +82,7 @@ const EditProfileScreen = () => {
                         }}
                      />
                 </View>
+
                  <View style= {{padding: 10}}>
                      <Text
                         style = {{opacity: 0.5,
@@ -103,7 +104,7 @@ const EditProfileScreen = () => {
                     <CustomButton 
                         text = "Save Changes " 
                         onPress={saveChanges}
-                        bgColor = ""
+                        bgColor = "#8fbc8f"
                         fgColor= "#000000" 
                     />
                 </View>
@@ -134,13 +135,6 @@ const styles = StyleSheet.create({
         padding: 20,
         
     },
-    rows : {
-      flexDirection: 'row',
-      paddingTop: 10,
-      paddingBottom: 2,
-      justifyContent: 'space-between',
-    },
-
     image:{
        flex: 1,
        width: undefined,

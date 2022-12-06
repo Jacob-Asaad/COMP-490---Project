@@ -83,14 +83,14 @@ const SettingsScreen = () => {
         <CustomButton style = {styles.button}
         text = "Clear History" 
         onPress={clearHistory}
-        bgColor = "#5A5A5A"
-        fgColor= "#000000" 
+        bgColor = "#8fbc8f"
+        fgColor= "darkred" 
         />
 
         <CustomButton 
         text = "Edit Profile " 
         onPress={editProfile}
-        bgColor = "#5A5A5A"
+        bgColor = "#8fbc8f"
         fgColor= "#000000" 
         />
         <CustomButton 
