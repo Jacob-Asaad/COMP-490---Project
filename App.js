@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ImageBackgroundComponent } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
@@ -9,28 +9,52 @@ import Plant from './components/Plant/Plant';
 import { NavigationContainer } from '@react-navigation/native';
 import Tabs from './Navigation/tabs';
 import { firebase } from './config';
+import{ createStackNavigator } from "@react-navigation/stack";
 
 
+const Stack = createStackNavigator();
 
-const App = () => {
+function App(){
+  const [initializing, setInitializing] = useState(true);
+  const[user, setUser] = useState();
 
+  //handleUserStateChanges
+  function onAuthStateChanged(user){
+    setUser(user);
+    if(initializing) setInitializing(false);
+  }
+useEffect(() => {
+  const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
+  return subscriber;
+}, []);
 
-  return (
-     < SignUpScreen >
-     </SignUpScreen >
-    //<NavigationContainer //style = {styles.root}>
-     //<Tabs />
-    //<StatusBar style="auto" />
-     // </NavigationContainer>
+  if (initializing) return null;
 
+  if(!user){
+    return(
+      <Stack.Navigator>
+        <Stack.Screen 
+        name = "Login"
+        component ={SignInScreen}
+        />
+      </Stack.Navigator>
+    );
+  }
+
+  return(
+    <Stack.Navigator>
+    <Stack.Screen
+    name = "PlantHubScreen"
+    component = {PlantHubScreen}
+    />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: '#F9FBFC'
-  }
-});
-
-export default App;
+export default () => {
+  return (
+    <NavigationContainer>
+      <App/>
+    </NavigationContainer>
+  )
+}
