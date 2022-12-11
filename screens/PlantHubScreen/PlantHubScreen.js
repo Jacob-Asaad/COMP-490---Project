@@ -4,21 +4,117 @@ import { View, Text,TextInput, Image, StyleSheet, useWindowDimensions, ScrollVie
 import Plant from '../../components/Plant/Plant';
 import React, {useEffect, useState} from 'react';
 import { firebase } from '../../config';
-const PlantHubScreen = () => {
+import {
+  ref,
+  onValue,
+  push,
+  update,
+  remove
+} from 'firebase/database';
+import { db } from '../../config';
+///////////////////
 
-    const createPlant = function(plantName) { //Work in Progress -> ignore for now
-          const name = plantName;
-          const [soilLevel, setSoilLevel] = useState("soilReading");
-          const [temp, setTemp] = useState("tempReading");
-          const [humidity, setHumidity] = useState("humidityReading");
-        /*  <View style={circleDisplayStyles.container}>  
-            <Text style={circleDisplayStyles.headerText}>Plant </Text>
-            <View style={circleDisplayStyles.CircleShape}/>
-          </View>
-        */ 
-    }
-    return( //returning a plant component to the PlantHubScreen
+const plantD = ({plantInfo: {title, done}, id}) => {
+  const [doneState, setDone] = useState(done);
+
+  const onCheck = (isChecked) => {
+    setDone(isChecked);
+    update(ref(db, '/mositure-sensor/2-push'), {
+      [id]: {
+        title,
+        done: !doneState,
+      },
+    });
+  };
+  return (
+    <View style={styles.todoItem}>
+      <CheckBox
+        onValueChange={onCheck}
+        value={doneState}
+      />
+      <Text style={[styles.todoText, {opacity: doneState ? 0.2 : 1}]}>
+        {title}
+      </Text>
+    </View>
+  );
+};
+
+  const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 12
+  },
+  contentContainerStyle: {
+    padding: 24
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: '#afafaf',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginVertical: 20,
+    fontSize: 20,
+  },
+  todoItem: {
+    flexDirection: 'row',
+    marginVertical: 10,
+    alignItems: 'center'
+  },
+  todoText: {
+    paddingHorizontal: 5,
+    fontSize: 16
+  },
+});
+
+/*----------------------------------------------------------------------------------------------------*/
+const PlantHubScreen = () => {
+  const [plantData, setPlantData] = useState(0.0);
+  const plantDataKeys = Object.keys(plantData);
+
+ /*const plantData = () => { 
+      const database = firebase.app().database('https://plant-link-5b48e-default-rtdb.firebaseio.com/mositure-sensor');
+      database.ref();
+      const [data, setData] = useState(0.0);
+      database()
+      .ref('/mositure-sensor/2-push/-NHs_x63CCvWY3M_ii7a/Moisture Reading')
+      .on('value', snapshot => {
+        setData({
+          data: snapshot.val(),
+      });
+        console.log('User data: ', snapshot.val());
+      });
+      return (
+        <View>
+          <Text>{data}</Text>  
+        </View>
+    );
+  }
+  */
+  useEffect(() => {
+    return onValue(ref(db, '/mositure-sensor/2-push'), querySnapShot => {
+      let data = querySnapShot.val() || {};
+      let plantD = {...data};
+      setPlantData(plantD);
+    });
+  }, []);
+
+return (
         <ScrollView showsVerticalScrollIndicator = {false}>
+          
+          <View>
+        {plantDataKeys.length > 0 ? (
+          plantDataKeys.map(key => (
+            <plantD
+              key={key}
+              id={key}
+              plantInfo={plantData[key]}
+            />
+          ))
+        ) : (
+          <Text>No Plant Data</Text>
+        )}
+      </View>
+      
           <View >
             <Text style = {circleDisplayStyles.plantText}> Plant 1 </Text>
             <Text>
@@ -45,8 +141,8 @@ const PlantHubScreen = () => {
 
          </View>
        </ScrollView>
-    );
-};
+      );
+  };
     const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
       container: {
         flex: 1,
@@ -81,7 +177,5 @@ const PlantHubScreen = () => {
         width: 60,
       }
     });
-
-
-
+    
 export default PlantHubScreen

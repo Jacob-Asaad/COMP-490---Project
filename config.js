@@ -3,11 +3,13 @@ import { apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
+import { initializeApp } from 'firebase/app';
+import { getDatabase } from 'firebase/database';
 
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-     apiKey: process.env.apiKey,
+    apiKey: process.env.apiKey,
     authDomain: process.env.authDomain,
     projectId: process.env.projectId,
     storageBucket: process.env.storageBucket,
@@ -23,5 +25,10 @@ export default {
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+export { db };
 
 export { firebase };
