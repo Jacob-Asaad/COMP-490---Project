@@ -3,19 +3,27 @@ import CustomButton from '../../components/CustomButton/Custombutton';
 import { View, Text,TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity } from 'react-native';
 import Plant from '../../components/Plant/Plant';
 import React, {useEffect, useState} from 'react';
-import { firebase } from '../../config';
+//import { firebase } from '../../config';
+import { firebase } from '@react-native-firebase/database';
 const PlantHubScreen = () => {
 
-    const createPlant = function(plantName) { //Work in Progress -> ignore for now
-          const name = plantName;
-          const [soilLevel, setSoilLevel] = useState("soilReading");
-          const [temp, setTemp] = useState("tempReading");
-          const [humidity, setHumidity] = useState("humidityReading");
-        /*  <View style={circleDisplayStyles.container}>  
-            <Text style={circleDisplayStyles.headerText}>Plant </Text>
-            <View style={circleDisplayStyles.CircleShape}/>
-          </View>
-        */ 
+    const plantData = () => { 
+      const database = firebase.app().database('https://plant-link-5b48e-default-rtdb.firebaseio.com/mositure-sensor');
+      database.ref();
+      const [data, setData] = useState(0.0);
+      database()
+      .ref('/mositure-sensor/2-push/-NHs_x63CCvWY3M_ii7a/Moisture Reading')
+      .on('value', snapshot => {
+        setData({
+          data: snapshot.val(),
+      });
+        console.log('User data: ', snapshot.val());
+      });
+      return (
+        <View>
+          <Text>{data}</Text>  
+        </View>
+    );
     }
     return( //returning a plant component to the PlantHubScreen
         <ScrollView showsVerticalScrollIndicator = {false}>
@@ -30,6 +38,9 @@ const PlantHubScreen = () => {
               />
            </Text>
            <TouchableOpacity style={circleDisplayStyles.buttons} onPress={()=>{console.warn("Add New Plant")}}>
+           <View>
+           <plantData/>
+          </View>
           <Image
             style={{
               resizeMode: "contain",
