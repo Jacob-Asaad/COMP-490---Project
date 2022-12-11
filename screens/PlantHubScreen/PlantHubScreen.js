@@ -1,52 +1,52 @@
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
-import { View, Text,TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity } 
-from 'react-native';
+import { View, Text, TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity }
+  from 'react-native';
 import Plant from '../../components/Plant/Plant';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { firebase } from '../../config';
 
 const PlantHubScreen = () => {
-    const [name, setName] = useState('')
-    
-    //pull info from firestore database
-    useEffect(() => {
-      firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).get().then((snapshot) => {
-        if (snapshot.exists) {
-          setName(snapshot.data());
-        } else {
-          console.log('user does not exist');
-        }
-      })
-    }, [])
+  const [name, setName] = useState('')
+
+  //pull info from firestore database
+  useEffect(() => {
+    firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).get().then((snapshot) => {
+      if (snapshot.exists) {
+        setName(snapshot.data());
+      } else {
+        console.log('user does not exist');
+      }
+    })
+  }, [])
 
 
 
-    function createPlant(plantName) {
-  const name = plantName;
-  const [soilLevel, setSoilLevel] = useState("soilReading");
-  const [temp, setTemp] = useState("tempReading");
-  const [humidity, setHumidity] = useState("humidityReading");
-  /*  <View style={circleDisplayStyles.container}>
-      <Text style={circleDisplayStyles.headerText}>Plant </Text>
-      <View style={circleDisplayStyles.CircleShape}/>
-    </View>
-  */
-};
+  function createPlant(plantName) {
+    const name = plantName;
+    const [soilLevel, setSoilLevel] = useState("soilReading");
+    const [temp, setTemp] = useState("tempReading");
+    const [humidity, setHumidity] = useState("humidityReading");
+    /*  <View style={circleDisplayStyles.container}>
+        <Text style={circleDisplayStyles.headerText}>Plant </Text>
+        <View style={circleDisplayStyles.CircleShape}/>
+      </View>
+    */
+  };
 
-    return( //returning a plant component to the PlantHubScreen Hello {name.firsName}
-        <ScrollView showsVerticalScrollIndicator = {false}>
-          <View >
-            <Text style = {circleDisplayStyles.plantText}> Hello, {name.firstName}! </Text>
-            <Text> 
-              <Plant
-                name ='Plant 1'
-                soilLevel ='Soil Level'
-                temp='Temp'
-                humidity='Humidity'
-              />
-           </Text>
-           <TouchableOpacity style={circleDisplayStyles.buttons} onPress={()=>{console.warn("Add New Plant")}}>
+  return ( //returning a plant component to the PlantHubScreen Hello {name.firsName}
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View >
+        <Text style={circleDisplayStyles.plantText}> Hello, {name.firstName}! </Text>
+        <Text>
+          <Plant
+            name='Plant 1'
+            soilLevel='Soil Level'
+            temp='Temp'
+            humidity='Humidity'
+          />
+        </Text>
+        <TouchableOpacity style={circleDisplayStyles.buttons} onPress={() => { console.warn("Add New Plant") }}>
           <Image
             style={{
               resizeMode: "contain",
@@ -57,48 +57,48 @@ const PlantHubScreen = () => {
               height: 30,
               width: 30
             }}
-           source={require("../../assets/images/plusicon.webp")}/>
+            source={require("../../assets/images/plusicon.webp")} />
         </TouchableOpacity>
 
-         </View>
-       </ScrollView>
-    )
-  }
+      </View>
+    </ScrollView>
+  )
+}
 
-    const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
-      container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "red",
-        
-      },
-      plantText: {
-      padding: 20,
-      fontWeight: "bold",
-      fontSize: 20,
-      },
-      headerText: {
-        fontSize: 20,
-        textAlign: "center",
-        margin: 10,
-        fontWeight: "bold"
-      }, 
-      CircleShape: {
-        width: 100,
-        height: 100,
-        borderRadius: 150 / 2,
-        backgroundColor: '#588157',
-      },
-      buttons: {
-        margin: 20,
-       alignSelf: 'center',
-        backgroundColor: "#577157",
-        borderRadius: 100,
-        height: 60,
-        width: 60,
-      }
-    });
-  
+const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "red",
+
+  },
+  plantText: {
+    padding: 20,
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+  headerText: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10,
+    fontWeight: "bold"
+  },
+  CircleShape: {
+    width: 100,
+    height: 100,
+    borderRadius: 150 / 2,
+    backgroundColor: '#588157',
+  },
+  buttons: {
+    margin: 20,
+    alignSelf: 'center',
+    backgroundColor: "#577157",
+    borderRadius: 100,
+    height: 60,
+    width: 60,
+  }
+});
+
 
 export default PlantHubScreen

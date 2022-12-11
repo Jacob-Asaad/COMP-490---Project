@@ -1,21 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackgroundComponent } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
-import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
-import Plant from './components/Plant/Plant';
 import { NavigationContainer } from '@react-navigation/native';
-import Tabs from './Navigation/tabs';
 import { firebase } from './config';
 import { createStackNavigator } from "@react-navigation/stack";
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HistoryLogScreen from './screens/HistoryLogScreen/HistoryLogScreen';
+import PlantProfileScreen from './screens/PlantProfileScreen/PlantProfileScreen';
 
 const Stack = createStackNavigator();
-
-const Tab = createBottomTabNavigator();
-
 const Tab = createBottomTabNavigator();
 
 function App() {
@@ -34,6 +29,7 @@ function App() {
 
   if (initializing) return null;
 
+  //if user not signed in, return login screen
   if (!user) {
     return (
       <Stack.Navigator>
@@ -45,14 +41,7 @@ function App() {
     );
   }
 
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="PlantHubScreen"
-        component={PlantHubScreen}
-      />
-    </Stack.Navigator>
-  );
+
   //else return plant dashboard + navigation bar
   return (
     <Tab.Navigator
@@ -164,6 +153,7 @@ function App() {
     </Tab.Navigator>
   );
 }
+
 // Stylesheet for shadow under plus button
 const styles = StyleSheet.create({
   shadow: {
