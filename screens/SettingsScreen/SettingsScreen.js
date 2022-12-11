@@ -1,13 +1,27 @@
 import { View, SafeAreaView, Text, Image, Switch, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import { firebase } from '../../config';
 
 
 const SettingsScreen = () => {
+
+  const [email, setEmail] = useState('')
+
+  //pull info from firestore database
+  useEffect(() => {
+    firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).get().then((snapshot) => {
+      if (snapshot.exists) {
+        setEmail(snapshot.data());
+      } else {
+        console.log('user does not exist');
+      }
+    })
+  }, [])
 
     const [notifications, SetNotifications] = useState(false);
     const [bluetooth, SetBluetooth] = useState(false);
@@ -38,7 +52,7 @@ const SettingsScreen = () => {
         </View>
 
         <Text style = {styles.emailName}>
-         Sample@email.com 
+        {email.email}
          </Text>
           
          <Text style = {styles.settings}> 

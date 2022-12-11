@@ -1,27 +1,44 @@
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
-import { View, Text,TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text,TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity } 
+from 'react-native';
 import Plant from '../../components/Plant/Plant';
 import React, {useEffect, useState} from 'react';
 import { firebase } from '../../config';
-const PlantHubScreen = () => {
 
-    const createPlant = function(plantName) { //Work in Progress -> ignore for now
-          const name = plantName;
-          const [soilLevel, setSoilLevel] = useState("soilReading");
-          const [temp, setTemp] = useState("tempReading");
-          const [humidity, setHumidity] = useState("humidityReading");
-        /*  <View style={circleDisplayStyles.container}>  
-            <Text style={circleDisplayStyles.headerText}>Plant </Text>
-            <View style={circleDisplayStyles.CircleShape}/>
-          </View>
-        */ 
-    }
-    return( //returning a plant component to the PlantHubScreen
+const PlantHubScreen = () => {
+    const [name, setName] = useState('')
+    
+    //pull info from firestore database
+    useEffect(() => {
+      firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).get().then((snapshot) => {
+        if (snapshot.exists) {
+          setName(snapshot.data());
+        } else {
+          console.log('user does not exist');
+        }
+      })
+    }, [])
+
+
+
+    function createPlant(plantName) {
+  const name = plantName;
+  const [soilLevel, setSoilLevel] = useState("soilReading");
+  const [temp, setTemp] = useState("tempReading");
+  const [humidity, setHumidity] = useState("humidityReading");
+  /*  <View style={circleDisplayStyles.container}>
+      <Text style={circleDisplayStyles.headerText}>Plant </Text>
+      <View style={circleDisplayStyles.CircleShape}/>
+    </View>
+  */
+};
+
+    return( //returning a plant component to the PlantHubScreen Hello {name.firsName}
         <ScrollView showsVerticalScrollIndicator = {false}>
           <View >
-            <Text style = {circleDisplayStyles.plantText}> Plant 1 </Text>
-            <Text>
+            <Text style = {circleDisplayStyles.plantText}> Hello, {name.firstName}! </Text>
+            <Text> 
               <Plant
                 name ='Plant 1'
                 soilLevel ='Soil Level'
@@ -45,8 +62,9 @@ const PlantHubScreen = () => {
 
          </View>
        </ScrollView>
-    );
-};
+    )
+  }
+
     const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
       container: {
         flex: 1,
@@ -81,7 +99,6 @@ const PlantHubScreen = () => {
         width: 60,
       }
     });
-
-
+  
 
 export default PlantHubScreen
