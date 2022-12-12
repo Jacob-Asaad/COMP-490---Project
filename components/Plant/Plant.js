@@ -8,18 +8,24 @@ function Plant(props){ //Plant component referencing plant data
                 <View style = {circleDisplayStyles.container}>
                     <TextInput style = {circleDisplayStyles.headerText}>
                         {props.soilLevel}
+                    </TextInput> 
+                    <TextInput style = {circleDisplayStyles.ReadingText}>
                         {props.soilReading}
                     </TextInput> 
                 </View>
                 <View style = {circleDisplayStyles.container}>
                     <TextInput style = {circleDisplayStyles.headerText}>
                         {props.humidity}
+                    </TextInput> 
+                    <TextInput style = {circleDisplayStyles.ReadingText}>
                         {props.humidityReading}
                     </TextInput> 
                 </View>
                 <View  style = {circleDisplayStyles.container}>
                     <TextInput style = {circleDisplayStyles.headerText}>
                         {props.temp}
+                    </TextInput> 
+                    <TextInput style = {circleDisplayStyles.ReadingText}>
                         {props.tempReading}
                     </TextInput> 
                 </View>
@@ -30,7 +36,7 @@ function Plant(props){ //Plant component referencing plant data
   const plantStyles = StyleSheet.create({
     container:{
         backgroundColor: '#FFFFFF',
-        width: '100%',
+        width: '110%',
         height: 150,
         borderColor: "#000000",
         paddingVertical:35,
@@ -59,6 +65,13 @@ function Plant(props){ //Plant component referencing plant data
           margin: 14,
           fontWeight: "bold"
         }, 
+        ReadingText: {
+            fontSize: 15,
+            textAlign: "center",
+            paddingBottom: 100,
+            margin: 14,
+            fontWeight: "bold"
+          }, 
       });
 
   export default Plant 
