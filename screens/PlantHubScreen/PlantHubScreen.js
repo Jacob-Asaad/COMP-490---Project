@@ -25,8 +25,11 @@ const PlantHubScreen = () => {
               <Plant
                 name ='Plant 1'
                 soilLevel ='Soil Level'
+                soilReading = 'Good'
                 temp='Temp'
+                tempReading='70'
                 humidity='Humidity'
+                humidityReading='327'
               />
            </Text>
            <TouchableOpacity style={circleDisplayStyles.buttons} onPress={()=>{console.warn("Add New Plant")}}>

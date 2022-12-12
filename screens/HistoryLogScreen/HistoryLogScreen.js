@@ -1,24 +1,35 @@
 import { View, SafeAreaView, Text, Image, Switch, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
 import React, {useState} from 'react';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import Log from '../../components/History/Log';
 
 
 const HistoryLogScreen = () => {
 
-  return (
-    <SafeAreaView style={styles.container}>
-          
-         <Text style = {styles.errorText}> 
-         No 
-         watering 
-         history yet!
-         </Text>
+  const createLog = function(logName) { //Work in Progress -> ignore for now
+    const log = LogName;
+    const [LogHistory, setLogHistory] = useState("LogHistory");
 
-    </SafeAreaView>
-  );
-}
+  }
+ 
+
+    return( //returning a plant component to the PlantHubScreen
+    <ScrollView showsVerticalScrollIndicator = {false}>
+      <View >
+        
+          <Log
+            LogHistory =' Plant 1 was watered on 12/12/2022 12:00'
+
+          />
+       
+      </View>
+    </ScrollView>
+    );
+  };
+
 
 const styles = StyleSheet.create({
+
     container: {
       flex: 1,
       backgroundColor: '#FFFFFF',
