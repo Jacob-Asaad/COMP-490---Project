@@ -8,16 +8,19 @@ function Plant(props){ //Plant component referencing plant data
                 <View style = {circleDisplayStyles.container}>
                     <TextInput style = {circleDisplayStyles.headerText}>
                         {props.soilLevel}
+                        {props.soilReading}
                     </TextInput> 
                 </View>
                 <View style = {circleDisplayStyles.container}>
                     <TextInput style = {circleDisplayStyles.headerText}>
                         {props.humidity}
+                        {props.humidityReading}
                     </TextInput> 
                 </View>
                 <View  style = {circleDisplayStyles.container}>
                     <TextInput style = {circleDisplayStyles.headerText}>
                         {props.temp}
+                        {props.tempReading}
                     </TextInput> 
                 </View>
         </View>
