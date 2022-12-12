@@ -26,11 +26,11 @@ const SignUpScreen = () => {
             })
                 .then(() => {
                     firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
-                        firstName, 
+                        firstName,
                         lastName,
                         email,
-                        
-                    }) 
+
+                    })
                 })
                 .catch((error) => {
                     alert(error.message)
@@ -100,7 +100,7 @@ const SignUpScreen = () => {
 
                 <CustomButton
                     text="Register"
-                    onPress={() => registerUser(email, password, )}
+                    onPress={() => registerUser(email, password,)}
                 />
 
                 <Text style={styles.registerText}>
