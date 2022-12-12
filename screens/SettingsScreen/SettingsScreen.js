@@ -41,74 +41,76 @@ const SettingsScreen = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.contain}>
-        <View style={styles.profileImage}>
-          <Image source={require('../../assets/images/profilepic.jpeg')} style={styles.image}>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.contain}>
+          <View style={styles.profileImage}>
+            <Image source={require('../../assets/images/profilepic.jpeg')} style={styles.image}>
 
-          </Image>
-        </View>
+            </Image>
+          </View>
 
-        <Text style={styles.emailName}>
-          {email.email}
-        </Text>
-
-        <Text style={styles.settings}>
-          Settings
-        </Text>
-
-        <View style={styles.rows}>
-          <Text style={styles.text}>
-            Notifications
+          <Text style={styles.emailName}>
+            {email.email}
           </Text>
 
-          <CustomSwitch style={styles.switch}
-            isEnabled={notifications}
-            toggleSwitch={SetNotifications}
-          />
-
-        </View>
-
-        <View style={styles.rows}>
-          <Text style={styles.text}>
-            Bluetooth
+          <Text style={styles.settings}>
+            Settings
           </Text>
 
-          <CustomSwitch style={styles.switch}
-            isEnabled={bluetooth}
-            toggleSwitch={SetBluetooth}
+          <View style={styles.rows}>
+            <Text style={styles.text}>
+              Notifications
+            </Text>
+
+            <CustomSwitch style={styles.switch}
+              isEnabled={notifications}
+              toggleSwitch={SetNotifications}
+            />
+
+          </View>
+
+          <View style={styles.rows}>
+            <Text style={styles.text}>
+              Bluetooth
+            </Text>
+
+            <CustomSwitch style={styles.switch}
+              isEnabled={bluetooth}
+              toggleSwitch={SetBluetooth}
+            />
+          </View>
+
+          <View style={styles.rows}>
+
+            <Text style={styles.text}>
+              Automatic Watering
+            </Text>
+
+            <CustomSwitch style={styles.switch}
+              isEnabled={autowater}
+              toggleSwitch={SetAutowater}
+            />
+
+          </View>
+          <CustomButton style={styles.button}
+            text="Clear History"
+            onPress={clearHistory}
+            bgColor="#5A5A5A"
+            fgColor="#000000"
           />
-        </View>
 
-        <View style={styles.rows}>
-
-          <Text style={styles.text}>
-            Automatic Watering
-          </Text>
-
-          <CustomSwitch style={styles.switch}
-            isEnabled={autowater}
-            toggleSwitch={SetAutowater}
+          <CustomButton
+            text="Edit Profile "
+            onPress={editProfile}
+            bgColor="#5A5A5A"
+            fgColor="#000000"
           />
 
+
         </View>
-        <CustomButton style={styles.button}
-          text="Clear History"
-          onPress={clearHistory}
-          bgColor="#5A5A5A"
-          fgColor="#000000"
-        />
-
-        <CustomButton
-          text="Edit Profile "
-          onPress={editProfile}
-          bgColor="#5A5A5A"
-          fgColor="#000000"
-        />
-
-
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
 
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
     alignSelf: "right",
 
   },
-  buttons: {
+  button: {
     align: "center",
   }
 
