@@ -45,9 +45,10 @@ const SettingsScreen = () => {
       <SafeAreaView style={styles.container}>
         <View style={styles.contain}>
           <View style={styles.profileImage}>
-            <Image source={require('../../assets/images/profilepic.jpeg')} style={styles.image}>
 
+            <Image source={require('../../assets/images/profilepic.jpeg')} style={styles.image}>
             </Image>
+
           </View>
 
           <Text style={styles.emailName}>
@@ -96,17 +97,22 @@ const SettingsScreen = () => {
           <CustomButton style={styles.button}
             text="Clear History"
             onPress={clearHistory}
-            bgColor="#5A5A5A"
-            fgColor="#000000"
+            bgColor="#8fbc8f"
+            fgColor="darkred"
           />
 
           <CustomButton
             text="Edit Profile "
             onPress={editProfile}
-            bgColor="#5A5A5A"
+            bgColor="#8fbc8f"
             fgColor="#000000"
           />
-
+          <CustomButton
+            text="Log Out "
+            onPress={logout}
+            bgColor="white"
+            fgColor="#000000"
+          />
 
         </View>
       </SafeAreaView>
@@ -175,7 +181,7 @@ const styles = StyleSheet.create({
     alignSelf: "right",
 
   },
-  button: {
+  buttons: {
     align: "center",
   }
 
