@@ -1,9 +1,11 @@
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, Text, Image, signInStylesheet, useWindowDimensions, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import { firebase } from '../../config';
+import { signInStyles } from '../../components/Styles/Styling';
+
 
 const SignInScreen = () => {
     const [email, setEmail] = useState('');
@@ -44,14 +46,14 @@ const SignInScreen = () => {
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.root}>
+            <View style={signInStyles.root}>
                 <Image
                     source={Logo}
-                    style={[styles.logo, { height: height * 0.3 }]}
+                    style={[signInStyles.logo, { height: height * 0.3 }]}
                     resizeMode='contain'
                 />
                 <Text
-                    style={styles.login}> Login
+                    style={signInStyles.login}> Login
                 </Text>
 
                 <CustomInput
@@ -110,29 +112,7 @@ const SignInScreen = () => {
         </ScrollView>
     );
 };
-const styles = StyleSheet.create({
-    root: {
-        alignItems: 'center',
-        padding: 30,
 
-    },
-
-    login: {
-        fontSize: '20',
-        fontWeight: 'bold',
-        alignSelf: 'left',
-        paddingBottom: '2%',
-        letterSpacing: '1.2',
-
-    },
-
-    logo: {
-        width: '70%',
-        maxWidth: 300,
-        maxHeight: 200,
-
-    },
-});
 
 
 
