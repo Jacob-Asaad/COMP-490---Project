@@ -3,6 +3,7 @@ import { apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
+import { getDatabase } from "firebase/database"
 
 
 // Your web app's Firebase configuration
@@ -24,4 +25,6 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 
+const db = getDatabase();
+export { db };
 export { firebase };

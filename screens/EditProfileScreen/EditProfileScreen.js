@@ -1,10 +1,12 @@
-import { View, SafeAreaView, Text,TextInput, Image, Switch, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, SafeAreaView, Text,TextInput, Image, Switch, editProfileStylesheet, useWindowDimensions, ScrollView } from 'react-native';
 import React, {useState} from 'react';
 import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import { editProfileStyles } from '../../components/Styles/Styling';
+
 
 const EditProfileScreen = () => {
     const [firstName, setFirstName] = useState('');
@@ -20,15 +22,15 @@ const EditProfileScreen = () => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.contain}>
-                <View style={styles.profileImage}>
-                    <Image source={require('../../assets/images/profilepic.jpeg')} style={styles.image}>
+        <SafeAreaView style={editProfileStyles.container}>
+            <View style={editProfileStyles.contain}>
+                <View style={editProfileStyles.profileImage}>
+                    <Image source={require('../../assets/images/profilepic.jpeg')} style={editProfileStyles.image}>
 
                     </Image>
                 </View>
 
-                <Text style = {styles.editPic}>
+                <Text style = {editProfileStyles.editPic}>
                  edit photo
                 </Text>
         
@@ -122,53 +124,7 @@ const EditProfileScreen = () => {
   );
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#FFFFFF',
-
-    },
-    contain: {
-        flex: 1,
-        alignContent: 'center',
-        margin: 25,
-        padding: 20,
-        
-    },
-    image:{
-       flex: 1,
-       width: undefined,
-       height: undefined,
-       borderRadius: 100,
-       paddingTop: 10,
-    },
-    profileImage:{
-      alignSelf: 'center',
-        width: 80,
-        height: 80,
-        borderRadius: 100,
-        overflow: "hidden",
-        marginTop: 50,
-},
-    text: {
-        fontSize: 15,
-        fontWeight: 'bold',
-      paddingTop: 20,
-      marginRight: 145,
-      marginBottom: 5,
-    },
-
-    editPic: {
-      alignItems: "center",
-      alignSelf: "center",
-      marginTop: 10,
-      fontSize: 15,
-      color: 'green',
-  },
-  buttons: {
-    align: "center",
-  }
 
 
-});
+
 export default EditProfileScreen;

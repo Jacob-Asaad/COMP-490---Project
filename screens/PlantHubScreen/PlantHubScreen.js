@@ -4,10 +4,13 @@ import { View, Text, TextInput, Image, StyleSheet, useWindowDimensions, ScrollVi
   from 'react-native';
 import Plant from '../../components/Plant/Plant';
 import React, { useEffect, useState } from 'react';
-import { firebase } from '../../config';
+import { db, firebase } from '../../config';
+import { circleDisplayStyles } from '../../components/Styles/Styling';
+import {ref, onValue} from "firebase/database";
 
 const PlantHubScreen = () => {
-  const [name, setName] = useState('')
+  const [name, setName] = useState('');
+  const [plantData, setplantData] = useState([]);
 
   //pull info from firestore database
   useEffect(() => {
@@ -22,6 +25,62 @@ const PlantHubScreen = () => {
 
 
 
+
+useEffect(() => {
+  const plantRef = ref(db, 'mositure-sensor/2-push/')
+   onValue(plantRef, (snapshot) => {
+     const data = snapshot.val();
+     const newReading = Object.keys(data).map((key) => ({
+       id:key,
+       ...data[key]
+     }));
+     console.log(newReading);
+     setplantData(newReading);
+   });
+ }, [])
+
+
+   return (
+<View styles={styles.container}>
+ <Text style={styles.header}>  </Text>
+ {
+   plantData.map((item, index) => {
+     return(
+       <View key={index}>
+         
+         <Text style={styles.text}> {item.id}</Text>
+       </View>
+     )
+   })
+ }
+   </View>
+
+   )
+ 
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    backgroundColor: '#fff',
+  },
+  header: {
+    fontSize: 30, 
+    textAlign: 'center',
+    marginTop: 100, 
+
+  },
+  text: {
+  fontSize: 20,
+  textAlign: 'center',
+  marginTop: 20,
+  }
+})
+
+
+
+ // old cold that was used to create a plant component
+ /*
   function createPlant(plantName) {
     const name = plantName;
     const [soilLevel, setSoilLevel] = useState("soilReading");
@@ -31,7 +90,7 @@ const PlantHubScreen = () => {
         <Text style={circleDisplayStyles.headerText}>Plant </Text>
         <View style={circleDisplayStyles.CircleShape}/>
       </View>
-    */
+    
   };
 
   return ( //returning a plant component to the PlantHubScreen Hello {name.firsName}
@@ -64,41 +123,10 @@ const PlantHubScreen = () => {
     </ScrollView>
   )
 }
+*/
 
-const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "red",
 
-  },
-  plantText: {
-    padding: 20,
-    fontWeight: "bold",
-    fontSize: 20,
-  },
-  headerText: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10,
-    fontWeight: "bold"
-  },
-  CircleShape: {
-    width: 100,
-    height: 100,
-    borderRadius: 150 / 2,
-    backgroundColor: '#588157',
-  },
-  buttons: {
-    margin: 20,
-    alignSelf: 'center',
-    backgroundColor: "#577157",
-    borderRadius: 100,
-    height: 60,
-    width: 60,
-  }
-});
+
 
 
 export default PlantHubScreen

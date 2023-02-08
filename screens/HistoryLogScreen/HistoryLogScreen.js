@@ -1,14 +1,16 @@
-import { View, SafeAreaView, Text, Image, Switch, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, SafeAreaView, Text, Image, Switch, historyLogStylesheet, useWindowDimensions, ScrollView } from 'react-native';
 import React, {useState} from 'react';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import { historyLogStyles } from '../../components/Styles/Styling';
+
 
 
 const HistoryLogScreen = () => {
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={historyLogStyles.container}>
           
-         <Text style = {styles.errorText}> 
+         <Text style = {historyLogStyles.errorText}> 
          No 
          watering 
          history yet!
@@ -18,28 +20,7 @@ const HistoryLogScreen = () => {
   );
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#FFFFFF',
-    },
-    text: {
-        fontSize: 15,
-        fontWeight: 'bold',
-      paddingTop: 20,
-      marginRight: 145,
-      marginBottom: 5,
-    },
-  errorText: {
-    alignItems: "center",
-      alignSelf: "center",
-      marginTop: 20,
-      marginBottom: 10,
-      fontSize: 25,
-      fontWeight: "bold",
-      padding: 125,
-  },
-});
+
       
 
 export default HistoryLogScreen

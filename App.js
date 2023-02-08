@@ -153,7 +153,7 @@ function App() {
     </Tab.Navigator>
   );
 }
-// Stylesheet for shadow under plus button
+
 const styles = StyleSheet.create({
   shadow: {
     shadowColor: '#7F5DF0',
@@ -166,7 +166,6 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
-
 
 
 
