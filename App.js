@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
+import SignUpScreen from './screens/SignUpScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,41 +10,14 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HistoryLogScreen from './screens/HistoryLogScreen/HistoryLogScreen';
 import PlantProfileScreen from './screens/PlantProfileScreen/PlantProfileScreen';
+import EditProfileScreen from './screens/EditProfileScreen/EditProfileScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function App() {
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
-  //handleUserStateChanges
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
-  useEffect(() => {
-    const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber;
-  }, []);
-
-  if (initializing) return null;
-
-  //if user not signed in, return login screen
-  if (!user) {
-    return (
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={SignInScreen}
-        />
-      </Stack.Navigator>
-    );
-  }
-
-
-  //else return plant dashboard + navigation bar
+function Root() {
   return (
+    // <NavigationContainer>
     <Tab.Navigator
       //need to change this to screenOptions( but it's some options need to be changed)
       tabBarOptions={{
@@ -101,8 +75,9 @@ function App() {
               // Text under Plant Profiles button
               />
               <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}> Profiles</Text>
-
             </View>
+
+
 
           )
         }} />
@@ -151,9 +126,69 @@ function App() {
         }} />
 
     </Tab.Navigator>
+    //   </NavigationContainer>
+  )
+}
+
+function App() {
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+  //handleUserStateChanges
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+  useEffect(() => {
+    const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
+  }, []);
+
+  if (initializing) return null;
+
+  //if user not signed in, return login screen
+  if (!user) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={SignInScreen}
+          />
+
+          <Stack.Screen
+            name="Register"
+            component={SignUpScreen}
+          />
+
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+
+
+  //else return plant dashboard + navigation bar
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Root}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Profile"
+          component={EditProfileScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
+
 // Stylesheet for shadow under plus button
+
 const styles = StyleSheet.create({
   shadow: {
     shadowColor: '#7F5DF0',
@@ -169,11 +204,4 @@ const styles = StyleSheet.create({
 
 
 
-
-export default () => {
-  return (
-    <NavigationContainer>
-      <App />
-    </NavigationContainer>
-  )
-};
+export default App;

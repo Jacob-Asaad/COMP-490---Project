@@ -4,8 +4,11 @@ import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import { firebase } from '../../config';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUpScreen = () => {
+
+    const navigation = useNavigation()
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -14,28 +17,27 @@ const SignUpScreen = () => {
     const { height } = useWindowDimensions();
 
     registerUser = async (email, password) => {
-        await firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
+                    firstName,
+                    lastName,
+                    email,
 
-            firebase.auth().currentUser.sendEmailVerification({
-                handleCodeInApp: true,
-                url: "http://plant-link-5b48e.firebaseapp.com",
-            }).then(() => {
-                alert('Verification email sent')
-            }).catch((error) => {
-                alert(error.message)
-            })
-                .then(() => {
-                    firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
-                        firstName,
-                        lastName,
-                        email,
-
-                    })
                 })
-                .catch((error) => {
+            })
+            .catch((error) => {
+                alert(error.message)
+            }).then(() => {
+                firebase.auth().currentUser.sendEmailVerification({
+                    handleCodeInApp: true,
+                    url: "http://plant-link-5b48e.firebaseapp.com",
+                }).then(() => {
+                    alert('Verification email sent')
+                }).catch((error) => {
                     alert(error.message)
                 })
-        })
+            })
     }
 
     const onRegisterPress = () => {
@@ -100,7 +102,7 @@ const SignUpScreen = () => {
 
                 <CustomButton
                     text="Register"
-                    onPress={() => registerUser(email, password,)}
+                    onPress={() => registerUser(email, password)}
                 />
 
                 <Text style={styles.registerText}>
@@ -130,7 +132,7 @@ const SignUpScreen = () => {
 
                 <CustomButton
                     text="Already have an account? Sign In "
-                    onPress={onSignInPress}
+                    onPress={() => navigation.navigate('Login')}
                     type="TERTIARY"
                 />
 

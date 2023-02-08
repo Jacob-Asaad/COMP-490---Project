@@ -3,11 +3,14 @@ import React, { useState, useEffect } from 'react';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { firebase } from '../../config';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 const SettingsScreen = () => {
 
   const [email, setEmail] = useState('')
+  const navigation = useNavigation()
 
   //pull info from firestore database
   useEffect(() => {
@@ -103,13 +106,14 @@ const SettingsScreen = () => {
 
           <CustomButton
             text="Edit Profile "
-            onPress={editProfile}
+            onPress={() => navigation.navigate('Profile')}
             bgColor="#8fbc8f"
             fgColor="#000000"
           />
+
           <CustomButton
             text="Log Out "
-            onPress={logout}
+            onPress={() => { firebase.auth().signOut() }}
             bgColor="white"
             fgColor="#000000"
           />

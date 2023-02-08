@@ -37,7 +37,9 @@ const PlantHubScreen = () => {
   return ( //returning a plant component to the PlantHubScreen Hello {name.firsName}
     <ScrollView showsVerticalScrollIndicator={false}>
       <View >
-        <Text style={circleDisplayStyles.plantText}> Hello, {name.firstName}! </Text>
+        <Text style={circleDisplayStyles.headerText}>
+          Hello, {name.firstName}!
+        </Text>
         <Text>
           <Plant
             name='Plant 1'
@@ -78,6 +80,7 @@ const circleDisplayStyles = StyleSheet.create({ //Styling to build a Circle
     fontWeight: "bold",
     fontSize: 20,
   },
+
   headerText: {
     fontSize: 20,
     textAlign: "center",

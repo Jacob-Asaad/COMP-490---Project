@@ -4,8 +4,10 @@ import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import { firebase } from '../../config';
+import { useNavigation } from '@react-navigation/native';
 
 const SignInScreen = () => {
+    const navigation = useNavigation()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,7 +23,6 @@ const SignInScreen = () => {
 
     const onSignInPress = () => {
         loginUser(email, password);
-        console.warn("Sign In");
     }
 
     const onForgotPasswordPress = () => {
@@ -102,7 +103,7 @@ const SignInScreen = () => {
 
                 <CustomButton
                     text="Don't have an account? Sign Up "
-                    onPress={onSignUpPress}
+                    onPress={() => navigation.navigate('Register')}
                     type="TERTIARY"
                 />
 
