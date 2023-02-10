@@ -318,4 +318,35 @@ export const appStyles = {
   },
 };
 
-export default {customInputStyles, plantStyles, circleDisplayStyles, tabStyles, editProfileStyles, historyLogStyles, plantProfileStyles, settingsStyles, signInStyles, signUpStyles, appStyles}
+const logStyles = StyleSheet.create({
+    container:{
+        backgroundColor: '#FFFFFF',
+        width: '100%',
+        height: 100,
+        borderColor: "#000000",
+        paddingVertical:35,
+        borderWidth: 3,
+        borderRadius: 10,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        padding: 15,
+  }, 
+        headerText: {
+          fontSize: 15,
+          textAlign: "center",
+          margin: 14,
+          fontWeight: "bold"
+        }, 
+        ReadingText: {
+            fontSize: 15,
+            textAlign: "center",
+            paddingBottom: 100,
+            margin: 14,
+            fontWeight: "bold"
+          }, 
+      });
+
+
+
+export default {customInputStyles, plantStyles, circleDisplayStyles, tabStyles, editProfileStyles, historyLogStyles, plantProfileStyles, settingsStyles, signInStyles, signUpStyles, appStyles, logStyles, logDisplayStyles}
