@@ -41,6 +41,7 @@ useEffect(() => {
 
 
    return (
+
 <View styles={styles.container}>
  <Text style={styles.header}>  </Text>
  {
@@ -53,11 +54,13 @@ useEffect(() => {
      )
    })
  }
+ 
    </View>
 
    )
  
 }
+
 
 const styles = StyleSheet.create({
   container: {

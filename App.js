@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import React, { useEffect, useState  } from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
@@ -9,6 +9,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HistoryLogScreen from './screens/HistoryLogScreen/HistoryLogScreen';
 import PlantProfileScreen from './screens/PlantProfileScreen/PlantProfileScreen';
+import { appStyles } from '././components/Styles/Styling';
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -58,7 +60,7 @@ function App() {
           backgroundColor: '#ffffff',
           borderRadius: 35,
           height: 100,
-          ...styles.shadow
+          ...appStyles.shadow
         }
       }}
     >
@@ -154,25 +156,16 @@ function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: '#7F5DF0',
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
-  },
-});
+
 
 
 
 export default () => {
   return (
+    
     <NavigationContainer>
       <App />
     </NavigationContainer>
+    
   )
 };
