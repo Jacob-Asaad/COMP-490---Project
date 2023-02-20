@@ -2,16 +2,15 @@ import { StyleSheet } from 'react-native'
 
 export const customInputStyles = {
     container: {
-    
+ 
     backgroundColor: 'white',
     width: '100%',
     height: 45,
     borderColor: "#e8e8e8",
-    borderWidth: 2,
-    borderRadius: 5,
-    
+    borderWidth: 3,
+    borderRadius: 10,
     alignItems: 'flex',
-    paddingHorizontal: 10,
+    padding: 10,
     marginVertical: 10,
     },
     input: {},
@@ -195,9 +194,10 @@ export const customInputStyles = {
         },
         rows : {
           flexDirection: 'row',
-          paddingTop: 10,
-          paddingBottom: 2,
+          paddingTop: 5,
+          paddingBottom: 5,
           justifyContent: 'space-between',
+          alignItems: 'flex-end',
         },
     
         image:{
@@ -212,7 +212,7 @@ export const customInputStyles = {
             height: 200,
             borderRadius: 100,
             overflow: "hidden",
-            marginTop: 50,
+            marginTop: 31,
     },
         text: {
             fontSize: 15,
@@ -250,8 +250,10 @@ export const customInputStyles = {
 
   export  const signInStyles = {
       root: {
+        flex: 1,
           alignItems: 'center',
           padding: 30,
+          backgroundColor: 'white',
   
       },
   
@@ -268,7 +270,7 @@ export const customInputStyles = {
           width: '70%',
           maxWidth: 300,
           maxHeight: 200,
-  
+          backgroundColor: 'white',
       },
   };
 

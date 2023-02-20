@@ -113,6 +113,7 @@ const SettingsScreen = () => {
             onPress={logout}
             bgColor="white"
             fgColor="#000000"
+            
           />
 
         </View>
