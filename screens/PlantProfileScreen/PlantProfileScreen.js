@@ -7,23 +7,26 @@ const Plants = [
   {
     id: 1,
     title: 'Plant 1',
-    image: require('../../assets/images/plantlinkicon.png'),
-    moisture: '30%',
-    temperature: '75°F'
+    image: require('../../assets/images/cactusplant.png'),
+    type: 'Cactus',
+    moisture: '0-20%',
+    temperature: '40-80°F'
   },
   {
     id: 2,
     title: 'Plant 2',
-    image: require('../../assets/images/plantlinkicon.png'),
-    moisture: '40%',
-    temperature: '70°F'
+    image: require('../../assets/images/caladium.png'),
+    type: 'Caladium',
+    moisture: '70-80%',
+    temperature: '65-80°F'
   },
   {
     id: 3,
     title: 'Plant 3',
-    image: require('../../assets/images/plantlinkicon.png'),
-    moisture: '50%',
-    temperature: '65°F'
+    image: require('../../assets/images/tulip.png'),
+    type: 'Tulip',
+    moisture: '21-60%',
+    temperature: '55-70°F'
   }
 ];
 
@@ -34,19 +37,18 @@ const plant = ({ item }) => (
       source={item.image} style={plantProfileStyles.images}
       />
     </View>
-    <Text 
-    style={plantProfileStyles.title}>{item.title}
-    </Text>
+    <View style={plantProfileStyles.titlecontainer}>
+      <Text 
+      style={plantProfileStyles.title}>{item.title}
+      </Text>
+    </View>
     <View style={plantProfileStyles.listcontainer}>
+      <Text style={plantProfileStyles.text}>Type: {item.type}</Text>
       <Text style={plantProfileStyles.text}>Moisture: {item.moisture}</Text>
       <Text style={plantProfileStyles.text}>Temperature: {item.temperature}</Text>
     </View>
   </View>
 );
-const listSeparator = () => {
-  return <View style={plantProfileStyles.separator} />
-}
-
 const PlantProfileScreen = () => {
 
   return (
