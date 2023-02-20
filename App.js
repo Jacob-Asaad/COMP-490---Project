@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
@@ -88,6 +88,13 @@ function App() {
       <Tab.Screen name="Plant Profiles" component={PlantProfileScreen}
         //styling and options for Plant Profiles button on navigation bar
         options={{
+          headerRight: () => (
+            <Button
+              onPress={() => alert('Add new plant profile')}
+              title="new profile"
+              color='red'
+            />
+          ),
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: 'center', justifyContent: 'center', top: 3 }}>
               <Image
