@@ -45,19 +45,24 @@ const SettingsScreen = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView style={settingsStyles.container}>
         <View style={settingsStyles.contain}>
+
+        <Text style={settingsStyles.settings}>
+            Settings
+          </Text>
+
+
           <View style={settingsStyles.profileImage}>
+
+          
 
             <Image source={require('../../assets/images/profilepic.jpeg')} style={settingsStyles.image}>
             </Image>
 
           </View>
 
+
           <Text style={settingsStyles.emailName}>
             {email.email}
-          </Text>
-
-          <Text style={settingsStyles.settings}>
-            Settings
           </Text>
 
           <View style={settingsStyles.rows}>

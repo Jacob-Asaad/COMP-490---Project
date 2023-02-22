@@ -63,12 +63,14 @@ const PlantHubScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
+    height: 1000,
   },
   header: {
     fontSize: 30, 
     textAlign: 'center',
     marginTop: 100, 
+    
 
   },
   text: {

@@ -43,7 +43,7 @@ const Tabs = () => {
     return (
         <Tab.Navigator
             //need to change this to screenOptions( but it's some options need to be changed)
-            tabBarOptions={{
+            screenOptions={{
                 showLabel: false,
                 //styling for the navigation bar positioning
                 style: {
@@ -60,7 +60,7 @@ const Tabs = () => {
             }}
         >
 
-            <Tab.Screen name="Dashboard" component={PlantHubScreen}
+            <Tab.Screen name="Home" component={PlantHubScreen}
                 //styling and options for Home button on navigation bar
                 options={{
                     tabBarIcon: ({ focused }) => (
@@ -75,14 +75,14 @@ const Tabs = () => {
                                 }}
                             // Text under home button 
                             />
-                            <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}> Home</Text>
+                           
 
                         </View>
 
                     )
                 }} />
 
-            <Tab.Screen name="Plant Profiles" component={PlantProfileScreen}
+            <Tab.Screen name="Profiles" component={PlantProfileScreen}
                 //styling and options for Plant Profiles button on navigation bar
                 options={{
                     tabBarIcon: ({ focused }) => (
@@ -97,14 +97,14 @@ const Tabs = () => {
                                 }}
                             // Text under Plant Profiles button
                             />
-                            <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}> Profiles</Text>
+                            
 
                         </View>
 
                     )
                 }} />
 
-            <Tab.Screen name="Watering History" component={HistoryLogScreen}
+            <Tab.Screen name="History" component={HistoryLogScreen}
                 //styling and options for Watering History button on navigation bar
                 options={{
                     tabBarIcon: ({ focused }) => (
@@ -119,8 +119,7 @@ const Tabs = () => {
                                 }}
                             // Text under Watering History button
                             />
-                            <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}> History</Text>
-
+                           
                         </View>
 
                     )
@@ -140,7 +139,7 @@ const Tabs = () => {
                                 }}
                             // Text under Settings button
                             />
-                            <Text style={{ color: focused ? '#e32f45' : '#748c94', fontSize: 12 }}> Settings</Text>
+                           
 
                         </View>
 

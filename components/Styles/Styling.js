@@ -183,6 +183,7 @@ export const customInputStyles = {
         container: {
           flex: 1,
           backgroundColor: '#FFFFFF',
+          height: 875,
     
         },
         contain: {
@@ -254,19 +255,20 @@ export const customInputStyles = {
           alignItems: 'center',
           padding: 30,
           backgroundColor: 'white',
-  
+         height: 925,
       },
   
       login: {
           fontSize: '20',
           fontWeight: 'bold',
           alignSelf: 'left',
-          paddingBottom: '2%',
+          paddingBottom: '3%',
           letterSpacing: '1.2',
   
       },
   
       logo: {
+        marginTop: 45,
           width: '70%',
           maxWidth: 300,
           maxHeight: 200,
