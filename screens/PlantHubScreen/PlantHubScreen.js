@@ -26,18 +26,19 @@ const PlantHubScreen = () => {
 
 
 
-useEffect(() => {
-  const plantRef = ref(db, 'moisture-sensor/')
-   onValue(plantRef, (snapshot) => {
-     const data = snapshot.val();
-     const newReading = Object.keys(data).map((key) => ({
-       id:key,
-       ...data[key]
-     }));
-     console.log(newReading);
-     setplantData(newReading);
-   });
- }, [])
+  useEffect(() => {
+    const plantRef = ref(db, 'moistureSensor/')
+     onValue(plantRef, (snapshot) => {
+       const data = snapshot.val();
+      // const data =  snapshot.child('moistureSensor').val();
+       const newReading = Object.keys(data).map((key) => ({
+         id:key,
+         ...data[key]
+       }));
+       console.log(newReading);
+       setplantData(newReading);
+     });
+   }, [])
 
 
    return (
