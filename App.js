@@ -37,7 +37,6 @@ function App() {
       
       >
         <Stack.Screen
-
           name="Login"
           component={SignInScreen}
           screenOptions={{

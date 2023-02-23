@@ -3,9 +3,9 @@ import CustomButton from '../../components/CustomButton/Custombutton';
 import { View, Text, TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity }
   from 'react-native';
 import Plant from '../../components/Plant/Plant';
+import { circleDisplayStyles } from '../../components/Styles/Styling';
 import React, { useEffect, useState } from 'react';
 import { db, firebase } from '../../config';
-import { circleDisplayStyles } from '../../components/Styles/Styling';
 import {ref, onValue} from "firebase/database";
 
 const PlantHubScreen = () => {
@@ -32,7 +32,7 @@ const PlantHubScreen = () => {
        const data = snapshot.val();
       // const data =  snapshot.child('moistureSensor').val();
        const newReading = Object.keys(data).map((key) => ({
-         id:key,
+         data,
          ...data[key]
        }));
        console.log(newReading);
