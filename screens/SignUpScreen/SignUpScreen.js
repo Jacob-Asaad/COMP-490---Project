@@ -1,9 +1,11 @@
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, Text, Image, signUpStylesheet, useWindowDimensions, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import { firebase } from '../../config';
+import { signUpStyles } from '../../components/Styles/Styling';
+
 import { useNavigation } from '@react-navigation/native';
 
 const SignUpScreen = () => {
@@ -62,14 +64,14 @@ const SignUpScreen = () => {
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.root}>
+            <View style={signUpStyles.root}>
                 <Image
                     source={Logo}
-                    style={[styles.logo, { height: height * 0.3 }]}
+                    style={[signUpStyles.logo, { height: height * 0.3 }]}
                     resizeMode='contain'
                 />
                 <Text
-                    style={styles.title}> Sign Up
+                    style={signUpStyles.title}> Sign Up
                 </Text>
 
                 <CustomInput
@@ -105,7 +107,7 @@ const SignUpScreen = () => {
                     onPress={() => registerUser(email, password)}
                 />
 
-                <Text style={styles.registerText}>
+                <Text style={signUpStyles.registerText}>
                     By registering, you agree to accept our Terms of Use and Privacy Policy.
                 </Text>
 
@@ -140,34 +142,7 @@ const SignUpScreen = () => {
         </ScrollView>
     );
 };
-const styles = StyleSheet.create({
-    root: {
-        alignItems: 'center',
-        padding: 30,
 
-    },
-
-    title: {
-        fontSize: '20',
-        fontWeight: 'bold',
-        alignSelf: 'left',
-        paddingBottom: '2%',
-        letterSpacing: '1.2',
-
-    },
-    registerText: {
-        color: 'gray',
-        marginVertical: 5,
-
-    },
-
-    logo: {
-        width: '70%',
-        maxWidth: 300,
-        maxHeight: 200,
-
-    },
-});
 
 
 

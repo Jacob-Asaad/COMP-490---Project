@@ -187,7 +187,7 @@ function App() {
   );
 }
 
-// Stylesheet for shadow under plus button
+
 
 const styles = StyleSheet.create({
   shadow: {
@@ -201,7 +201,5 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
-
-
 
 export default App;

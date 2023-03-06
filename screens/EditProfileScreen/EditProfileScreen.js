@@ -1,10 +1,12 @@
-import { View, SafeAreaView, Text, TextInput, Image, Switch, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, SafeAreaView, Text, TextInput, Image, Switch, editProfileStylesheet, useWindowDimensions, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { Header } from 'react-native/Libraries/NewAppScreen';
+import { editProfileStyles } from '../../components/Styles/Styling';
+
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -23,10 +25,10 @@ const EditProfileScreen = () => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.contain}>
-                <View style={styles.profileImage}>
-                    <Image source={require('../../assets/images/profilepic.jpeg')} style={styles.image}>
+        <SafeAreaView style={editProfileStyles.container}>
+            <View style={editProfileStyles.contain}>
+                <View style={editProfileStyles.profileImage}>
+                    <Image source={require('../../assets/images/profilepic.jpeg')} style={editProfileStyles.image}>
 
                     </Image>
                 </View>
@@ -177,5 +179,5 @@ const styles = StyleSheet.create({
     }
 
 
-});
+
 export default EditProfileScreen;

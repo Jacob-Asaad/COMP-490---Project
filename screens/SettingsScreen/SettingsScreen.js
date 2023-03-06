@@ -1,8 +1,9 @@
-import { View, SafeAreaView, Text, Image, Switch, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, SafeAreaView, Text, Image, Switch, settingsStylesheet, useWindowDimensions, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { firebase } from '../../config';
+import { settingsStyles } from '../../components/Styles/Styling';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -45,59 +46,59 @@ const SettingsScreen = () => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.contain}>
-          <View style={styles.profileImage}>
+      <SafeAreaView style={settingsStyles.container}>
+        <View style={settingsStyles.contain}>
+          <View style={settingsStyles.profileImage}>
 
-            <Image source={require('../../assets/images/profilepic.jpeg')} style={styles.image}>
+            <Image source={require('../../assets/images/profilepic.jpeg')} style={settingsStyles.image}>
             </Image>
 
           </View>
 
-          <Text style={styles.emailName}>
+          <Text style={settingsStyles.emailName}>
             {email.email}
           </Text>
 
-          <Text style={styles.settings}>
+          <Text style={settingsStyles.settings}>
             Settings
           </Text>
 
-          <View style={styles.rows}>
-            <Text style={styles.text}>
+          <View style={settingsStyles.rows}>
+            <Text style={settingsStyles.text}>
               Notifications
             </Text>
 
-            <CustomSwitch style={styles.switch}
+            <CustomSwitch style={settingsStyles.switch}
               isEnabled={notifications}
               toggleSwitch={SetNotifications}
             />
 
           </View>
 
-          <View style={styles.rows}>
-            <Text style={styles.text}>
+          <View style={settingsStyles.rows}>
+            <Text style={settingsStyles.text}>
               Bluetooth
             </Text>
 
-            <CustomSwitch style={styles.switch}
+            <CustomSwitch style={settingsStyles.switch}
               isEnabled={bluetooth}
               toggleSwitch={SetBluetooth}
             />
           </View>
 
-          <View style={styles.rows}>
+          <View style={settingsStyles.rows}>
 
-            <Text style={styles.text}>
+            <Text style={settingsStyles.text}>
               Automatic Watering
             </Text>
 
-            <CustomSwitch style={styles.switch}
+            <CustomSwitch style={settingsStyles.switch}
               isEnabled={autowater}
               toggleSwitch={SetAutowater}
             />
 
           </View>
-          <CustomButton style={styles.button}
+          <CustomButton style={settingsStyles.button}
             text="Clear History"
             onPress={clearHistory}
             bgColor="#8fbc8f"
@@ -124,73 +125,7 @@ const SettingsScreen = () => {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
 
-  },
-  contain: {
-    flex: 1,
-    alignContent: 'center',
-    margin: 25,
-    padding: 20,
-
-  },
-  rows: {
-    flexDirection: 'row',
-    paddingTop: 10,
-    paddingBottom: 2,
-    justifyContent: 'space-between',
-  },
-
-  image: {
-    flex: 1,
-    width: undefined,
-    height: undefined,
-    paddingTop: 10,
-  },
-  profileImage: {
-    alignSelf: 'center',
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    overflow: "hidden",
-    marginTop: 50,
-  },
-  text: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    paddingTop: 20,
-    marginRight: 145,
-    marginBottom: 5,
-  },
-
-  emailName: {
-    alignItems: "center",
-    alignSelf: "center",
-    marginTop: 20,
-    fontSize: 15,
-  },
-  settings: {
-    alignItems: "center",
-    alignSelf: "center",
-    marginTop: 20,
-    marginBottom: 10,
-    fontSize: 25,
-    fontWeight: "bold",
-  },
-  switch: {
-    flex: 1,
-    alignSelf: "right",
-
-  },
-  buttons: {
-    align: "center",
-  }
-
-
-});
 
 
 export default SettingsScreen
