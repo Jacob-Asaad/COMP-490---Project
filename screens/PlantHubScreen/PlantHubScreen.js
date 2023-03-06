@@ -27,7 +27,7 @@ const PlantHubScreen = () => {
 
 
 useEffect(() => {
-  const plantRef = ref(db, 'mositure-sensor/2-push/')
+  const plantRef = ref(db, '/moistureSensor')
    onValue(plantRef, (snapshot) => {
      const data = snapshot.val();
      const newReading = Object.keys(data).map((key) => ({
