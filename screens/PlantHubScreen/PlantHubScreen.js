@@ -11,6 +11,7 @@ import {ref, onValue} from "firebase/database";
 const PlantHubScreen = () => {
   const [name, setName] = useState('');
   const [plantData, setplantData] = useState([]);
+  const [soil_read, setSoilRead] = useState(null); 
 
   //pull info from firestore database
   useEffect(() => {
@@ -27,38 +28,44 @@ const PlantHubScreen = () => {
 
 
   useEffect(() => {
-    const plantRef = ref(db, 'moistureSensor/')
+    const plantRef = ref(db, '/moistureSensor/')
      onValue(plantRef, (snapshot) => {
        const data = snapshot.val();
-      // const data =  snapshot.child('moistureSensor').val();
        const newReading = Object.keys(data).map((key) => ({
          data,
          ...data[key]
        }));
-       console.log(newReading);
+       moist = newReading;
+       console.log(moist[0]['data']['moistureReading'])
+       console.log(moist[0]['data']['roomTemp'])
        setplantData(newReading);
      });
    }, [])
+  
+   let soil_read1 = moist[0]['data']['moistureReading'];
+   let room_temp = moist[0]['data']['roomTemp'];
 
-
-   return (
-<View styles={styles.container}>
- <Text style={styles.header}>  </Text>
- {
-   plantData.map((item, index) => {
-     return(
-       <View key={index}>
-         
-         <Text style={styles.text}> {item.id}</Text>
-       </View>
+     return (
+  <View styles={styles.container}>
+   <Text style={styles.header}> </Text>
+   {
+    //  plantData.map((item, index) => {
+    //    return(
+    //      <View key={index}>
+  
+    //        <Text style={styles.text}> {index[item]}Moisture Sensor: </Text>
+    //      </View>
+    //    )
+    //  })
+   <Text> Temperature: {soil_read1} {'\n'} 
+   Moisture: {room_temp}
+      </Text>
+ }  
+     </View>
+  
      )
-   })
- }
-   </View>
-
-   )
- 
-}
+  }
+  
 
 const styles = StyleSheet.create({
   container: {
