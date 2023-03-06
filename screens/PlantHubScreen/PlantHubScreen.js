@@ -24,17 +24,23 @@ const PlantHubScreen = () => {
   }, [])
 
 
-
-
+let moist;
+let soil_read;
+let room_temp;
 useEffect(() => {
-  const plantRef = ref(db, '/moisture-sensor')
+  const plantRef = ref(db, '/moistureSensor')
    onValue(plantRef, (snapshot) => {
      const data = snapshot.val();
      const newReading = Object.keys(data).map((key) => ({
-       //id:key,
+       data,
        ...data[key]
      }));
      console.log(newReading);
+     moist = newReading;
+     soil_read = moist[0]['data']['moistureReading'];
+     room_temp = moist[0]['data']['roomTemp'];
+     console.log(moist[0]['data']['moistureReading'])
+     console.log(moist[0]['data']['roomTemp'])
      setplantData(newReading);
    });
  }, [])
@@ -42,16 +48,17 @@ useEffect(() => {
 
    return (
 <View styles={styles.container}>
- <Text style={styles.header}>  </Text>
+ <Text style={styles.header}>  Hi</Text>
  {
-   plantData.map((item, index) => {
-     return(
-       <View key={index}>
+  //  plantData.map((item, index) => {
+  //    return(
+  //      <View key={index}>
          
-         <Text style={styles.text}> {item.id}</Text>
-       </View>
-     )
-   })
+  //        <Text style={styles.text}> {index[item]}Moisture Sensor: </Text>
+  //      </View>
+  //    )
+  //  })
+  <Text>Moisture Data: {soil_read}</Text>
  }
    </View>
 
