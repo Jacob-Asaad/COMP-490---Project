@@ -10,7 +10,7 @@ const CustomInput = ({value, setValue, placeholder, secureTextEntry}) => {
       value = {value}
       onChangeText = {setValue}
       placeholder = {placeholder}
-      style = {customInputStyles.input}
+      style = {[customInputStyles.input, {flex: 1}]}
       secureTextEntry = {secureTextEntry}
        />
     </View>
