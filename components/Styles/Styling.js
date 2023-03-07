@@ -2,16 +2,15 @@ import { StyleSheet } from 'react-native'
 
 export const customInputStyles = {
     container: {
-    
+ 
     backgroundColor: 'white',
     width: '100%',
     height: 45,
     borderColor: "#e8e8e8",
-    borderWidth: 2,
-    borderRadius: 5,
-    
+    borderWidth: 3,
+    borderRadius: 10,
     alignItems: 'flex',
-    paddingHorizontal: 10,
+    padding: 10,
     marginVertical: 10,
     },
     input: {},
@@ -62,11 +61,12 @@ export const customInputStyles = {
               },
               buttons: {
                 margin: 20,
-               alignSelf: 'center',
+                alignSelf: 'flex-end',
                 backgroundColor: "#577157",
                 borderRadius: 100,
                 height: 60,
                 width: 60,
+                
               }
           };
 
@@ -160,6 +160,7 @@ export const customInputStyles = {
           container: {
             flex: 1,
             backgroundColor: '#FFFFFF',
+            alignContent: "space-around",
           },
           text: {
               fontSize: 15,
@@ -169,13 +170,13 @@ export const customInputStyles = {
             marginBottom: 5,
           },
         errorText: {
+          alignContent: "space-around",
+          top: -60,
           alignItems: "center",
             alignSelf: "center",
-            marginTop: 20,
-            marginBottom: 10,
             fontSize: 25,
             fontWeight: "bold",
-            padding: 125,
+           
         },
       
       };
@@ -184,6 +185,7 @@ export const customInputStyles = {
         container: {
           flex: 1,
           backgroundColor: '#FFFFFF',
+          height: 875,
     
         },
         contain: {
@@ -195,9 +197,10 @@ export const customInputStyles = {
         },
         rows : {
           flexDirection: 'row',
-          paddingTop: 10,
-          paddingBottom: 2,
+          paddingTop: 5,
+          paddingBottom: 5,
           justifyContent: 'space-between',
+          alignItems: 'flex-end',
         },
     
         image:{
@@ -212,7 +215,7 @@ export const customInputStyles = {
             height: 200,
             borderRadius: 100,
             overflow: "hidden",
-            marginTop: 50,
+            marginTop: 31,
     },
         text: {
             fontSize: 15,
@@ -250,25 +253,28 @@ export const customInputStyles = {
 
   export  const signInStyles = {
       root: {
+        flex: 1,
           alignItems: 'center',
           padding: 30,
-  
+          backgroundColor: 'white',
+         height: 925,
       },
   
       login: {
           fontSize: '20',
           fontWeight: 'bold',
           alignSelf: 'left',
-          paddingBottom: '2%',
+          paddingBottom: '3%',
           letterSpacing: '1.2',
   
       },
   
       logo: {
+        marginTop: 45,
           width: '70%',
           maxWidth: 300,
           maxHeight: 200,
-  
+          backgroundColor: 'white',
       },
   };
 

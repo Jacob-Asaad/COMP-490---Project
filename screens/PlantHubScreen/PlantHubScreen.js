@@ -3,14 +3,15 @@ import CustomButton from '../../components/CustomButton/Custombutton';
 import { View, Text, TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity }
   from 'react-native';
 import Plant from '../../components/Plant/Plant';
+import { circleDisplayStyles } from '../../components/Styles/Styling';
 import React, { useEffect, useState } from 'react';
 import { db, firebase } from '../../config';
-import { circleDisplayStyles } from '../../components/Styles/Styling';
 import {ref, onValue} from "firebase/database";
 
 const PlantHubScreen = () => {
   const [name, setName] = useState('');
   const [plantData, setplantData] = useState([]);
+  const [soil_read, setSoilRead] = useState(null); 
 
   //pull info from firestore database
   useEffect(() => {
@@ -26,48 +27,57 @@ const PlantHubScreen = () => {
 
 
 
-useEffect(() => {
-  const plantRef = ref(db, 'mositure-sensor/2-push/')
-   onValue(plantRef, (snapshot) => {
-     const data = snapshot.val();
-     const newReading = Object.keys(data).map((key) => ({
-       id:key,
-       ...data[key]
-     }));
-     console.log(newReading);
-     setplantData(newReading);
-   });
- }, [])
+  useEffect(() => {
+    const plantRef = ref(db, '/moistureSensor/')
+     onValue(plantRef, (snapshot) => {
+       const data = snapshot.val();
+       const newReading = Object.keys(data).map((key) => ({
+         data,
+         ...data[key]
+       }));
+       moist = newReading;
+       console.log(moist[0]['data']['moistureReading'])
+       console.log(moist[0]['data']['roomTemp'])
+       setplantData(newReading);
+     });
+   }, [])
+  
+   let soil_read1 = moist[0]['data']['moistureReading'];
+   let room_temp = moist[0]['data']['roomTemp'];
 
-
-   return (
-<View styles={styles.container}>
- <Text style={styles.header}>  </Text>
- {
-   plantData.map((item, index) => {
-     return(
-       <View key={index}>
-         
-         <Text style={styles.text}> {item.id}</Text>
-       </View>
+     return (
+  <View styles={styles.container}>
+   <Text style={styles.header}> </Text>
+   {
+    //  plantData.map((item, index) => {
+    //    return(
+    //      <View key={index}>
+  
+    //        <Text style={styles.text}> {index[item]}Moisture Sensor: </Text>
+    //      </View>
+    //    )
+    //  })
+   <Text> Temperature: {soil_read1} {'\n'} 
+   Moisture: {room_temp}
+      </Text>
+ }  
+     </View>
+  
      )
-   })
- }
-   </View>
-
-   )
- 
-}
+  }
+  
 
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
+    height: 1000,
   },
   header: {
     fontSize: 30, 
     textAlign: 'center',
     marginTop: 100, 
+    
 
   },
   text: {

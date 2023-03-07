@@ -61,6 +61,7 @@ const SignInScreen = () => {
                     value={email}
                     setValue={setEmail}
                     secureTextEntry={false}
+                    onChangeText={(text) => setEmail(text)}
                 />
 
                 <CustomInput
