@@ -43,6 +43,7 @@ export const customInputStyles = {
               margin: 3,
             },
             plantText: {
+              marginTop: 50,
               padding: 20,
               fontWeight: "bold",
               fontSize: 20,
@@ -61,13 +62,20 @@ export const customInputStyles = {
               },
               buttons: {
                 margin: 20,
-                alignSelf: 'flex-end',
+                alignSelf: 'center',
                 backgroundColor: "#577157",
                 borderRadius: 100,
                 height: 60,
                 width: 60,
                 
-              }
+              },
+              ReadingText: {
+                fontSize: 15,
+                textAlign: "center",
+                paddingBottom: 100,
+                margin: 14,
+                fontWeight: "bold"
+              }, 
           };
 
         export  const tabStyles = {

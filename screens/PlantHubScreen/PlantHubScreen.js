@@ -44,6 +44,7 @@ const PlantHubScreen = () => {
      });
    }, [])
 
+   /*
   return (
     <View styles={styles.container}>
       <Text style={styles.header}> </Text>
@@ -53,7 +54,58 @@ const PlantHubScreen = () => {
     </View>
   )
 }
-  
+*/  
+
+
+
+
+ 
+  function createPlant(plantName) {
+    const name = plantName;
+    const [soilLevel, setSoilLevel] = useState("soilReading");
+    const [temp, setTemp] = useState("tempReading");
+    const [humidity, setHumidity] = useState("humidityReading");
+      <View style={circleDisplayStyles.container}>
+        <Text style={circleDisplayStyles.headerText}>Plant </Text>
+        <View style={circleDisplayStyles.CircleShape}/>
+      </View>
+    
+  };
+
+  return ( //returning a plant component to the PlantHubScreen Hello {name.firsName}
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View >
+        <Text style={circleDisplayStyles.plantText}> Hello, {name.firstName}! </Text>
+        <Text>
+          <Plant
+            name='Plant 1'
+            soilLevel='Soil Level'
+            soilReading = 'Good'
+            temp='Temp'
+            tempReading = {plantData[0]?.data?.roomTemp}
+            humidity='Humidity'
+            humidityReading = {soil_read}
+          />
+        </Text>
+        <TouchableOpacity style={circleDisplayStyles.buttons} onPress={() => { console.warn("Add New Plant") }}>
+          <Image
+            style={{
+              resizeMode: "contain",
+              margin: 25,
+              right: 10,
+              bottom: 8,
+              height: 30,
+              width: 30
+            }}
+            source={require("../../assets/images/plusicon.webp")} />
+        </TouchableOpacity>
+
+      </View>
+    </ScrollView>
+  )
+}
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -73,58 +125,9 @@ const styles = StyleSheet.create({
   textAlign: 'center',
   marginTop: 20,
   }
-})
 
 
-
- // old cold that was used to create a plant component
- /*
-  function createPlant(plantName) {
-    const name = plantName;
-    const [soilLevel, setSoilLevel] = useState("soilReading");
-    const [temp, setTemp] = useState("tempReading");
-    const [humidity, setHumidity] = useState("humidityReading");
-    /*  <View style={circleDisplayStyles.container}>
-        <Text style={circleDisplayStyles.headerText}>Plant </Text>
-        <View style={circleDisplayStyles.CircleShape}/>
-      </View>
-    
-  };
-
-  return ( //returning a plant component to the PlantHubScreen Hello {name.firsName}
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View >
-        <Text style={circleDisplayStyles.plantText}> Hello, {name.firstName}! </Text>
-        <Text>
-          <Plant
-            name='Plant 1'
-            soilLevel='Soil Level'
-            temp='Temp'
-            humidity='Humidity'
-          />
-        </Text>
-        <TouchableOpacity style={circleDisplayStyles.buttons} onPress={() => { console.warn("Add New Plant") }}>
-          <Image
-            style={{
-              resizeMode: "contain",
-              margin: 25,
-              right: 10,
-              bottom: 8,
-              alignItems: 'center',
-              height: 30,
-              width: 30
-            }}
-            source={require("../../assets/images/plusicon.webp")} />
-        </TouchableOpacity>
-
-      </View>
-    </ScrollView>
-  )
-}
-*/
-
-
-
+});
 
 
 export default PlantHubScreen
