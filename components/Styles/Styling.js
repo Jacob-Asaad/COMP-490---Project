@@ -120,8 +120,8 @@ export const customInputStyles = {
                   marginTop: 50,
           },
               text: {
-                  fontSize: 15,
-                  fontWeight: 'bold',
+                fontSize: 15,
+                fontWeight: 'bold',
                 paddingTop: 20,
                 marginRight: 145,
                 marginBottom: 5,
@@ -176,10 +176,10 @@ export const customInputStyles = {
             alignContent: "space-around",
           },
           text: {
-              fontSize: 15,
-              fontWeight: 'bold',
-            paddingTop: 20,
-            marginRight: 145,
+            fontSize: 15,
+            fontWeight: 'bold',
+            paddingTop: 10,
+            //marginRight: 145,
             marginBottom: 5,
           },
         errorText: {
@@ -190,6 +190,50 @@ export const customInputStyles = {
             fontSize: 25,
             fontWeight: "bold",
            
+        },
+        listcontainer: {
+          flex: 1,
+          flexDirection: 'column',
+          backgroundColor: 'white',
+          height: 99,
+          width: 150,
+          justifyContent: 'center',
+          alignItems: 'baseline',
+        },
+        item: {
+          flex: 1,
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingVertical: 10,
+          backgroundColor: '#FFFFFF',
+          padding: 20,
+          marginVertical: 3,
+          marginHorizontal: 6,
+          borderWidth: 2,
+          borderColor: "#7DB9B6",
+          borderRadius: 10,
+        },
+        imageContainer: {
+          backgroundColor: 'white',
+          borderRadius: 10,
+          height: 99,
+          width: 99,
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        images: {
+          height: 70,
+          width: 55,
+        },
+        title: {
+          fontSize: 20,
+          fontWeight: 'bold',
+        },
+        titlecontainer: {
+          height: 99,
+          width: 100,
+          justifyContent: 'center',
+
         },
       
       };
