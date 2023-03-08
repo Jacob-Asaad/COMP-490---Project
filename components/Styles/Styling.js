@@ -43,6 +43,7 @@ export const customInputStyles = {
               margin: 3,
             },
             plantText: {
+              marginTop: 50,
               padding: 20,
               fontWeight: "bold",
               fontSize: 20,
@@ -61,13 +62,20 @@ export const customInputStyles = {
               },
               buttons: {
                 margin: 20,
-                alignSelf: 'flex-end',
+                alignSelf: 'center',
                 backgroundColor: "#577157",
                 borderRadius: 100,
                 height: 60,
                 width: 60,
                 
-              }
+              },
+              ReadingText: {
+                fontSize: 15,
+                textAlign: "center",
+                paddingBottom: 100,
+                margin: 14,
+                fontWeight: "bold"
+              }, 
           };
 
         export  const tabStyles = {
@@ -135,24 +143,29 @@ export const customInputStyles = {
 
          export const historyLogStyles = StyleSheet.create({
             container: {
-              flex: 1,
-              backgroundColor: '#FFFFFF',
+              flex:1,
+              
             },
             text: {
-                fontSize: 15,
-                fontWeight: 'bold',
-              paddingTop: 20,
-              marginRight: 145,
-              marginBottom: 5,
+              fontSize: 15,
+              fontWeight: "bold",
+              textAlign: "center",
+              width: '100%',
+              borderColor: 'black',
+              paddingVertical: 30,
+              marginVertical: -40,
+              borderWidth: 2.5,
+              borderRadius: 10,
+              flex: 1,
+              padding: 30,
             },
           errorText: {
             alignItems: "center",
               alignSelf: "center",
-              marginTop: 20,
               marginBottom: 10,
               fontSize: 25,
               fontWeight: "bold",
-              padding: 125,
+              padding: 90,
           },
         });
 
