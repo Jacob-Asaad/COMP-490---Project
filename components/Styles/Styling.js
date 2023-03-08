@@ -186,9 +186,9 @@ export const customInputStyles = {
           alignContent: "space-around",
           top: -60,
           alignItems: "center",
-            alignSelf: "center",
-            fontSize: 25,
-            fontWeight: "bold",
+          alignSelf: "center",
+          fontSize: 25,
+          fontWeight: "bold",
            
         },
         listcontainer: {
