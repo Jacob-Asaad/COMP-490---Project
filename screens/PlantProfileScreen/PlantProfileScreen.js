@@ -7,6 +7,7 @@ import { firebase } from '../../config';
 import {profileForm } from './profileForm'
 
 
+//will be plant info from firebase
 const Plants = [
   {
     id: 1,
