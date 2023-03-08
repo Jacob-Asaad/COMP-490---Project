@@ -67,7 +67,14 @@ export const customInputStyles = {
                 borderRadius: 100,
                 height: 60,
                 width: 60,
-                
+              },
+              buttons2: {
+                margin: 20,
+                alignSelf: 'flex-end',
+                backgroundColor: "#577157",
+                borderRadius: 100,
+                height: 60,
+                width: 60,
               },
               ReadingText: {
                 fontSize: 15,

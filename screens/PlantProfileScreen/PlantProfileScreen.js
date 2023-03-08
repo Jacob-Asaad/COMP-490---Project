@@ -24,7 +24,7 @@ const PlantProfileScreen = () => {
   return (
     <SafeAreaView style={plantProfileStyles.container}>
        
-          <TouchableOpacity style={circleDisplayStyles.buttons} onPress={() => { handlePress }}>
+          <TouchableOpacity style={circleDisplayStyles.buttons2} onPress={() => { handlePress }}>
           {showForm && <profileForm onClose={handleClose} />}
           <Image
             style={{
