@@ -1,5 +1,5 @@
 //firebase config key setup
-import { apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId } from "@env"
+import { apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId, } from "@env"
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
@@ -13,7 +13,7 @@ const firebaseConfig = {
     projectId: process.env.projectId,
     storageBucket: process.env.storageBucket,
     messagingSenderId: process.env.messagingSenderId,
-    appId: process.env.appId
+    appId: process.env.appId,
 };
 
 export default {
