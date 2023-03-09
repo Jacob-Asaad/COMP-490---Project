@@ -1,5 +1,5 @@
 //firebase config key setup
-import { apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId } from "@env"
+import { apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId, } from "@env"
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'

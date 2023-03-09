@@ -37,7 +37,13 @@ const SettingsScreen = () => {
     console.warn("Editing Profile...");
   }
 
-  const logout = () => {
+  //logout function
+  const logout = async () => {
+    try {
+        await firebase.auth().signOut();
+    } catch (e) {
+        console.log(e);
+    }
     console.warn("Logging Out...");
   }
 

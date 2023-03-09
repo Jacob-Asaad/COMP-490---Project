@@ -9,7 +9,6 @@ export const customInputStyles = {
     borderColor: "#e8e8e8",
     borderWidth: 3,
     borderRadius: 10,
-    alignItems: 'flex',
     padding: 10,
     marginVertical: 10,
     },
