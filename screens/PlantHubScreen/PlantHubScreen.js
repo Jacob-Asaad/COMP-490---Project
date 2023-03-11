@@ -7,6 +7,10 @@ import { circleDisplayStyles } from '../../components/Styles/Styling';
 import React, { useEffect, useState } from 'react';
 import { db, firebase } from '../../config';
 import {ref, onValue} from "firebase/database";
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+
+
 
 const PlantHubScreen = () => {
   const [name, setName] = useState('');
