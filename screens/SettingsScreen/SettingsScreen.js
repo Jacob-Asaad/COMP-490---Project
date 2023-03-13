@@ -4,10 +4,11 @@ import CustomButton from '../../components/CustomButton/Custombutton';
 import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { firebase } from '../../config';
 import { settingsStyles } from '../../components/Styles/Styling';
+import { useNavigation } from '@react-navigation/native';
 
 
 const SettingsScreen = () => {
-
+  const navigation = useNavigation();
   const [email, setEmail] = useState('')
 
   //pull info from firestore database
@@ -40,9 +41,9 @@ const SettingsScreen = () => {
   //logout function
   const logout = async () => {
     try {
-        await firebase.auth().signOut();
+      await firebase.auth().signOut();
     } catch (e) {
-        console.log(e);
+      console.log(e);
     }
     console.warn("Logging Out...");
   }
@@ -52,14 +53,14 @@ const SettingsScreen = () => {
       <SafeAreaView style={settingsStyles.container}>
         <View style={settingsStyles.contain}>
 
-        <Text style={settingsStyles.settings}>
+          <Text style={settingsStyles.settings}>
             Settings
           </Text>
 
 
           <View style={settingsStyles.profileImage}>
 
-          
+
 
             <Image source={require('../../assets/images/profilepic.jpeg')} style={settingsStyles.image}>
             </Image>
@@ -115,7 +116,7 @@ const SettingsScreen = () => {
 
           <CustomButton
             text="Edit Profile "
-            onPress={editProfile}
+            onPress={() => navigation.navigate('Profile')}
             bgColor="#8fbc8f"
             fgColor="#000000"
           />
@@ -124,7 +125,7 @@ const SettingsScreen = () => {
             onPress={logout}
             bgColor="white"
             fgColor="#000000"
-            
+
           />
 
         </View>

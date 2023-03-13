@@ -5,9 +5,13 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import { firebase } from '../../config';
 import { signUpStyles } from '../../components/Styles/Styling';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 const SignUpScreen = () => {
+
+    const navigation = useNavigation();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -18,31 +22,31 @@ const SignUpScreen = () => {
     registerUser = async (email, password) => {
         await firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
 
-            firebase.auth().currentUser.sendEmailVerification({
-                handleCodeInApp: true,
-                url: "http://plant-link-5b48e.firebaseapp.com",
-            }).then(() => {
-                alert('Verification email sent')
-            }).catch((error) => {
-                alert(error.message)
-            })
-                .then(() => {
-                    firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
-                        firstName,
-                        lastName,
-                        email,
+            firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({
+                firstName,
+                lastName,
+                email,
 
-                    })
-                })
-                .catch((error) => {
+            }).then(() => {
+                firebase.auth().currentUser.sendEmailVerification({
+                    handleCodeInApp: true,
+                    url: "http://plant-link-5b48e.firebaseapp.com",
+                }).then(() => {
+                    alert('Verification email sent')
+                }).catch((error) => {
                     alert(error.message)
                 })
+            })
         })
+            .catch((error) => {
+                alert(error.message)
+            })
+
     }
+
 
     const onRegisterPress = () => {
         registerUser(email, password);
-        console.warn("Sign Up");
     }
 
     const onSignInFacebook = () => {
@@ -102,7 +106,7 @@ const SignUpScreen = () => {
 
                 <CustomButton
                     text="Register"
-                    onPress={() => registerUser(email, password,)}
+                    onPress={() => registerUser(email, password)}
                 />
 
                 <Text style={signUpStyles.registerText}>
@@ -132,7 +136,7 @@ const SignUpScreen = () => {
 
                 <CustomButton
                     text="Already have an account? Sign In "
-                    onPress={onSignInPress}
+                    onPress={() => navigation.navigate('Login')}
                     type="TERTIARY"
                 />
 
