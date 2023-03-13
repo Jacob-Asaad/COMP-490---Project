@@ -9,6 +9,7 @@ import { db, firebase } from '../../config';
 import {ref, onValue} from "firebase/database";
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
 
 
 
@@ -27,8 +28,6 @@ const PlantHubScreen = () => {
       }
     })
   }, [])
-
-
 
 
   useEffect(() => {
@@ -61,8 +60,6 @@ const PlantHubScreen = () => {
 */  
 
 
-
-
  
   function createPlant(plantName) {
     const name = plantName;
@@ -86,7 +83,7 @@ const PlantHubScreen = () => {
             soilLevel='Soil Level'
             soilReading = 'Good'
             temp='Temp'
-            tempReading = {plantData[0]?.data?.roomTemp}
+            tempReading = {plantData[0]?.data?.roomTemp.toFixed(0)}
             humidity='Humidity'
             humidityReading = {soil_read}
           />
