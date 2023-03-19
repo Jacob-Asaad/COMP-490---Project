@@ -71,7 +71,7 @@ const PlantProfileScreen = () => {
   return (
     <SafeAreaView style={plantProfileStyles.container}>
        
-          <TouchableOpacity style={circleDisplayStyles.buttons} onPress={() => { handlePress }}>
+          <TouchableOpacity onPress={() => { handlePress }}>
           {showForm && <profileForm onClose={handleClose} />}
           <Image
             style={{
@@ -81,7 +81,7 @@ const PlantProfileScreen = () => {
               bottom: 8,
               alignItems: 'center',
               height: 30,
-              width: 30
+              width: 700
             }}
             source={require("../../assets/images/plusicon.webp")} />
         </TouchableOpacity>
