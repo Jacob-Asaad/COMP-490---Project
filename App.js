@@ -11,6 +11,8 @@ import HistoryLogScreen from './screens/HistoryLogScreen/HistoryLogScreen';
 import PlantProfileScreen from './screens/PlantProfileScreen/PlantProfileScreen';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import { ExpoPushToken } from 'expo-notifications';
+import 'firebase/messaging';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -37,10 +39,20 @@ function App() {
   function onAuthStateChanged(user) {
     setUser(user);
     if (initializing) setInitializing(false);
+  
+    if (user) {
+      // Get the Expo push notification token
+      registerForPushNotificationsAsync().then(token => {
+        // Update the database with the token
+        firebase.database().ref(`users/${user.uid}/expoPushToken`).set(token);
+        setExpoPushToken(token);
+      });
+    }
   }
   useEffect(() => {
     const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    registerForPushNotificationsAsync().then(token => 
+      setExpoPushToken(token));
 
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
@@ -60,13 +72,13 @@ function App() {
 
   if (initializing) return null;
 
+
+
+
   //if user not signed in, return login screen
   if (!user) {
     return (
-      <Stack.Navigator
-      
-      
-      >
+      <Stack.Navigator>
         <Stack.Screen
           name="Login"
           component={SignInScreen}
@@ -206,16 +218,6 @@ const styles = StyleSheet.create({
   },
 });
 
-async function schedulePushNotification() {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "You've got mail! 📬",
-      body: 'Here is the notification body',
-      data: { data: 'goes here' },
-    },
-    trigger: { seconds: 2 },
-  });
-}
 
 async function registerForPushNotificationsAsync() {
   let token;
@@ -242,14 +244,14 @@ async function registerForPushNotificationsAsync() {
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
     console.log(token);
+    firebase.database().ref(`users/${user.uid}`).set(token);
+        setExpoPushToken(token);
   } else {
     alert('Must use physical device for Push Notifications');
   }
 
   return token;
 }
-
-
 
 export default () => {
   return (
