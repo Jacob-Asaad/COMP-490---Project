@@ -11,6 +11,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HistoryLogScreen from './screens/HistoryLogScreen/HistoryLogScreen';
 import PlantProfileScreen from './screens/PlantProfileScreen/PlantProfileScreen';
 import EditProfileScreen from './screens/EditProfileScreen/EditProfileScreen';
+import Modal from './screens/Modal/Modal';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -180,6 +181,12 @@ function App() {
         <Stack.Screen
           name="Profile"
           component={EditProfileScreen}
+        />
+
+        <Stack.Screen
+          name="Modal"
+          component={Modal}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

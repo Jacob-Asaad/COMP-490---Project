@@ -7,8 +7,11 @@ import { circleDisplayStyles } from '../../components/Styles/Styling';
 import React, { useEffect, useState } from 'react';
 import { db, firebase } from '../../config';
 import { ref, onValue } from "firebase/database";
+import { useNavigation } from '@react-navigation/native';
+
 
 const PlantHubScreen = () => {
+  const navigation = useNavigation();
   const [newPlantName, setNewPlantName] = useState('');
   const [name, setName] = useState('');
   const [plantData, setplantData] = useState([]);
@@ -28,7 +31,9 @@ const PlantHubScreen = () => {
   //create plant profile - update to modal?
   const newPlantPrompt = () => {
 
-    Alert.prompt("Plant Profile", "Enter new plant name", [
+
+
+    /*Alert.prompt("Plant Profile", "Enter new plant name", [
       {
         text: "Add New Plant",
         onPress: (thisNewPlant) => setNewPlantName(thisNewPlant)
@@ -36,7 +41,7 @@ const PlantHubScreen = () => {
       {
         text: "Cancel"
       }
-    ]);
+    ]);*/
   }
 
   useEffect(() => {
@@ -121,7 +126,7 @@ const PlantHubScreen = () => {
             humidityReading={soil_read}
           />
         </Text>
-        <TouchableOpacity style={circleDisplayStyles.buttons} onPress={() => newPlantPrompt()}>
+        <TouchableOpacity style={circleDisplayStyles.buttons} onPress={() => navigation.navigate("Modal")}>
           <Image
             style={{
               resizeMode: "contain",
@@ -137,9 +142,9 @@ const PlantHubScreen = () => {
 
       </View>
     </ScrollView >
-  )
-}
+  );
 
+}
 
 
 const styles = StyleSheet.create({
