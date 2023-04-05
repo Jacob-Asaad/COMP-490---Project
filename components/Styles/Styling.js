@@ -18,12 +18,12 @@ export const customInputStyles = {
    export const plantStyles = {
         container:{
             backgroundColor: '#FFFFFF',
-            width: '100%',
-            height: 150,
+            width: 90,
+            height: 100,
             borderColor: "#000000",
             paddingVertical:35,
-            borderWidth: 3,
-            borderRadius: 10,
+            borderWidth: 2.5,
+            borderRadius: 9,
             flex: 1,
             flexDirection: 'row',
             justifyContent: 'flex-start',
@@ -38,8 +38,9 @@ export const customInputStyles = {
               width: 90,
               height: 86,
               borderRadius: 150 / 2,
-              backgroundColor: '#588157',
-              margin: 3,
+              backgroundColor: '#7DB9B6',
+              margin: 2,
+              marginHorizontal: 10,
             },
             plantText: {
               marginTop: 50,
@@ -47,6 +48,13 @@ export const customInputStyles = {
               fontWeight: "bold",
               fontSize: 20,
               },
+              plantNameText: {
+                textAlign: "justify",
+                horizontalalign: "top",
+                fontSize: 15,
+                fontWeight: "bold",
+                marginBottom: 115,
+                },
               headerText: {
                 fontSize: 12,
                 textAlign: "center",
@@ -62,7 +70,7 @@ export const customInputStyles = {
               buttons: {
                 margin: 20,
                 alignSelf: 'center',
-                backgroundColor: "#577157",
+                backgroundColor: "#7DB9B6",
                 borderRadius: 100,
                 height: 60,
                 width: 60,
@@ -75,6 +83,32 @@ export const customInputStyles = {
                 margin: 14,
                 fontWeight: "bold"
               }, 
+              contain: {
+                flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingVertical: 10,
+                paddingHorizontal: 5,
+                backgroundColor: '#FFFFFF',
+                padding: 20,
+                marginHorizontal: 6,
+                borderWidth: 2,
+                borderColor: "#7DB9B6",
+                borderRadius: 10,
+              },
+              imageContain: {
+                backgroundColor: 'white',
+                borderRadius: 10,
+                height: 99,
+                width: 99,
+                justifyContent: 'center',
+                alignItems: 'left',
+                marginRight: -30,
+                marginLeft: -50,
+                paddingTop: 10,
+
+
+              },
           };
 
         export  const tabStyles = {
@@ -150,7 +184,7 @@ export const customInputStyles = {
               fontWeight: "bold",
               textAlign: "center",
               width: '100%',
-              borderColor: 'black',
+              borderColor: '#7DB9B6',
               paddingVertical: 30,
               marginVertical: -40,
               borderWidth: 2.5,

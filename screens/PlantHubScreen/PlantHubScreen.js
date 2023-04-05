@@ -75,11 +75,13 @@ const PlantHubScreen = () => {
 
   return ( //returning a plant component to the PlantHubScreen Hello {name.firsName}
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View >
+      
+      <View>
         <Text style={circleDisplayStyles.plantText}> Hello, {name.firstName}! </Text>
         <Text>
           <Plant
             name='Plant 1'
+            image = {require('../../assets/images/cactusplant.png')}
             soilLevel='Soil Level'
             soilReading = 'Good'
             temp='Temp'
@@ -102,7 +104,9 @@ const PlantHubScreen = () => {
         </TouchableOpacity>
 
       </View>
+      
     </ScrollView>
+  
   )
 }
 
@@ -113,6 +117,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     backgroundColor: 'white',
     height: 1000,
+    width: 1000,
   },
   header: {
     fontSize: 30, 
