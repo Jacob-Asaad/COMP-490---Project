@@ -4,15 +4,15 @@ import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
 import { NavigationContainer } from '@react-navigation/native';
-import { firebase } from './config';
+import { firebase, db, auth, fire } from './config';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HistoryLogScreen from './screens/HistoryLogScreen/HistoryLogScreen';
 import PlantProfileScreen from './screens/PlantProfileScreen/PlantProfileScreen';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
-import { ExpoPushToken } from 'expo-notifications';
-import 'firebase/messaging';
+import { updatePushToken, getUserByEmail } from "./firebaseUtils";
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,47 +33,53 @@ function App() {
   const notificationListener = useRef();
   const responseListener = useRef();
 
-
-
-  //handleUserStateChanges
   function onAuthStateChanged(user) {
     setUser(user);
     if (initializing) setInitializing(false);
-  
-    if (user) {
-      // Get the Expo push notification token
-      registerForPushNotificationsAsync().then(token => {
-        // Update the database with the token
-        firebase.database().ref(`users/${user.uid}/expoPushToken`).set(token);
-        setExpoPushToken(token);
-      });
-    }
   }
   useEffect(() => {
     const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
-    registerForPushNotificationsAsync().then(token => 
-      setExpoPushToken(token));
-
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      setNotification(notification);
-    });
-
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
-
-    return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
     return subscriber;
-
-    }
   }, []);
 
+  
+  useEffect(() => {
+    const getPushToken = async () => {
+      try {
+        const { data: pushToken } = await Notifications.getExpoPushTokenAsync();
+        console.log('Push Token: ', pushToken); // log push token
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+          if (user) {
+            const email = user.email;
+            const userRef = fire.collection('users').where('email', '==', email);
+            const querySnapshot = await userRef.get();
+            if (querySnapshot.empty) {
+              console.log('No matching documents.');
+              return;
+            }
+            const uid = querySnapshot.docs[0].id;
+            console.log('User UID: ', uid);
+            await updatePushToken(uid, pushToken);
+          }
+        });
+  
+        return () => unsubscribe();
+      } catch (error) {
+        console.log('Error getting push token: ', error);
+      }
+    };
+    
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        getPushToken();
+      }
+    });
+  
+    return () => unsubscribe();
+  }, []);
+  
+
   if (initializing) return null;
-
-
-
 
   //if user not signed in, return login screen
   if (!user) {

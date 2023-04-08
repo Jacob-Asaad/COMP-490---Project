@@ -3,7 +3,7 @@ import { apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId,
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
-import { getDatabase, initializeApp } from "firebase/database"
+import { getDatabase, initializeApp  } from "firebase/database"
 
 
 // Your web app's Firebase configuration
@@ -26,7 +26,11 @@ if (!firebase.apps.length) {
 }
 
 const db = getDatabase();
+const auth = firebase.auth();
+const fire = firebase.firestore();
 
 
 export { db };
 export { firebase };
+export { auth };
+export { fire };
