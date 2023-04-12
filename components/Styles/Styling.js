@@ -61,7 +61,7 @@ export const customInputStyles = {
               },
               buttons: {
                 margin: 20,
-                alignSelf: 'center',
+                alignSelf: "right",
                 backgroundColor: "#577157",
                 borderRadius: 100,
                 height: 60,
@@ -150,7 +150,7 @@ export const customInputStyles = {
               fontWeight: "bold",
               textAlign: "center",
               width: '100%',
-              borderColor: 'black',
+              //borderColor: 'black',
               paddingVertical: 30,
               marginVertical: -40,
               borderWidth: 2.5,

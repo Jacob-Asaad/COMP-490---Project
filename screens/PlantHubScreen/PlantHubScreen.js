@@ -4,11 +4,13 @@ import { View, Text, TextInput, Image, StyleSheet, useWindowDimensions, ScrollVi
   from 'react-native';
 import Plant from '../../components/Plant/Plant';
 import { circleDisplayStyles } from '../../components/Styles/Styling';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { db, firebase } from '../../config';
 import {ref, onValue} from "firebase/database";
+import themeContext from '../../theme/themeContext';
 
 const PlantHubScreen = () => {
+  const theme = useContext(themeContext);
   const [name, setName] = useState('');
   const [plantData, setplantData] = useState([]);
   const [soil_read, setSoilRead] = useState(null); 
@@ -75,7 +77,7 @@ const PlantHubScreen = () => {
   return ( //returning a plant component to the PlantHubScreen Hello {name.firsName}
     <ScrollView showsVerticalScrollIndicator={false}>
       <View >
-        <Text style={circleDisplayStyles.plantText}> Hello, {name.firstName}! </Text>
+        <Text style={[circleDisplayStyles.plantText,{color: theme.color}]}> Hello, {name.firstName}! </Text>
         <Text>
           <Plant
             name='Plant 1'

@@ -1,13 +1,17 @@
 import { View, SafeAreaView, Text, Image, Switch, settingsStylesheet, useWindowDimensions, ScrollView } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { firebase } from '../../config';
 import { settingsStyles } from '../../components/Styles/Styling';
+import { EventRegister } from 'react-native-event-listeners';
+import themeContext from '../../theme/themeContext';
 
 
 const SettingsScreen = () => {
 
+  const theme = useContext(themeContext);
+  const [darkMode, setDarkMode] = useState(false);
   const [email, setEmail] = useState('')
 
   //pull info from firestore database
@@ -49,10 +53,10 @@ const SettingsScreen = () => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <SafeAreaView style={settingsStyles.container}>
+      <SafeAreaView style={[settingsStyles.container, {backgroundColor: theme.background}]}>
         <View style={settingsStyles.contain}>
 
-        <Text style={settingsStyles.settings}>
+        <Text style={[settingsStyles.settings, {color: theme.color}]}>
             Settings
           </Text>
 
@@ -67,12 +71,12 @@ const SettingsScreen = () => {
           </View>
 
 
-          <Text style={settingsStyles.emailName}>
+          <Text style={[settingsStyles.emailName, {color: theme.color}]}>
             {email.email}
           </Text>
 
           <View style={settingsStyles.rows}>
-            <Text style={settingsStyles.text}>
+            <Text style={[settingsStyles.text, {color: theme.color}]}>
               Notifications
             </Text>
 
@@ -84,7 +88,7 @@ const SettingsScreen = () => {
           </View>
 
           <View style={settingsStyles.rows}>
-            <Text style={settingsStyles.text}>
+            <Text style={[settingsStyles.text, {color: theme.color}]}>
               Bluetooth
             </Text>
 
@@ -96,7 +100,7 @@ const SettingsScreen = () => {
 
           <View style={settingsStyles.rows}>
 
-            <Text style={settingsStyles.text}>
+            <Text style={[settingsStyles.text, {color: theme.color}]}>
               Automatic Watering
             </Text>
 
@@ -104,8 +108,25 @@ const SettingsScreen = () => {
               isEnabled={autowater}
               toggleSwitch={SetAutowater}
             />
+            </View>
 
+          <View style={settingsStyles.rows}>
+            <Text style={[settingsStyles.text, {color: theme.color}]}>
+              Dark Mode
+            </Text>
+
+            <CustomSwitch style={settingsStyles.switch}
+              isEnabled = {darkMode}
+              toggleSwitch={(value) => {
+                setDarkMode(value);
+                EventRegister.emit('ChangeTheme', value)
+              
+              }}
+              
+              
+            />
           </View>
+
           <CustomButton style={settingsStyles.button}
             text="Clear History"
             onPress={clearHistory}

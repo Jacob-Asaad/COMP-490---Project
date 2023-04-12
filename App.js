@@ -3,12 +3,15 @@ import React, { useEffect, useState } from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { firebase } from './config';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HistoryLogScreen from './screens/HistoryLogScreen/HistoryLogScreen';
 import PlantProfileScreen from './screens/PlantProfileScreen/PlantProfileScreen';
+import { EventRegister } from 'react-native-event-listeners';
+import theme from './theme/theme';
+import themeContext from './theme/themeContext';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -178,9 +181,23 @@ const styles = StyleSheet.create({
 
 
 export default () => {
+
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const listener = EventRegister.addEventListener('ChangeTheme', (data) => {
+      setDarkMode(data);
+    })
+    return () => {
+      EventRegister.removeEventListener(listener);
+    }
+  }, [darkMode])
+
   return (
-    <NavigationContainer>
-      <App />
-    </NavigationContainer>
+    <themeContext.Provider value={darkMode === true ? theme.dark : theme.light}>
+      <NavigationContainer theme = {darkMode === true ? DarkTheme : DefaultTheme}>
+        <App />
+      </NavigationContainer>
+    </themeContext.Provider>
   )
 };
