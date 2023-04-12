@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
+import EditProfileScreen from './screens/EditProfileScreen/EditProfileScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
 import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { firebase } from './config';
@@ -139,7 +140,7 @@ function App() {
 
           )
         }} />
-      <Tab.Screen name="Settings" component={SettingsScreen}
+      <Tab.Screen name="Settings" component={SettingsStackScreen}
         //styling and options for Settings button on navigation bar
         options={{
           tabBarIcon: ({ focused }) => (
@@ -178,7 +179,16 @@ const styles = StyleSheet.create({
   },
 });
 
+const SettingsStack = createStackNavigator();
 
+function SettingsStackScreen() {
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+      <SettingsStack.Screen name="EditProfile" component={EditProfileScreen} />
+    </SettingsStack.Navigator>
+  );
+}
 
 export default () => {
 

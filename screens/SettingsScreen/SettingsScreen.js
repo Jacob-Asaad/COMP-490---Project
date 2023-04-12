@@ -6,9 +6,9 @@ import { firebase } from '../../config';
 import { settingsStyles } from '../../components/Styles/Styling';
 import { EventRegister } from 'react-native-event-listeners';
 import themeContext from '../../theme/themeContext';
+//import EditProfileScreen from '../EditProfileScreen/EditProfileScreen';
 
-
-const SettingsScreen = () => {
+const SettingsScreen = ({navigation}) => {
 
   const theme = useContext(themeContext);
   const [darkMode, setDarkMode] = useState(false);
@@ -38,6 +38,8 @@ const SettingsScreen = () => {
   }
 
   const editProfile = () => {
+
+    navigation.navigate('Settings',{ screen: 'EditProfile'});
     console.warn("Editing Profile...");
   }
 
