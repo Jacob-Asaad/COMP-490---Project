@@ -1,23 +1,38 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
 import { NavigationContainer } from '@react-navigation/native';
-import { firebase } from './config';
+import { firebase, db, auth, fire } from './config';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HistoryLogScreen from './screens/HistoryLogScreen/HistoryLogScreen';
 import PlantProfileScreen from './screens/PlantProfileScreen/PlantProfileScreen';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+import { updatePushToken, getUserByEmail } from "./firebaseUtils";
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 function App() {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
 
-  //handleUserStateChanges
   function onAuthStateChanged(user) {
     setUser(user);
     if (initializing) setInitializing(false);
@@ -27,15 +42,49 @@ function App() {
     return subscriber;
   }, []);
 
+  
+  useEffect(() => {
+    const getPushToken = async () => {
+      try {
+        const { data: pushToken } = await Notifications.getExpoPushTokenAsync();
+        console.log('Push Token: ', pushToken); // log push token
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+          if (user) {
+            const email = user.email;
+            const userRef = fire.collection('users').where('email', '==', email);
+            const querySnapshot = await userRef.get();
+            if (querySnapshot.empty) {
+              console.log('No matching documents.');
+              return;
+            }
+            const uid = querySnapshot.docs[0].id;
+            console.log('User UID: ', uid);
+            await updatePushToken(uid, pushToken);
+          }
+        });
+  
+        return () => unsubscribe();
+      } catch (error) {
+        console.log('Error getting push token: ', error);
+      }
+    };
+    
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        getPushToken();
+      }
+    });
+  
+    return () => unsubscribe();
+  }, []);
+  
+
   if (initializing) return null;
 
   //if user not signed in, return login screen
   if (!user) {
     return (
-      <Stack.Navigator
-      
-      
-      >
+      <Stack.Navigator>
         <Stack.Screen
           name="Login"
           component={SignInScreen}
@@ -176,6 +225,39 @@ const styles = StyleSheet.create({
 });
 
 
+async function registerForPushNotificationsAsync() {
+  let token;
+
+  if (Platform.OS === 'ios') {
+    await Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  if (Device.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+    console.log(token);
+    firebase.database().ref(`users/${user.uid}`).set(token);
+        setExpoPushToken(token);
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+
+  return token;
+}
 
 export default () => {
   return (

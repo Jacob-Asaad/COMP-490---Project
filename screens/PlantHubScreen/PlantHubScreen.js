@@ -7,6 +7,11 @@ import { circleDisplayStyles } from '../../components/Styles/Styling';
 import React, { useEffect, useState } from 'react';
 import { db, firebase } from '../../config';
 import {ref, onValue} from "firebase/database";
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
+
+
 
 const PlantHubScreen = () => {
   const [name, setName] = useState('');
@@ -23,8 +28,6 @@ const PlantHubScreen = () => {
       }
     })
   }, [])
-
-
 
 
   useEffect(() => {
@@ -57,8 +60,6 @@ const PlantHubScreen = () => {
 */  
 
 
-
-
  
   function createPlant(plantName) {
     const name = plantName;
@@ -74,15 +75,17 @@ const PlantHubScreen = () => {
 
   return ( //returning a plant component to the PlantHubScreen Hello {name.firsName}
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View >
+      
+      <View>
         <Text style={circleDisplayStyles.plantText}> Hello, {name.firstName}! </Text>
         <Text>
           <Plant
             name='Plant 1'
+            image = {require('../../assets/images/cactusplant.png')}
             soilLevel='Soil Level'
             soilReading = 'Good'
             temp='Temp'
-            tempReading = {plantData[0]?.data?.roomTemp}
+            tempReading = {plantData[0]?.data?.roomTemp.toFixed(0)}
             humidity='Humidity'
             humidityReading = {soil_read}
           />
@@ -101,7 +104,9 @@ const PlantHubScreen = () => {
         </TouchableOpacity>
 
       </View>
+      
     </ScrollView>
+  
   )
 }
 
@@ -112,6 +117,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     backgroundColor: 'white',
     height: 1000,
+    width: 1000,
   },
   header: {
     fontSize: 30, 

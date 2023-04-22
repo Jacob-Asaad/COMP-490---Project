@@ -1,11 +1,16 @@
 import React from "react";
-import {StyleSheet,View,TextInput} from "react-native" ;
-import {plantStyles, circleDisplayStyles} from "../Styles/Styling";
+import {StyleSheet,View,TextInput, Image} from "react-native" ;
+import {plantStyles, circleDisplayStyles, plantProfileStyles} from "../Styles/Styling";
 
 function Plant(props){ //Plant component referencing plant data
     return( 
-        <View style = {plantStyles.container}>
-            <TextInput style = {circleDisplayStyles.headerText}> {props.name}</TextInput>
+        <View style = {circleDisplayStyles.contain}>
+        <TextInput style = {circleDisplayStyles.plantNameText}> {props.name}</TextInput>
+            <View style={circleDisplayStyles.imageContain}>
+      <Image 
+      source={props.image} style={plantProfileStyles.images}
+      />
+    </View>
                 <View style = {circleDisplayStyles.container}>
                     <TextInput style = {circleDisplayStyles.headerText}>
                         {props.soilLevel}
