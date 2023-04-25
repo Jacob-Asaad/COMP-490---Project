@@ -40,7 +40,7 @@ const SettingsScreen = ({navigation}) => {
   const editProfile = () => {
 
     navigation.navigate('Settings',{ screen: 'EditProfile'});
-    console.warn("Editing Profile...");
+    //console.warn("Editing Profile...");
   }
 
   //logout function

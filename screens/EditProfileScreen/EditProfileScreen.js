@@ -6,9 +6,10 @@ import CustomButton from '../../components/CustomButton/Custombutton';
 import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { editProfileStyles } from '../../components/Styles/Styling';
+import { firebase } from '../../config';
 
 
-const EditProfileScreen = () => {
+const EditProfileScreen = ({navigation}) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -18,7 +19,12 @@ const EditProfileScreen = () => {
         console.warn("Saving Changes...");
     }
     const cancel = () => {
-        console.warn("canceling changes...");
+        navigation.goBack()
+        //console.warn("canceling changes...");
+    }
+
+    const changeEmail = () => {
+        firebase.auth().currentUser.updateEmail(email)
     }
 
     return (
@@ -114,7 +120,7 @@ const EditProfileScreen = () => {
                 <View style= {{padding: 10}}>
                     <CustomButton 
                         text = "Cancel " 
-                        onPress={saveChanges}
+                        onPress={cancel}
                         bgColor = "#FFFFFF"
                         fgColor= "crimson" 
                     />

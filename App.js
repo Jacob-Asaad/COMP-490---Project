@@ -183,8 +183,13 @@ const SettingsStack = createStackNavigator();
 
 function SettingsStackScreen() {
   return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+    <SettingsStack.Navigator
+     screenOptions={{ 
+      headerShown: false,
+      showLabel: false,
+      }}
+      >
+      <SettingsStack.Screen name="Setting" component={SettingsScreen} />
       <SettingsStack.Screen name="EditProfile" component={EditProfileScreen} />
     </SettingsStack.Navigator>
   );
