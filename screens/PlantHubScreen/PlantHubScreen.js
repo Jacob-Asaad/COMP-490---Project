@@ -68,7 +68,7 @@ const PlantHubScreen = () => {
     const [soilLevel, setSoilLevel] = useState("soilReading");
     const [temp, setTemp] = useState("tempReading");
     const [humidity, setHumidity] = useState("humidityReading");
-      <View style={circleDisplayStyles.container}>
+      <View style={[circleDisplayStyles.container, {}]}>
         <Text style={circleDisplayStyles.headerText}>Plant </Text>
         <View style={circleDisplayStyles.CircleShape}/>
       </View>
