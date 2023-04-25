@@ -1,10 +1,11 @@
 import { View, SafeAreaView, Text, Image, Switch, plantProfileStylesheet, useWindowDimensions, ScrollView, TouchableOpacity, FlatList } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { plantProfileStyles, circleDisplayStyles } from '../../components/Styles/Styling';
 import {CustomButton} from "../../components/CustomButton/Custombutton";
 import { firebase } from '../../config';
 import {profileForm } from './profileForm'
+import themeContext from '../../theme/themeContext';
 
 
 //will be plant info from firebase
@@ -35,29 +36,10 @@ const Plants = [
   }
 ];
 
-const plant = ({ item }) => (
-  <View style={plantProfileStyles.item}>
-    <View style={plantProfileStyles.imageContainer}>
-      <Image 
-      source={item.image} style={plantProfileStyles.images}
-      />
-    </View>
-    <View style={plantProfileStyles.titlecontainer}>
-      <Text 
-      style={plantProfileStyles.title}>{item.title}
-      </Text>
-    </View>
-    <View style={plantProfileStyles.listcontainer}>
-      <Text style={plantProfileStyles.text}>Type: {item.type}</Text>
-      <Text style={plantProfileStyles.text}>Moisture: {item.moisture}</Text>
-      <Text style={plantProfileStyles.text}>Temperature: {item.temperature}</Text>
-    </View>
-  </View>
-);
-
 const PlantProfileScreen = () => {
 
   const [showForm, setShowForm] = useState(false);
+  const theme = useContext(themeContext);
   
     const handlePress = () => {
       setShowForm(true);
@@ -66,10 +48,30 @@ const PlantProfileScreen = () => {
     const handleClose = () => {
       setShowForm(false);
     };
+
+    const plant = ({ item }) => (
+      <View style={[plantProfileStyles.item,{backgroundColor: theme.background}]}>
+        <View style={[plantProfileStyles.imageContainer, {backgroundColor: theme.background}]}>
+          <Image 
+          source={item.image} style={plantProfileStyles.images}
+          />
+        </View>
+        <View style={plantProfileStyles.titlecontainer}>
+          <Text 
+          style={[plantProfileStyles.title,{color: theme.color}]}>{item.title}
+          </Text>
+        </View>
+        <View style={[plantProfileStyles.listcontainer, {backgroundColor: theme.background}]}>
+          <Text style={[plantProfileStyles.text, {color: theme.color}]}>Type: {item.type}</Text>
+          <Text style={[plantProfileStyles.text, {color: theme.color}]}>Moisture: {item.moisture}</Text>
+          <Text style={[plantProfileStyles.text, {color: theme.color}]}>Temperature: {item.temperature}</Text>
+        </View>
+      </View>
+    );
   
 
   return (
-    <SafeAreaView style={plantProfileStyles.container}>
+    <SafeAreaView style={[plantProfileStyles.container,{backgroundColor: theme.background}]}>
        
           <TouchableOpacity onPress={() => { handlePress }}>
           {showForm && <profileForm onClose={handleClose} />}
@@ -85,7 +87,7 @@ const PlantProfileScreen = () => {
             }}
             source={require("../../assets/images/plusicon.webp")} />
         </TouchableOpacity>
-        <Text style = {plantProfileStyles.errorText}> 
+        <Text style = {[plantProfileStyles.errorText,{color: theme.color}]}> 
          Plant Profiles 
 
          </Text>
