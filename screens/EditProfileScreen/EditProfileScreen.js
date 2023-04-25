@@ -1,5 +1,5 @@
 import { View, SafeAreaView, Text,TextInput, Image, Switch, editProfileStylesheet, useWindowDimensions, ScrollView } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
@@ -7,9 +7,11 @@ import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { editProfileStyles } from '../../components/Styles/Styling';
 import { db, firebase } from '../../config';
+import themeContext from '../../theme/themeContext';
 
 
 const EditProfileScreen = ({navigation}) => {
+    const theme = useContext(themeContext);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -23,7 +25,7 @@ const EditProfileScreen = ({navigation}) => {
     }
 
     return (
-        <SafeAreaView style={editProfileStyles.container}>
+        <SafeAreaView style={[editProfileStyles.container, {backgroundColor: theme.background}]}>
             <View style={editProfileStyles.contain}>
                 <View style={editProfileStyles.profileImage}>
                     <Image source={require('../../assets/images/profilepic.jpeg')} style={editProfileStyles.image}>
@@ -31,74 +33,83 @@ const EditProfileScreen = ({navigation}) => {
                     </Image>
                 </View>
 
-                <Text style = {editProfileStyles.editPic}>
+                <Text style = {[editProfileStyles.editPic, {color: '#7DB9B6'}]}>
                  edit photo
                 </Text>
         
                 <View style= {{padding: 10}}>
                      <Text
-                        style = {{opacity: 0.5,
+                        style = {{color: '#7DB9B6'
                         }}>
                         First Name
                     </Text>
                      <TextInput
                         placeholder="first name"
+                        placeholderTextColor= "#9A9483"
                         defaultValue={firstName}
                         style={{
                         fontsize: 16,
                         borderBottomWidth: 1,
-                        borderColor: '#CDCDCD',
+                        borderColor: '#7DB9B6',
+                        color: theme.color
                      }}
                     />
                 </View>
 
                 <View style= {{padding: 10}}>
                     <Text
-                    style = {{opacity: 0.5,
+                    style = {{color: '#7DB9B6'
                     }}>
                     Last Name
                      </Text>
                     <TextInput
                         placeholder="last name"
+                        placeholderTextColor= "#9A9483"
                         defaultValue={lastName}
                         style={{
                         fontsize: 16,
                         borderBottomWidth: 1,
-                        borderColor: '#CDCDCD',
+                        borderColor: '#7DB9B6',
+                        color: theme.color
                         }}
                     />
                 </View>
 
                 <View style= {{padding: 10}}>
                     <Text
-                    style = {{opacity: 0.5,
+                    style = {{color: '#7DB9B6'
                      }}>
                     Email
                     </Text>
                     <TextInput
                         placeholder="email"
+                        placeholderTextColor= "#9A9483"
                          defaultValue={email}
                          style={{
                          fontsize: 16,
                          borderBottomWidth: 1,
-                         borderColor: '#CDCDCD',
+                         borderColor: '#7DB9B6',
+                         color: theme.color
                         }}
                      />
                 </View>
 
                  <View style= {{padding: 10}}>
                      <Text
-                        style = {{opacity: 0.5,
+                        style = {{color: '#7DB9B6'
                         }}>
                         Password
                     </Text>
                     <TextInput
                         placeholder="new password"
+                        placeholderTextColor= "#9A9483"
                         defaultValue={password}
                         style={{
                         fontsize: 16,
                         borderBottomWidth: 1,
-                        borderColor: '#CDCDCD',
+                        borderColor: '#7DB9B6',
+                        color: theme.color
+                        
                         }}
                     />
                  </View>
@@ -107,16 +118,16 @@ const EditProfileScreen = ({navigation}) => {
                     <CustomButton 
                         text = "Save Changes " 
                         onPress={saveChanges}
-                        bgColor = "#8fbc8f"
+                        bgColor = "#7DB9B6"
                         fgColor= "#000000" 
                     />
                 </View>
 
-                <View style= {{padding: 10}}>
+                <View style= {{padding: 10,}}>
                     <CustomButton 
                         text = "Cancel " 
-                        onPress={saveChanges}
-                        bgColor = "#FFFFFF"
+                        onPress={cancel}
+                        bgColor={theme.background}
                         fgColor= "crimson" 
                     />
                 </View>

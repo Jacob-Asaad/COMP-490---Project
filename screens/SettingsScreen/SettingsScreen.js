@@ -121,7 +121,7 @@ const SettingsScreen = ({navigation}) => {
               toggleSwitch={(value) => {
                 setDarkMode(value);
                 EventRegister.emit('ChangeTheme', value)
-                console.warn("Dark Mode: " + value)
+                
               
               }}
               
@@ -145,8 +145,8 @@ const SettingsScreen = ({navigation}) => {
           <CustomButton
             text="Log Out "
             onPress={logout}
-            bgColor="white"
-            fgColor="#000000"
+            bgColor={theme.background}
+            fgColor={theme.color}
             
           />
 
