@@ -2,8 +2,9 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import React, { useEffect, useState, useRef } from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
+import EditProfileScreen from './screens/EditProfileScreen/EditProfileScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { firebase, db, auth, fire } from './config';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -12,6 +13,9 @@ import PlantProfileScreen from './screens/PlantProfileScreen/PlantProfileScreen'
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { updatePushToken, getUserByEmail } from "./firebaseUtils";
+import { EventRegister } from 'react-native-event-listeners';
+import theme from './theme/theme';
+import themeContext from './theme/themeContext';
 
 
 const Stack = createStackNavigator();
@@ -185,7 +189,7 @@ function App() {
 
           )
         }} />
-      <Tab.Screen name="Settings" component={SettingsScreen}
+      <Tab.Screen name="Settings" component={SettingsStackScreen}
         //styling and options for Settings button on navigation bar
         options={{
           tabBarIcon: ({ focused }) => (
@@ -224,6 +228,22 @@ const styles = StyleSheet.create({
   },
 });
 
+const SettingsStack = createStackNavigator();
+function SettingsStackScreen()
+{
+  return (
+    <SettingsStack.Navigator
+    screenOptions={{
+      headerShown: false,
+      showLabel: false,
+    }}
+    >
+      <SettingsStack.Screen name="Setting" component={SettingsScreen} />
+      <SettingsStack.Screen name="EditProfile" component={EditProfileScreen} />
+    </SettingsStack.Navigator>
+  );
+
+}
 
 async function registerForPushNotificationsAsync() {
   let token;
@@ -260,9 +280,23 @@ async function registerForPushNotificationsAsync() {
 }
 
 export default () => {
+
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const listener = EventRegister.addEventListener('changeTheme', (data) => {
+      setDarkMode(data);
+      })
+    return () => {
+      EventRegister.removeEventListener(listener);
+    }
+  }, [darkMode])
+
   return (
-    <NavigationContainer>
-      <App />
-    </NavigationContainer>
+    <themeContext.Provider value={darkMode== true ? theme.dark : theme.light}>
+      <NavigationContainer theme= {darkMode == true ? DarkTheme: DefaultTheme}>
+        <App />
+      </NavigationContainer>
+    </themeContext.Provider>
   )
 };
