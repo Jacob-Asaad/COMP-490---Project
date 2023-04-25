@@ -4,7 +4,7 @@ import CustomButton from '../../components/CustomButton/Custombutton';
 import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { firebase } from '../../config';
 import { settingsStyles } from '../../components/Styles/Styling';
-import {EventRegister} from 'react-native-event-listeners';
+import { EventRegister } from 'react-native-event-listeners';
 import themeContext from '../../theme/themeContext';
 
 const SettingsScreen = ({navigation}) => {
@@ -121,6 +121,7 @@ const SettingsScreen = ({navigation}) => {
               toggleSwitch={(value) => {
                 setDarkMode(value);
                 EventRegister.emit('ChangeTheme', value)
+                console.warn("Dark Mode: " + value)
               
               }}
               

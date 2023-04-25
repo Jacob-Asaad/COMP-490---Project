@@ -284,17 +284,17 @@ export default () => {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    const listener = EventRegister.addEventListener('changeTheme', (data) => {
+    const listener = EventRegister.addEventListener('ChangeTheme', (data) => {
       setDarkMode(data);
-      })
+    })
     return () => {
       EventRegister.removeEventListener(listener);
     }
   }, [darkMode])
 
   return (
-    <themeContext.Provider value={darkMode== true ? theme.dark : theme.light}>
-      <NavigationContainer theme= {darkMode == true ? DarkTheme: DefaultTheme}>
+    <themeContext.Provider value={darkMode === true ? theme.dark : theme.light}>
+      <NavigationContainer theme = {darkMode === true ? DarkTheme : DefaultTheme}>
         <App />
       </NavigationContainer>
     </themeContext.Provider>

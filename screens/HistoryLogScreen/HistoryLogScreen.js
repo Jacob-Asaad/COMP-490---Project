@@ -38,11 +38,11 @@ const HistoryLogScreen = () => {
     <View styles={[historyLogStyles.container, {backgroundColor: theme.background}]}>
      <Text style = {[historyLogStyles.errorText,{color: theme.color}]}> History Log</Text>
      {logData.map((log, index) => (
-        <Text key={index} style={[historyLogStyles.text, { color: theme.color, borderColor: theme.border}]}>
+        <Text key={index} style={[historyLogStyles.text, { color: theme.color}]}>
           {log.lastWatered}
         </Text>
       ))}
-      <Text style={[historyLogStyles.text,{color: theme.color, borderColor: theme.border}]}> {logData[0]?.data?.lastWatered}
+      <Text style={[historyLogStyles.text,{color: theme.color}]}> {logData[0]?.data?.lastWatered}
       </Text>
       
     </View>
