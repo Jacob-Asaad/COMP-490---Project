@@ -1,12 +1,14 @@
 import { View, SafeAreaView, Text, Image, Switch, historyLogStylesheet, useWindowDimensions, ScrollView } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { historyLogStyles } from '../../components/Styles/Styling';
 import { db, firebase } from '../../config';
 import {ref, onValue} from "firebase/database";
+import themeContext from '../../theme/themeContext';
 
 
 const HistoryLogScreen = () => {
+  const theme = useContext(themeContext);
   const [logData, setlogData] = useState([]); 
 
   useEffect(() => {
@@ -33,14 +35,14 @@ const HistoryLogScreen = () => {
 
 
   return (
-    <View styles={historyLogStyles.container}>
-     <Text style = {historyLogStyles.errorText}> History Log</Text>
+    <View styles={[historyLogStyles.container, {backgroundColor: theme.background}]}>
+     <Text style = {[historyLogStyles.errorText,{color: theme.color}]}> History Log</Text>
      {logData.map((log, index) => (
-        <Text key={index} style={historyLogStyles.text}>
+        <Text key={index} style={[historyLogStyles.text, { color: theme.color}]}>
           {log.lastWatered}
         </Text>
       ))}
-      <Text style={historyLogStyles.text}> {logData[0]?.data?.lastWatered}
+      <Text style={[historyLogStyles.text,{color: theme.color}]}> {logData[0]?.data?.lastWatered}
       </Text>
       
     </View>

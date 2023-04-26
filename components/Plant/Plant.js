@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import {StyleSheet,View,TextInput, Image} from "react-native" ;
 import {plantStyles, circleDisplayStyles, plantProfileStyles} from "../Styles/Styling";
+import themeContext from "../../theme/themeContext";
 
 function Plant(props){ //Plant component referencing plant data
+    const theme = useContext(themeContext);
     return( 
-        <View style = {circleDisplayStyles.contain}>
-        <TextInput style = {circleDisplayStyles.plantNameText}> {props.name}</TextInput>
-            <View style={circleDisplayStyles.imageContain}>
+        <View style = {[circleDisplayStyles.contain, {backgroundColor: theme.background}]}>
+        <TextInput style = {[circleDisplayStyles.plantNameText, {color: theme.color}]}> {props.name}</TextInput>
+            <View style={[circleDisplayStyles.imageContain, {backgroundColor: theme.background}]}>
       <Image 
       source={props.image} style={plantProfileStyles.images}
       />
