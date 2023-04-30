@@ -6,7 +6,7 @@ import CustomButton from '../../components/CustomButton/Custombutton';
 import CustomSwitch from '../../components/CustomSwitch/CustomSwitch';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import { editProfileStyles } from '../../components/Styles/Styling';
-import { db, firebase } from '../../config';
+import { db, firebase, auth } from '../../config';
 import themeContext from '../../theme/themeContext';
 
 
@@ -16,13 +16,42 @@ const EditProfileScreen = ({navigation}) => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirm] = useState('');
 
     const saveChanges = () => {
-        console.warn("Saving Changes...");
+        updateUserProfile();
     }
     const cancel = () => {
         navigation.goBack();
     }
+
+    const updateUserProfile = () => {
+        const profileUpdates = {};
+        
+        if (firstName) {
+            profileUpdates.firstName = firstName;
+        }
+        
+        if (lastName) {
+            profileUpdates.lastName = lastName;
+        }
+        
+        if (email && email !== currentUser.email) {
+            profileUpdates.email = email;
+        }
+        
+        if (password && confirmPassword && password === confirmPassword) {
+            currentUser.updatePassword(password)
+                .then(() => console.log('Password updated'))
+                .catch((error) => console.log('Error updating password:', error));
+        }
+        
+        if (Object.keys(profileUpdates).length > 0) {
+            updateCurrentUser(profileUpdates)
+                .then(() => console.log('Profile updated'))
+                .catch((error) => console.log('Error updating profile:', error));
+        }
+    };
 
     return (
         <SafeAreaView style={[editProfileStyles.container, {backgroundColor: theme.background}]}>
@@ -47,7 +76,8 @@ const EditProfileScreen = ({navigation}) => {
                      <TextInput
                         placeholder="First Name"
                         placeholderTextColor= "#9A9483"
-                        defaultValue={firstName}
+                        value={firstName}
+                        onChangeText={setFirstName}
                         style={{
                         fontsize: 16,
                         borderBottomWidth: 1,
@@ -66,7 +96,8 @@ const EditProfileScreen = ({navigation}) => {
                     <TextInput
                         placeholder="Last Name"
                         placeholderTextColor= "#9A9483"
-                        defaultValue={lastName}
+                        value={lastName}
+                        onChangeText={setLastName}
                         style={{
                         fontsize: 16,
                         borderBottomWidth: 1,
@@ -85,7 +116,8 @@ const EditProfileScreen = ({navigation}) => {
                     <TextInput
                         placeholder="Email"
                         placeholderTextColor= "#9A9483"
-                         defaultValue={email}
+                         value={email}
+                         onChangeText={setEmail}
                          style={{
                          fontsize: 16,
                          borderBottomWidth: 1,
@@ -104,7 +136,8 @@ const EditProfileScreen = ({navigation}) => {
                     <TextInput
                         placeholder="New password"
                         placeholderTextColor= "#9A9483"
-                        defaultValue={password}
+                        value={password}
+                        onChangeText={setPassword}
                         style={{
                         fontsize: 16,
                         borderBottomWidth: 1,
@@ -124,7 +157,8 @@ const EditProfileScreen = ({navigation}) => {
                     <TextInput
                         placeholder="Confirm password"
                         placeholderTextColor= "#9A9483"
-                        defaultValue={password}
+                        value={confirmPassword}
+                        onChangeText={setConfirm}
                         style={{
                         fontsize: 16,
                         borderBottomWidth: 1,
