@@ -159,7 +159,13 @@ export const customInputStyles = {
                 marginRight: 145,
                 marginBottom: 5,
               },
-          
+              headerText: {
+                fontSize: 20,
+                fontWeight: 'bold',
+                paddingTop: 20,
+                alignContent: 'center',
+                alignSelf: 'center',
+              },
               editPic: {
                 alignItems: "center",
                 alignSelf: "center",

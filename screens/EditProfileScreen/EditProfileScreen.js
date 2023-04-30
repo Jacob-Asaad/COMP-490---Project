@@ -27,6 +27,7 @@ const EditProfileScreen = ({navigation}) => {
     return (
         <SafeAreaView style={[editProfileStyles.container, {backgroundColor: theme.background}]}>
             <View style={editProfileStyles.contain}>
+                <Text style= {[editProfileStyles.headerText, {backgroundColor: theme.background}]}> Edit Profile</Text>
                 <View style={editProfileStyles.profileImage}>
                     <Image source={require('../../assets/images/profilepic.jpeg')} style={editProfileStyles.image}>
 
@@ -34,7 +35,7 @@ const EditProfileScreen = ({navigation}) => {
                 </View>
 
                 <Text style = {[editProfileStyles.editPic, {color: '#7DB9B6'}]}>
-                 edit photo
+                 Edit Photo
                 </Text>
         
                 <View style= {{padding: 10}}>
@@ -44,7 +45,7 @@ const EditProfileScreen = ({navigation}) => {
                         First Name
                     </Text>
                      <TextInput
-                        placeholder="first name"
+                        placeholder="First Name"
                         placeholderTextColor= "#9A9483"
                         defaultValue={firstName}
                         style={{
@@ -63,7 +64,7 @@ const EditProfileScreen = ({navigation}) => {
                     Last Name
                      </Text>
                     <TextInput
-                        placeholder="last name"
+                        placeholder="Last Name"
                         placeholderTextColor= "#9A9483"
                         defaultValue={lastName}
                         style={{
@@ -82,7 +83,7 @@ const EditProfileScreen = ({navigation}) => {
                     Email
                     </Text>
                     <TextInput
-                        placeholder="email"
+                        placeholder="Email"
                         placeholderTextColor= "#9A9483"
                          defaultValue={email}
                          style={{
@@ -101,7 +102,27 @@ const EditProfileScreen = ({navigation}) => {
                         Password
                     </Text>
                     <TextInput
-                        placeholder="new password"
+                        placeholder="New password"
+                        placeholderTextColor= "#9A9483"
+                        defaultValue={password}
+                        style={{
+                        fontsize: 16,
+                        borderBottomWidth: 1,
+                        borderColor: '#7DB9B6',
+                        color: theme.color
+                        
+                        }}
+                    />
+                 </View>
+
+                 <View style= {{padding: 10}}>
+                     <Text
+                        style = {{color: '#7DB9B6'
+                        }}>
+                        Confirm Password
+                    </Text>
+                    <TextInput
+                        placeholder="Confirm password"
                         placeholderTextColor= "#9A9483"
                         defaultValue={password}
                         style={{
