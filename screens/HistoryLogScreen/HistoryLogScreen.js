@@ -28,7 +28,7 @@ const HistoryLogScreen = () => {
             timestamp
           };
         });
-        setlogData(newReading);
+        setlogData(newReading.slice(-10));
       });
     }
   }, []);
