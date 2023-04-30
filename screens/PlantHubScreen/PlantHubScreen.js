@@ -54,9 +54,10 @@ const PlantHubScreen = () => {
         const room_temp = lastReading['temperature'];      
         console.log(soil_read);
         console.log(room_temp);
+        const tempInFahrenheit = (room_temp * 9/5) + 32;
         setplantData(newReading);
         setSoilRead(soil_read);
-        setRoomTemp(room_temp);
+        setRoomTemp(tempInFahrenheit.toFixed(1) + '°F');
       });
     }
   }, []);
@@ -76,7 +77,7 @@ const PlantHubScreen = () => {
 
 
  
-  function createPlant(plantName) {
+ /* function createPlant(plantName) {
     const name = plantName;
     const [soilLevel, setSoilLevel] = useState("soilReading");
     const [temp, setTemp] = useState("tempReading");
@@ -86,7 +87,7 @@ const PlantHubScreen = () => {
         <View style={circleDisplayStyles.CircleShape}/>
       </View>
     
-  };
+  }; */
 
   return ( //returning a plant component to the PlantHubScreen Hello {name.firsName}
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -100,7 +101,7 @@ const PlantHubScreen = () => {
             soilLevel='Soil Level'
             soilReading = 'Good'
             temp='Temp'
-            tempReading={room_temp + "°C"}
+            tempReading={room_temp}
             humidity='Humidity'
             humidityReading = {soil_read}
           />
