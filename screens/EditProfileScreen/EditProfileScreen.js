@@ -18,6 +18,9 @@ const EditProfileScreen = ({navigation}) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirm] = useState('');
 
+    const currentUser = firebase.auth().currentUser;
+
+
     const saveChanges = () => {
         updateUserProfile();
     }
@@ -25,33 +28,42 @@ const EditProfileScreen = ({navigation}) => {
         navigation.goBack();
     }
 
-    const updateUserProfile = () => {
-        const profileUpdates = {};
-        
-        if (firstName) {
-            profileUpdates.firstName = firstName;
+    const updateUserProfile = async (firstName, lastName, email, password) => {
+        const user = firebase.auth().currentUser;
+      
+        if (user) {
+          // Update user profile in Firebase Authentication
+          if (firstName || lastName) {
+            const displayName = [firstName, lastName].filter(Boolean).join(' ');
+            await user.updateProfile({ displayName });
+            console.log('User profile updated successfully');
+          }
+      
+          if (email && email !== user.email) {
+            await user.updateEmail(email);
+            console.log('Email updated successfully');
+          }
+      
+          if (password) {
+            await user.updatePassword(password);
+            console.log('Password updated successfully');
+          }
+      
+          // Update user document in Firestore
+          const userDocRef = firebase.firestore().collection('users').doc(user.uid);
+      
+          const updates = {};
+          if (firstName) updates.firstName = firstName;
+          if (lastName) updates.lastName = lastName;
+          if (email) updates.email = email;
+      
+          if (Object.keys(updates).length > 0) {
+            await userDocRef.update(updates);
+            console.log('User document updated successfully');
+          }
         }
-        
-        if (lastName) {
-            profileUpdates.lastName = lastName;
-        }
-        
-        if (email && email !== currentUser.email) {
-            profileUpdates.email = email;
-        }
-        
-        if (password && confirmPassword && password === confirmPassword) {
-            currentUser.updatePassword(password)
-                .then(() => console.log('Password updated'))
-                .catch((error) => console.log('Error updating password:', error));
-        }
-        
-        if (Object.keys(profileUpdates).length > 0) {
-            updateCurrentUser(profileUpdates)
-                .then(() => console.log('Profile updated'))
-                .catch((error) => console.log('Error updating profile:', error));
-        }
-    };
+      };
+      
 
     return (
         <SafeAreaView style={[editProfileStyles.container, {backgroundColor: theme.background}]}>
@@ -137,6 +149,7 @@ const EditProfileScreen = ({navigation}) => {
                         placeholder="New password"
                         placeholderTextColor= "#9A9483"
                         value={password}
+                        secureTextEntry={true} 
                         onChangeText={setPassword}
                         style={{
                         fontsize: 16,
@@ -158,6 +171,7 @@ const EditProfileScreen = ({navigation}) => {
                         placeholder="Confirm password"
                         placeholderTextColor= "#9A9483"
                         value={confirmPassword}
+                        secureTextEntry={true} 
                         onChangeText={setConfirm}
                         style={{
                         fontsize: 16,
