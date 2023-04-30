@@ -35,16 +35,19 @@ const HistoryLogScreen = () => {
 
   return (
     <View styles={[historyLogStyles.container, { backgroundColor: theme.background }]}>
-      <Text style={[historyLogStyles.errorText, { color: theme.color }]}> History Log</Text>
-      <Text style={[historyLogStyles.lastWateredText, { color: theme.color }]}> Last Watered: </Text>
-      {logData.map((log, index) => (
+    <Text style={[historyLogStyles.errorText, { color: theme.color }]}> History Log</Text>
+    <Text style={[historyLogStyles.lastWateredText, { color: theme.color }]}> Last Watered: </Text>
+    {logData.length === 0 ? (
+      <Text style={[historyLogStyles.text, { color: theme.color }]}>No Data Available</Text>
+    ) : (
+      logData.map((log, index) => (
         <View key={index} style={{ marginBottom: 95 }}>
           <Text style={[historyLogStyles.text, { color: theme.color }]}> {log.timestamp}</Text>
         </View>
-      ))}
-    </View>
-  );
-};
+      ))
+    )}
+  </View>
+);}
 
 
       

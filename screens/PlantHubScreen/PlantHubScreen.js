@@ -45,6 +45,11 @@ const PlantHubScreen = () => {
       onValue(plantRef, (snapshot) => {
         const data = snapshot.val();
         console.log('Data: ', data);
+        if (!data) {
+          setSoilRead(0);
+          setRoomTemp('0°F');
+          return;
+        }
         const newReading = Object.keys(data).map((key) => ({
           data,
           ...data[key],
