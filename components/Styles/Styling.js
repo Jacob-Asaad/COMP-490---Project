@@ -195,11 +195,18 @@ export const customInputStyles = {
           errorText: {
             alignItems: "center",
               alignSelf: "center",
-              marginBottom: 10,
+              marginBottom: 2,
               fontSize: 25,
               fontWeight: "bold",
-              padding: 90,
+              padding: 80,
           },
+          lastWateredText:{
+            fontSize: 15,
+            fontWeight: "bold",
+            textAlign: "left",
+            marginBottom: -10,
+            paddingLeft: 15,
+          }
         });
 
      export const plantProfileStyles = {
