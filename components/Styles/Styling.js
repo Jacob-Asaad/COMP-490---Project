@@ -372,7 +372,7 @@ export const signUpStyles = {
     root: {
         alignItems: 'center',
         padding: 30,
-
+        backgroundColor: 'white',
     },
 
     title: {

@@ -1,10 +1,12 @@
-import { View, Text, Image, signInStylesheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, Text, Image, useWindowDimensions, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import Logo from '../../assets/images/logo.png';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import { firebase } from '../../config';
 import { signInStyles } from '../../components/Styles/Styling';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 const SignInScreen = () => {
@@ -18,29 +20,34 @@ const SignInScreen = () => {
             alert(error.message)
         }
     }
+   
 
     const { height } = useWindowDimensions();
 
     const onSignInPress = () => {
         loginUser(email, password);
-        console.warn("Sign In");
     }
 
+    const navigation = useNavigation();
+
     const onForgotPasswordPress = () => {
-        console.warn("Forgot Password");
+        navigation.navigate('ForgotPassword');
     }
+
     const onSignInFacebook = () => {
         console.warn("Signing in with Facebook...");
     }
 
-    const onSignInGoogle = () => {
-        console.warn("Signing with Google...");
-    }
     const onSignInPressApple = () => {
         console.warn("Signing with Apple...");
     }
 
+    const onSignInPressGoogle = () => {
+        console.warn("Signing with Google...");
+    }
+
     const onSignUpPress = () => {
+        navigation.navigate('SignUp');
         console.warn('Redirect to Sign Up Screen');
     }
 
@@ -91,7 +98,7 @@ const SignInScreen = () => {
 
                 <CustomButton
                     text="Sign In with Google"
-                    onPress={onSignInGoogle}
+                    onPress={onSignInPressGoogle}
                     bgColor="#FAE9EA"
                     fgColor="#DD4D44"
                 />

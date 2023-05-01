@@ -5,6 +5,7 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
 import { firebase } from '../../config';
 import { signUpStyles } from '../../components/Styles/Styling';
+import { useNavigation } from '@react-navigation/native';
 
 
 const SignUpScreen = () => {
@@ -40,6 +41,8 @@ const SignUpScreen = () => {
         })
     }
 
+    const navigation = useNavigation();
+
     const onRegisterPress = () => {
         registerUser(email, password);
         console.warn("Sign Up");
@@ -57,6 +60,7 @@ const SignUpScreen = () => {
     }
 
     const onSignInPress = () => {
+        navigation.navigate('Login');
         console.warn('Redirect to Sign In Screen');
     }
 

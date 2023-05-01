@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import React, { useEffect, useState, useRef } from 'react';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
+import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import SettingsScreen from './screens/SettingsScreen/SettingsScreen';
 import EditProfileScreen from './screens/EditProfileScreen/EditProfileScreen';
 import PlantHubScreen from './screens/PlantHubScreen/PlantHubScreen';
@@ -16,6 +17,7 @@ import { updatePushToken, getUserByEmail } from "./firebaseUtils";
 import { EventRegister } from 'react-native-event-listeners';
 import theme from './theme/theme';
 import themeContext from './theme/themeContext';
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen/ForgotPasswordScreen';
 
 
 const Stack = createStackNavigator();
@@ -89,15 +91,29 @@ function App() {
   if (!user) {
     return (
       <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={SignInScreen}
-          screenOptions={{
-            showLabel: false,
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
+      <Stack.Screen
+        name="Login"
+        component={SignInScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPasswordScreen}
+        options={{
+          title: 'Forgot Password',
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUpScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
     );
   }
 
