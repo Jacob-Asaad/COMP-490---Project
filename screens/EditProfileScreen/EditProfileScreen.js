@@ -21,7 +21,7 @@ const EditProfileScreen = ({navigation}) => {
         console.warn("Saving Changes...");
     }
     const cancel = () => {
-        navigation.goBack();
+        navigation.navigate('Setting');
     }
 
     return (
