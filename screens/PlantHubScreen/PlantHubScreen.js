@@ -68,24 +68,63 @@ const PlantHubScreen = () => {
   }, []);
 */
 
-  useEffect(() => {
-    const plantRef = ref(db, '/moistureSensor/')
-     onValue(plantRef, (snapshot) => {
-       const data = snapshot.val();
-       const newReading = Object.keys(data).map((key) => ({
-         data,
-         ...data[key],
-       }));
-       const soil_read = newReading[0]['data']['moistureReading'];
-       const room_temp = newReading[0]['data']['roomTemp'];
-       console.log('Soil Read:', soil_read); // log the soil_read value to check if it's correctly extracted
-    console.log('Room Temp:', room_temp); // log the room_temp value to check if it's correctly extracted
-    const tempInFahrenheit = (room_temp * 9/5) + 32;
-       setplantData(newReading);
-       setSoilRead(soil_read);
-       setRoomTemp(tempInFahrenheit.toFixed(1) + '°F');
-     });
-   }, [])
+useEffect(() => {
+  const currentUser = firebase.auth().currentUser;
+  let User_UID;
+  if (currentUser) {
+    User_UID = currentUser.uid;
+  }
+  console.log('user UID: ', User_UID);
+  if (User_UID === 'foveQTWg8wTT7kAMgXV5FCwoJLC2') {
+    const plantRef = ref(db, '/UsersData/' + User_UID + '/readings');
+    onValue(plantRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log('Data: ', data);
+      if (!data) {
+        setSoilRead(0);
+        setRoomTemp('0°F');
+        return;
+      }
+      const newReading = Object.keys(data).map((key) => ({
+        data,
+        ...data[key],
+      }));
+      const lastReading = newReading.slice(-1)[0];
+      const soil_read = lastReading['humidity'];
+      const room_temp = lastReading['temperature'];      
+      console.log(soil_read);
+      console.log(room_temp);
+      const tempInFahrenheit = (room_temp * 9/5) + 32;
+      setplantData(newReading);
+      setSoilRead(soil_read);
+      setRoomTemp(tempInFahrenheit.toFixed(1) + '°F');
+    });
+  } else {
+    const plantRef = ref(db, '/moistureSensor/');
+    onValue(plantRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log('Data: ', data);
+      if (!data) {
+        setSoilRead(0);
+        setRoomTemp('0°F');
+        return;
+      }
+      const newReading = Object.keys(data).map((key) => ({
+        data,
+        ...data[key],
+      }));
+      const soil_read = newReading[0]['data']['moistureReading'];
+      const room_temp = newReading[0]['data']['roomTemp'];      
+      console.log(soil_read);
+      console.log(room_temp);
+      const tempInFahrenheit = (room_temp * 9/5) + 32;
+      setplantData(newReading);
+      setSoilRead(soil_read);
+      setRoomTemp(tempInFahrenheit.toFixed(1) + '°F');
+    });
+  }
+}, []);
+
   
 
    /*
