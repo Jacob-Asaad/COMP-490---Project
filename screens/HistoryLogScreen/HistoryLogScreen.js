@@ -11,7 +11,7 @@ const HistoryLogScreen = () => {
   const theme = useContext(themeContext);
   const [logData, setlogData] = useState([]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     const currentUser = firebase.auth().currentUser;
     let User_UID;
     if (currentUser) {
@@ -22,7 +22,10 @@ const HistoryLogScreen = () => {
       const plantRef = ref(db, '/UsersData/' + User_UID + '/readings');
       onValue(plantRef, (snapshot) => {
         const data = snapshot.val();
-        const newReading = Object.keys(data).map((key) => {
+        
+        const newReading = Object.keys(data)
+      .sort((a, b) => data[b].timestamp - data[a].timestamp) // sort by timestamp in descending order
+      .map((key) => {
           const timestamp = new Date(parseInt(data[key].timestamp) * 1000).toLocaleString();
           return {
             timestamp
@@ -31,46 +34,20 @@ const HistoryLogScreen = () => {
         setlogData(newReading.slice(-10));
       });
     }
-  }, []); */
+  }, []);
 
-  useEffect(() => {
-    const plantRef = ref(db, '/waterLog/1-set/')
-     onValue(plantRef, (snapshot) => {
-       const data = snapshot.val();
-       const newLog = Object.keys(data).map((key) => ({
-         data,
-         ...data[key],
-       }));
-       let Log = newLog[0]['data']['lastWatered'];
-       console.log(Log);
-       let currentLogs = logData.slice();
-
-       // Add the new log to the beginning of the array
-       currentLogs.unshift(data);
- 
-       // Keep only the last 10 logs
-       let newLogs = currentLogs.slice(0, 10);
-       setlogData(newLog);
-
-     });
-   }, [])
-
-
-
-   return (
-    <View styles={[historyLogStyles.container, {backgroundColor: theme.background}]}>
-     <Text style = {[historyLogStyles.errorText,{color: theme.color}]}> History Log</Text>
-     {logData.map((log, index) => (
-        <Text key={index} style={[historyLogStyles.text, { color: theme.color}]}>
-          {log.lastWatered}
-        </Text>
+  return (
+    <View styles={[historyLogStyles.container, { backgroundColor: theme.background }]}>
+      <Text style={[historyLogStyles.errorText, { color: theme.color }]}> History Log</Text>
+      <Text style={[historyLogStyles.lastWateredText, { color: theme.color }]}> Last Watered: </Text>
+      {logData.map((log, index) => (
+        <View key={index} style={{ marginBottom: 95 }}>
+          <Text style={[historyLogStyles.text, { color: theme.color }]}> {log.timestamp}</Text>
+        </View>
       ))}
-      <Text style={[historyLogStyles.text,{color: theme.color}]}> {logData[0]?.data?.lastWatered}
-      </Text>
-      
     </View>
-  )
-}
+  );
+};
 
 
       
