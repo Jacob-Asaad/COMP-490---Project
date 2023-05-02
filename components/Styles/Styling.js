@@ -183,7 +183,7 @@ export const customInputStyles = {
          export const historyLogStyles = StyleSheet.create({
             container: {
               flex:1,
-              
+              backgroundColor: 'white',
             },
             text: {
               fontSize: 15,
