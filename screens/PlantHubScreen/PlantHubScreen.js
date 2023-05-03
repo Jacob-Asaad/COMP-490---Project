@@ -21,6 +21,7 @@ const PlantHubScreen = () => {
   const [plantData, setplantData] = useState([]);
   const [soil_read, setSoilRead] = useState(null);
   const [room_temp, setRoomTemp] = useState(''); 
+  const [soilReading, setSoilReading] = useState('');
 
   //pull info from firestore database
   useEffect(() => {
@@ -91,13 +92,15 @@ useEffect(() => {
       }));
       const lastReading = newReading.slice(-1)[0];
       const soil_read = lastReading['humidity'];
-      const room_temp = lastReading['temperature'];      
+      const room_temp = lastReading['temperature'];  
+      const soil_reading_status = getSoilReadingStatus(soil_read, room_temp);    
       console.log(soil_read);
       console.log(room_temp);
       const tempInFahrenheit = (room_temp * 9/5) + 32;
       setplantData(newReading);
       setSoilRead(((soil_read - 200) / (2000 - 200) * 100).toFixed(1) + '%');
       setRoomTemp(tempInFahrenheit.toFixed(1) + '°F');
+      setSoilReading(soil_reading_status);
     });
   } else {
     const plantRef = ref(db, '/moistureSensor/');
@@ -115,15 +118,32 @@ useEffect(() => {
       }));
       const soil_read = newReading[0]['data']['moistureReading'];
       const room_temp = newReading[0]['data']['roomTemp'];      
+      const soil_reading_status = getSoilReadingStatus(soil_read, room_temp);    
       console.log(soil_read);
       console.log(room_temp);
       const tempInFahrenheit = (room_temp * 9/5) + 32;
       setplantData(newReading);
       setSoilRead(((soil_read - 200) / (2000 - 200) * 100).toFixed(1) + '%');
       setRoomTemp(tempInFahrenheit.toFixed(1) + '°F');
+      setSoilReading(soil_reading_status);
     });
   }
 }, []);
+
+function getSoilReadingStatus(soil_read, room_temp) {
+  const humidity_percent = ((soil_read - 200) / (2000 - 200)) * 100;
+  const temp_fahrenheit = (room_temp * 9/5) + 32;
+
+  if (humidity_percent >= 60 && temp_fahrenheit >= 65) {
+    return "Good";
+  } else if (humidity_percent >= 30 && temp_fahrenheit >= 55)  {
+    return "Fair";
+  } else {
+    return "Bad";
+  }
+}
+
+
 
   
 
@@ -163,7 +183,7 @@ useEffect(() => {
             name='Plant 1'
             image = {require('../../assets/images/cactusplant.png')}
             soilLevel='Soil Level'
-            soilReading = 'Good'
+            soilReading = {soilReading}
             temp='Temp'
             tempReading={room_temp}
             humidity='Humidity'
@@ -188,7 +208,7 @@ useEffect(() => {
     </ScrollView>
   
   )
-}
+          }
 
 
 
