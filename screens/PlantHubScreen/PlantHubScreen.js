@@ -96,7 +96,7 @@ useEffect(() => {
       console.log(room_temp);
       const tempInFahrenheit = (room_temp * 9/5) + 32;
       setplantData(newReading);
-      setSoilRead(soil_read);
+      setSoilRead(((soil_read - 200) / (2000 - 200) * 100).toFixed(1) + '%');
       setRoomTemp(tempInFahrenheit.toFixed(1) + '°F');
     });
   } else {
@@ -119,7 +119,7 @@ useEffect(() => {
       console.log(room_temp);
       const tempInFahrenheit = (room_temp * 9/5) + 32;
       setplantData(newReading);
-      setSoilRead(soil_read);
+      setSoilRead(((soil_read - 200) / (2000 - 200) * 100).toFixed(1) + '%');
       setRoomTemp(tempInFahrenheit.toFixed(1) + '°F');
     });
   }
