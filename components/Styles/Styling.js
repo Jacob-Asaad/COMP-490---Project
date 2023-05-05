@@ -159,7 +159,13 @@ export const customInputStyles = {
                 marginRight: 145,
                 marginBottom: 5,
               },
-          
+              headerText: {
+                fontSize: 20,
+                fontWeight: 'bold',
+                paddingTop: 20,
+                alignContent: 'center',
+                alignSelf: 'center',
+              },
               editPic: {
                 alignItems: "center",
                 alignSelf: "center",
@@ -177,7 +183,7 @@ export const customInputStyles = {
          export const historyLogStyles = StyleSheet.create({
             container: {
               flex:1,
-              
+              backgroundColor: 'white',
             },
             text: {
               fontSize: 15,
@@ -195,11 +201,18 @@ export const customInputStyles = {
           errorText: {
             alignItems: "center",
               alignSelf: "center",
-              marginBottom: 10,
+              marginBottom: 2,
               fontSize: 25,
               fontWeight: "bold",
-              padding: 90,
+              padding: 80,
           },
+          lastWateredText:{
+            fontSize: 15,
+            fontWeight: "bold",
+            textAlign: "left",
+            marginBottom: -10,
+            paddingLeft: 15,
+          }
         });
 
      export const plantProfileStyles = {
