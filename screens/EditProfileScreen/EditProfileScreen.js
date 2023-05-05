@@ -24,8 +24,10 @@ const EditProfileScreen = ({navigation}) => {
     const saveChanges = () => {
         updateUserProfile();
     }
+
+    
     const cancel = () => {
-        navigation.goBack();
+        navigation.navigate('Setting');
     }
 
     const updateUserProfile = async (firstName, lastName, email, password) => {
