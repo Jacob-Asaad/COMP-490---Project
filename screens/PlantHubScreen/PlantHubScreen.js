@@ -1,6 +1,6 @@
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/Custombutton';
-import { View, Text, TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity }
+import { Alert, View, Text, TextInput, Image, StyleSheet, useWindowDimensions, ScrollView, TouchableOpacity }
   from 'react-native';
 import Plant from '../../components/Plant/Plant';
 import { circleDisplayStyles } from '../../components/Styles/Styling';
@@ -22,6 +22,7 @@ const PlantHubScreen = () => {
   const [soil_read, setSoilRead] = useState(null);
   const [room_temp, setRoomTemp] = useState(''); 
   const [soilReading, setSoilReading] = useState('');
+  const [newPlantName, setNewPlantName] = useState('');
 
   //pull info from firestore database
   useEffect(() => {
@@ -172,6 +173,39 @@ function getSoilReadingStatus(soil_read, room_temp) {
       </View>
     
   }; */
+  const newPlantPrompt = () => {
+
+    Alert.prompt("Plant Profile", "Enter new plant name", [
+      {
+        text: "Add New Plant",
+        onPress: (thisNewPlant) => setNewPlantName(thisNewPlant)
+      },
+      {
+        text: "Cancel"
+      }
+    ]);
+  }
+
+  useEffect(() => {
+    if (newPlantName === '') {
+      console.log('Empty string');
+    } else {
+      addPlantProfile();
+    }
+  }, [newPlantName])
+
+
+  //pull info from firestore database
+  let addPlantProfile = () => {
+
+    console.log(newPlantName);
+
+    firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('plant_profiles').add({
+      plantName: newPlantName,
+
+
+    })
+  }
 
   return ( //returning a plant component to the PlantHubScreen Hello {name.firsName}
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -190,7 +224,7 @@ function getSoilReadingStatus(soil_read, room_temp) {
             humidityReading = {soil_read}
           />
         </Text>
-        <TouchableOpacity style={circleDisplayStyles.buttons} onPress={() => { console.warn("Add New Plant") }}>
+        <TouchableOpacity style={circleDisplayStyles.buttons} onPress={() => newPlantPrompt()}>
           <Image
             style={{
               resizeMode: "contain",
